@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BookMemo</string>
+    <string name="app_name">Book Memo</string>
 
     <!-- button description -->
     <string name="desc_library_button">Bouton pour afficher votre bibliotheque</string>
@@ -11,4 +11,10 @@
     <string name="action_import">Importer</string>
     <string name="action_export">Exporter</string>
     <string name="action_about">A propos</string>
+    <string name="TAB_literature">Litterature</string>
+    <string name="TAB_manga">Manga</string>
+    <string name="TAB_comic">BD</string>
+
+    <!-- Titles -->
+    <string name="title_seeAll">Ma Bibliothèque</string>
 </resources>
