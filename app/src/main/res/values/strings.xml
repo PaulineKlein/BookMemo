@@ -24,4 +24,10 @@
     <!-- Titles -->
     <string name="title_seeAll">My Library</string>
     <string name="error_message">An error has occured</string>
+
+    <!-- AlertDialog-->
+    <string name="increment_book">Do you want to increment one characteristic below ?</string>
+    <string name="increment_tome">Tome</string>
+    <string name="increment_chapter">Chapter</string>
+    <string name="increment_episode">Episode</string>
 </resources>

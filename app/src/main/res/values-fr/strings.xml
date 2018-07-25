@@ -23,4 +23,10 @@
     <!-- Titles -->
     <string name="title_seeAll">Ma Bibliothèque</string>
     <string name="error_message">Une erreur est survenue.</string>
+
+    <!-- AlertDialog-->
+    <string name="increment_book">Voulez-vous incrémenter cette série ?</string>
+    <string name="increment_tome">Tome</string>
+    <string name="increment_chapter">Chapitre</string>
+    <string name="increment_episode">Episode</string>
 </resources>

@@ -60,7 +60,7 @@ public class SeeAllLiterature extends Fragment {
         mSeeAllAdapter = new SeeAllAdapter();
         mRecyclerView.setAdapter(mSeeAllAdapter);
 
-        insertBook();
+       // insertBook();
         List<Book> listOfBooks = getBookfromDatabase();
 
         if (listOfBooks != null) {
@@ -126,17 +126,17 @@ public class SeeAllLiterature extends Fragment {
 
     private void insertBook(){
         ContentValues values = new ContentValues();
-        values.put(BookContract.BookDb.COLUMN_TITLE, "mon livre 2 !!");
+        values.put(BookContract.BookDb.COLUMN_TITLE, "l'appel");
         values.put(BookContract.BookDb.COLUMN_AUTHOR, "moi");
         values.put(BookContract.BookDb.COLUMN_DESC, "desc");
-        values.put(BookContract.BookDb.COLUMN_TYPE, BookContract.TYPE_LITERATURE);
+        values.put(BookContract.BookDb.COLUMN_TYPE, BookContract.TYPE_MANGA);
         values.put(BookContract.BookDb.COLUMN_YEAR, 1990);
-        values.put(BookContract.BookDb.COLUMN_BOUGHT, 1);
-        values.put(BookContract.BookDb.COLUMN_FINISH, 0);
+        values.put(BookContract.BookDb.COLUMN_BOUGHT, 0);
+        values.put(BookContract.BookDb.COLUMN_FINISH, 1);
         values.put(BookContract.BookDb.COLUMN_TOME, 1);
-        values.put(BookContract.BookDb.COLUMN_CHAPTER, 0);
-        values.put(BookContract.BookDb.COLUMN_EPISODE, 0);
-        values.put(BookContract.BookDb.COLUMN_FAVORITE,0);
+        values.put(BookContract.BookDb.COLUMN_CHAPTER, 1);
+        values.put(BookContract.BookDb.COLUMN_EPISODE, 1);
+        values.put(BookContract.BookDb.COLUMN_FAVORITE,1);
 
         Log.i(TAG, values.toString());
 
@@ -146,6 +146,5 @@ public class SeeAllLiterature extends Fragment {
         }catch (Exception e){
             Log.e(TAG, e.getMessage());
         }
-
     }
 }

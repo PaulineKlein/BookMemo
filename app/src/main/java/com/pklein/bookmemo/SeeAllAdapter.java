@@ -1,13 +1,18 @@
 package com.pklein.bookmemo;
 
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.app.AlertDialog.Builder;
 
 import com.pklein.bookmemo.data.Book;
 
@@ -32,6 +37,7 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
         public final TextView TV_year;
         public final TextView TV_comment;
         public final TextView TV_episode;
+        public final ImageView iv_star;
 
         public SeeAllAdapterViewHolder(View view) {
             super(view);
@@ -42,6 +48,7 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
             TV_year = view.findViewById(R.id.TV_year);
             TV_comment = view.findViewById(R.id.TV_comment);
             TV_episode = view.findViewById(R.id.TV_episode);
+            iv_star = view.findViewById(R.id.star);
         }
     }
 
@@ -63,13 +70,70 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
         Log.i(TAG,"titre : "+BookSelected.getTitle() );
         Log.i(TAG,"position : "+position );
 
+        // SET VALUE
         seeAllAdapterViewHolder.TV_title.setText(BookSelected.getTitle());
-        seeAllAdapterViewHolder.TV_number.setText(String.valueOf(BookSelected.getTome()));
         seeAllAdapterViewHolder.TV_author.setText(BookSelected.getAuthor());
-        seeAllAdapterViewHolder.TV_chapter.setText(String.valueOf(BookSelected.getChapter()));
-        seeAllAdapterViewHolder.TV_year.setText(String.valueOf(BookSelected.getYear()));
         seeAllAdapterViewHolder.TV_comment.setText(BookSelected.getDesc());
-        seeAllAdapterViewHolder.TV_episode.setText(String.valueOf(BookSelected.getEpisode()));
+
+        if(BookSelected.getTome() != 0){
+            seeAllAdapterViewHolder.TV_number.setText(String.valueOf(BookSelected.getTome()));
+        }
+        if(BookSelected.getChapter() != 0){
+            seeAllAdapterViewHolder.TV_chapter.setText(String.valueOf(BookSelected.getChapter()));
+        }
+        if(BookSelected.getYear() != 0){
+            seeAllAdapterViewHolder.TV_year.setText(String.valueOf(BookSelected.getYear()));
+        }
+        if(BookSelected.getEpisode() != 0){
+            seeAllAdapterViewHolder.TV_episode.setText(String.valueOf(BookSelected.getEpisode()));
+        }
+
+        //SET COLOR in cased it is finished
+        if (BookSelected.getFinish()!=0)
+        {
+            seeAllAdapterViewHolder.TV_number.setTextColor(seeAllAdapterViewHolder.itemView.getContext().getResources().getColor(R.color.colorGold));
+            seeAllAdapterViewHolder.TV_chapter.setTextColor(seeAllAdapterViewHolder.itemView.getContext().getResources().getColor(R.color.colorGold));
+            seeAllAdapterViewHolder.TV_episode.setTextColor(seeAllAdapterViewHolder.itemView.getContext().getResources().getColor(R.color.colorGold));
+        }
+
+        //IF favorite DISPLAY STAR
+        if (BookSelected.getFavorite() != 0)
+            seeAllAdapterViewHolder.iv_star.setVisibility(View.VISIBLE);
+        else
+            seeAllAdapterViewHolder.iv_star.setVisibility(View.INVISIBLE);
+
+
+
+
+        seeAllAdapterViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Builder builder = new AlertDialog.Builder(v.getContext());
+                builder.setTitle(BookSelected.getTitle());
+                builder.setMessage(R.string.increment_book);
+
+                builder.setPositiveButton(R.string.increment_tome, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        // if this button is clicked, update database
+                        dialog.cancel();
+                    }
+                });
+                builder.setNeutralButton (R.string.increment_chapter, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        // if this button is clicked, update database
+                        dialog.cancel();
+                    }
+                });
+
+                builder.setNegativeButton(R.string.increment_episode, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        // if this button is clicked, just close the dialog box and do nothing
+                        dialog.cancel();
+                    }
+                });
+                builder.show();
+            }
+        });
 
     }
 
