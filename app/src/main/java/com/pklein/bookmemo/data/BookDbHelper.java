@@ -26,16 +26,17 @@ public class BookDbHelper extends SQLiteOpenHelper {
                 BookContract.BookDb.COLUMN_TITLE + " TEXT NOT NULL PRIMARY KEY, " +
                 BookContract.BookDb.COLUMN_TYPE + " TEXT NOT NULL, " +
                 BookContract.BookDb.COLUMN_AUTHOR + " TEXT NULL, " +
-                BookContract.BookDb.COLUMN_YEAR + " INTEGER NULL, " +
-                BookContract.BookDb.COLUMN_BOUGHT + " INTEGER NULL, " +
-                BookContract.BookDb.COLUMN_FINISH + " INTEGER NULL, " +
-                BookContract.BookDb.COLUMN_TOME + " INTEGER NULL, " +
-                BookContract.BookDb.COLUMN_CHAPTER + " INTEGER NULL, " +
-                BookContract.BookDb.COLUMN_EPISODE + " INTEGER NULL, " +
+                BookContract.BookDb.COLUMN_YEAR + " INTEGER DEFAULT 0, " +
+                BookContract.BookDb.COLUMN_BOUGHT + " INTEGER DEFAULT 0, " +
+                BookContract.BookDb.COLUMN_FINISH + " INTEGER DEFAULT 0, " +
+                BookContract.BookDb.COLUMN_TOME + " INTEGER DEFAULT 0, " +
+                BookContract.BookDb.COLUMN_CHAPTER + " INTEGER DEFAULT 0, " +
+                BookContract.BookDb.COLUMN_EPISODE + " INTEGER DEFAULT 0, " +
                 BookContract.BookDb.COLUMN_DESC + " TEXT NULL, " +
-                BookContract.BookDb.COLUMN_FAVORITE + " INTEGER NULL, " +
+                BookContract.BookDb.COLUMN_FAVORITE + " INTEGER DEFAULT 0 " +
                 ");";
 
+        Log.i(TAG,SQL_CREATE_WAITLIST_TABLE);
         sqLiteDatabase.execSQL(SQL_CREATE_WAITLIST_TABLE);
     }
 

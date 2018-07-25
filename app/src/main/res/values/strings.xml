@@ -1,11 +1,17 @@
 <resources>
     <string name="app_name">Book Memo</string>
+    <string name="content_authority">com.pklein.bookmemo.app</string>
 
     <!-- button description -->
     <string name="desc_library_button">button to display your library</string>
     <string name="desc_add_button">button to add a book</string>
     <string name="desc_search_button">button to search a book</string>
     <string name="desc_stats_button">button to display statistics</string>
+
+    <!-- image description -->
+    <string name="desc_update_image">Image button to update Info</string>
+    <string name="desc_star_image">Image to show if a book has been bought</string>
+    <string name="ProgressBar_content_description">Progress Bar</string>
 
     <!-- menu -->
     <string name="action_import">Import</string>
@@ -17,4 +23,5 @@
 
     <!-- Titles -->
     <string name="title_seeAll">My Library</string>
+    <string name="error_message">An error has occured</string>
 </resources>

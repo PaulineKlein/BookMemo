@@ -8,16 +8,18 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.util.Log;
 
 public class BookProvider extends ContentProvider {
 
+    private static final String TAG= BookProvider.class.getSimpleName();
     /* This class has been set up thanks to code from https://github.com/udacity/android-content-provider */
     private static final UriMatcher mUriMatcher = buildUriMatcher();
     private BookDbHelper mBookDbHelper;
 
     /* Codes for the UriMatcher */
-    private static final int FAV_MOVIES = 100;
-    private static final int FAV_MOVIES_WITH_ID = 101;
+    private static final int ALL_BOOK = 100;
+    private static final int BOOK_WITH_TITLE = 101;
 
 
     private static UriMatcher buildUriMatcher(){
@@ -25,8 +27,8 @@ public class BookProvider extends ContentProvider {
         final String authority = BookContract.CONTENT_AUTHORITY;
 
         // TYPE of URI :
-        matcher.addURI(authority, BookContract.BookDb.TABLE_NAME, FAV_MOVIES);
-        matcher.addURI(authority, BookContract.BookDb.TABLE_NAME + "/#", FAV_MOVIES_WITH_ID);
+        matcher.addURI(authority, BookContract.BookDb.TABLE_NAME, ALL_BOOK);
+        matcher.addURI(authority, BookContract.BookDb.TABLE_NAME + "/#", BOOK_WITH_TITLE);
 
         return matcher;
     }
@@ -45,10 +47,10 @@ public class BookProvider extends ContentProvider {
         final int match = mUriMatcher.match(uri);
 
         switch (match){
-            case FAV_MOVIES:{
+            case ALL_BOOK:{
                 return BookContract.BookDb.CONTENT_DIR_TYPE;
             }
-            case FAV_MOVIES_WITH_ID:{
+            case BOOK_WITH_TITLE:{
                 return BookContract.BookDb.CONTENT_ITEM_TYPE;
             }
             default:{
@@ -62,8 +64,8 @@ public class BookProvider extends ContentProvider {
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder){
         Cursor retCursor;
         switch(mUriMatcher.match(uri)){
-            // All Movies selected
-            case FAV_MOVIES:{
+            // All Book selected
+            case ALL_BOOK:{
                 retCursor = mBookDbHelper.getReadableDatabase().query(
                         BookContract.BookDb.TABLE_NAME,                 // The table to query
                         projection,                                     // The columns to return
@@ -74,8 +76,8 @@ public class BookProvider extends ContentProvider {
                         sortOrder);                                    // The sort order
                 return retCursor;
             }
-            // Individual Movie based on Id selected
-            case FAV_MOVIES_WITH_ID:{
+            // Individual Book based on title selected
+            case BOOK_WITH_TITLE:{
                 retCursor = mBookDbHelper.getReadableDatabase().query(
                         BookContract.BookDb.TABLE_NAME,                         // The table to query
                         projection,                                                             // The columns to return
@@ -94,14 +96,15 @@ public class BookProvider extends ContentProvider {
 
     @Override
     public Uri insert(Uri uri, ContentValues values){
+        Log.i(TAG, "insert ");
         final SQLiteDatabase db = mBookDbHelper.getWritableDatabase();
         Uri returnUri =null;
         switch (mUriMatcher.match(uri)) {
-            case FAV_MOVIES: {
-                long _id = db.insert(BookContract.BookDb.TABLE_NAME, null, values);
-                // insert unless it is already contained in the database
+            case ALL_BOOK: {
+                long _id = db.insertOrThrow(BookContract.BookDb.TABLE_NAME, null, values);
+                //---if added successfully---
                 if (_id > 0) {
-                    returnUri = BookContract.BookDb.buildMovieUri((int)_id);
+                    returnUri = BookContract.BookDb.buildBookUri((int)_id);
                 } else {
                     throw new android.database.SQLException("Failed to insert row into: " + uri);
                 }
@@ -121,10 +124,10 @@ public class BookProvider extends ContentProvider {
         final int match = mUriMatcher.match(uri);
         int numDeleted;
         switch(match){
-            case FAV_MOVIES:
+            case ALL_BOOK:
                 numDeleted = db.delete(BookContract.BookDb.TABLE_NAME, selection, selectionArgs);
                 break;
-            case FAV_MOVIES_WITH_ID:
+            case BOOK_WITH_TITLE:
                 numDeleted = db.delete(BookContract.BookDb.TABLE_NAME,
                         BookContract.BookDb.COLUMN_TITLE + " = ?",
                         new String[]{String.valueOf(ContentUris.parseId(uri))});
@@ -146,14 +149,14 @@ public class BookProvider extends ContentProvider {
         }
 
         switch(mUriMatcher.match(uri)){
-            case FAV_MOVIES:{
+            case ALL_BOOK:{
                 numUpdated = db.update(BookContract.BookDb.TABLE_NAME,
                         contentValues,
                         selection,
                         selectionArgs);
                 break;
             }
-            case FAV_MOVIES_WITH_ID: {
+            case BOOK_WITH_TITLE: {
                 numUpdated = db.update(BookContract.BookDb.TABLE_NAME,
                         contentValues,
                         BookContract.BookDb.COLUMN_TITLE + " = ?",

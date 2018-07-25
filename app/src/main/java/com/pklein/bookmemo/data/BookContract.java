@@ -7,6 +7,10 @@ import android.provider.BaseColumns;
 
 public class BookContract {
 
+    public static final String TYPE_LITERATURE = "LITERATURE";
+    public static final String TYPE_MANGA = "MANGA";
+    public static final String TYPE_COMIC = "COMIC";
+
     public static final String CONTENT_AUTHORITY = "com.pklein.bookmemo.app";
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
 
@@ -32,7 +36,7 @@ public class BookContract {
         public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE +"/" + CONTENT_AUTHORITY + "/" + TABLE_NAME;
 
         // for building URIs on insertion
-        public static Uri buildMovieUri(int id){
+        public static Uri buildBookUri(int id){
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
     }

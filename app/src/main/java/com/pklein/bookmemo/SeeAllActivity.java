@@ -23,6 +23,19 @@ public class SeeAllActivity extends AppCompatActivity {
 
         tabLayout = findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
-        tabLayout.setTabTextColors(Color.WHITE, ContextCompat.getColor(this,R.color.colorAccent));
+        tabLayout.setTabTextColors(R.color.colorWhite, ContextCompat.getColor(this,R.color.colorPrimaryDark));
+    }
+
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(POSITION, tabLayout.getSelectedTabPosition());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        viewPager.setCurrentItem(savedInstanceState.getInt(POSITION));
     }
 }

@@ -1,4 +1,4 @@
-package com.klein.bookmemo;
+package com.pklein.bookmemo.data;
 
 import java.util.ArrayList;
 
@@ -127,9 +127,7 @@ public class Book {
 		this.mChapter = Chapter;
 	}
 	
-	public int getEpisode() {
-		return mEpisode;
-	}
+	public int getEpisode() { return mEpisode; }
 	public void setEpisode(int Episode) {
 		this.mEpisode = Episode;
 	}

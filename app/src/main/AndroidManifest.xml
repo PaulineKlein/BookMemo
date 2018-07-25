@@ -22,6 +22,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+        <provider
+            android:authorities="@string/content_authority"
+            android:name=".data.BookProvider"
+            android:exported="false"
+            android:syncable="true"/>
     </application>
 
 </manifest>
