@@ -174,5 +174,4 @@ public class BookProvider extends ContentProvider {
 
         return numUpdated;
     }
-
 }

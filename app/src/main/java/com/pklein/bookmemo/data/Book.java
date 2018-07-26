@@ -1,34 +1,36 @@
 package com.pklein.bookmemo.data;
 
+import android.util.Log;
+
+import com.pklein.bookmemo.SeeAllAdapter;
+
 import java.util.ArrayList;
 
 public class Book {
-	public final static String MANGA = "manga";
-	public final static String BOOK = "book";	
-	public final static String COMIC = "comic";	
+
 	public final static int FINISH = 1;
 	public final static int PENDING = 0;
 	public final static int BOUGHT = 1;
 	public final static int NOTBOUGHT = 0;
 		
-	public String mtitle;
-	public String mAuthor;
-	public String mDesc;
-	public String mType;
-	public int mYear;
-	public int mBought;
-	public int mFinish;
-	public int mTome;
-	public int mChapter;
-	public int mEpisode;
-	public int mFavorite;
+	private String mtitle;
+	private String mAuthor;
+	private String mDesc;
+	private String mType;
+	private int mYear;
+	private int mBought;
+	private int mFinish;
+	private int mTome;
+	private int mChapter;
+	private int mEpisode;
+	private int mFavorite;
 
 	public Book()
 	{
 		mtitle = "";
 		mAuthor = "";
 		mDesc = "";
-		mType = MANGA;
+		mType = BookContract.TYPE_LITERATURE;
 		mYear = 0;
 		mBought = 0;
 		mFinish = PENDING;
@@ -55,13 +57,12 @@ public class Book {
 	public static ArrayList<Book> getAListOfBook() {
 		ArrayList<Book> listBook = new ArrayList<Book>();
 		
-		listBook.add(new Book("title1", "author1", "desc", MANGA,1990,BOUGHT,PENDING,50,300,0,0));
-		listBook.add(new Book("title2", "author2", "desc", BOOK,1991,NOTBOUGHT,FINISH,51,300,0,0));
-		listBook.add(new Book("title3", "author3", "desc", BOOK,1992,NOTBOUGHT,FINISH,52,300,0,0));
-		listBook.add(new Book("title4", "author4", "desc", MANGA,1993,BOUGHT,PENDING,53,300,0,0));
+		listBook.add(new Book("title1", "author1", "desc", BookContract.TYPE_MANGA,1990,BOUGHT,PENDING,50,300,0,0));
+		listBook.add(new Book("title2", "author2", "desc", BookContract.TYPE_LITERATURE,1991,NOTBOUGHT,FINISH,51,300,0,0));
+		listBook.add(new Book("title3", "author3", "desc", BookContract.TYPE_LITERATURE,1992,NOTBOUGHT,FINISH,52,300,0,0));
+		listBook.add(new Book("title4", "author4", "desc", BookContract.TYPE_MANGA,1993,BOUGHT,PENDING,53,300,0,0));
 		return listBook;
 	}
-
 	
 	/* ------------------------------------------  GETTER AND SETTER --------------------------------- */
 	public String getTitle() {

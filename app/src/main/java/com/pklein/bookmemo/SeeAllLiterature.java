@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.pklein.bookmemo.data.Book;
 import com.pklein.bookmemo.data.BookContract;
+import com.pklein.bookmemo.tools.BookDbTool;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,8 +61,9 @@ public class SeeAllLiterature extends Fragment {
         mSeeAllAdapter = new SeeAllAdapter();
         mRecyclerView.setAdapter(mSeeAllAdapter);
 
-       // insertBook();
-        List<Book> listOfBooks = getBookfromDatabase();
+        BookDbTool bookDbTool = new BookDbTool();
+        String subquery = BookContract.BookDb.COLUMN_TYPE + "='" + mLiterature_Type + "'";
+        List<Book> listOfBooks = bookDbTool.getSelectedBookfromDatabase(subquery, getActivity().getContentResolver());
 
         if (listOfBooks != null) {
             showLitteratureListView();
@@ -82,69 +84,5 @@ public class SeeAllLiterature extends Fragment {
     private void showErrorMessage() {
         mRecyclerView.setVisibility(View.INVISIBLE);
         mErrorMessageDisplay.setVisibility(View.VISIBLE);
-    }
-
-    private List<Book> getBookfromDatabase(){
-        Log.i(TAG, "getBookfromDatabase ");
-
-        List<Book> ListBook = new ArrayList<>();
-        Uri uri = BookContract.BookDb.CONTENT_URI;
-        String[] projection = null; // we want all columns return
-        String selection =BookContract.BookDb.COLUMN_TYPE + "='" + mLiterature_Type + "'"; // we want to filter by the type of book
-        String sortOrder = BookContract.BookDb.COLUMN_TITLE;
-
-        Cursor cursor = getActivity().getContentResolver().query(uri,projection,selection,null,sortOrder );
-
-        if (cursor !=null && cursor.moveToFirst()) {
-            while (!cursor.isAfterLast()) {
-
-                Book book = new Book();
-                book.setTitle(cursor.getString(cursor.getColumnIndex(BookContract.BookDb.COLUMN_TITLE)));
-                book.setAuthor(cursor.getString(cursor.getColumnIndex(BookContract.BookDb.COLUMN_AUTHOR)));
-                book.setDesc(cursor.getString(cursor.getColumnIndex(BookContract.BookDb.COLUMN_DESC)));
-                book.setType(cursor.getString(cursor.getColumnIndex(BookContract.BookDb.COLUMN_TYPE)));
-                book.setYear(cursor.getInt(cursor.getColumnIndex(BookContract.BookDb.COLUMN_YEAR)));
-                book.setBought(cursor.getInt(cursor.getColumnIndex(BookContract.BookDb.COLUMN_BOUGHT)));
-                book.setFinish(cursor.getInt(cursor.getColumnIndex(BookContract.BookDb.COLUMN_FINISH)));
-                book.setTome(cursor.getInt(cursor.getColumnIndex(BookContract.BookDb.COLUMN_TOME)));
-                book.setChapter(cursor.getInt(cursor.getColumnIndex(BookContract.BookDb.COLUMN_CHAPTER)));
-                book.setEpisode(cursor.getInt(cursor.getColumnIndex(BookContract.BookDb.COLUMN_EPISODE)));
-                book.setFavorite(cursor.getInt(cursor.getColumnIndex(BookContract.BookDb.COLUMN_FAVORITE)));
-
-                Log.i(TAG, book.getTitle());
-
-                ListBook.add(book);
-                cursor.moveToNext();
-            }
-            cursor.close();
-        }
-
-
-        Log.i(TAG, "end getBookfromDatabase ");
-        return ListBook;
-    }
-
-    private void insertBook(){
-        ContentValues values = new ContentValues();
-        values.put(BookContract.BookDb.COLUMN_TITLE, "l'appel");
-        values.put(BookContract.BookDb.COLUMN_AUTHOR, "moi");
-        values.put(BookContract.BookDb.COLUMN_DESC, "desc");
-        values.put(BookContract.BookDb.COLUMN_TYPE, BookContract.TYPE_MANGA);
-        values.put(BookContract.BookDb.COLUMN_YEAR, 1990);
-        values.put(BookContract.BookDb.COLUMN_BOUGHT, 0);
-        values.put(BookContract.BookDb.COLUMN_FINISH, 1);
-        values.put(BookContract.BookDb.COLUMN_TOME, 1);
-        values.put(BookContract.BookDb.COLUMN_CHAPTER, 1);
-        values.put(BookContract.BookDb.COLUMN_EPISODE, 1);
-        values.put(BookContract.BookDb.COLUMN_FAVORITE,1);
-
-        Log.i(TAG, values.toString());
-
-        Uri uri =BookContract.BookDb.CONTENT_URI;
-        try {
-            Uri result = getActivity().getContentResolver().insert(uri, values);
-        }catch (Exception e){
-            Log.e(TAG, e.getMessage());
-        }
     }
 }

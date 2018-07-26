@@ -6,6 +6,7 @@
     <string name="desc_add_button">Bouton pour ajouter un livre</string>
     <string name="desc_search_button">Bouton pour chercher un livre</string>
     <string name="desc_stats_button">Bouton pour voir les statistiques</string>
+    <string name="desc_validate_button">bouton pour valider la Recherche</string>
 
     <!-- image description -->
     <string name="desc_update_image">Bouton Image pour mettre à jour les ingfos</string>
@@ -29,4 +30,26 @@
     <string name="increment_tome">Tome</string>
     <string name="increment_chapter">Chapitre</string>
     <string name="increment_episode">Episode</string>
+    <string name="modify_book">Voulez-vous modifier cette série ?</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+
+    <!--SearchActivity-->
+    <string name="str_searchBook">Rechercher un Livre :</string>
+    <string name="hint_editText">éditer</string>
+    <string name="str_title">Titre : </string>
+    <string name="str_author">Auteur : </string>
+    <string name="str_year">Année : </string>
+    <string name="str_all">Tout</string>
+    <string name="str_type">Type : </string>
+    <string name="str_type1">Litterature </string>
+    <string name="str_type2">Manga </string>
+    <string name="str_type3">BD </string>
+    <string name="str_collection">Collection : </string>
+    <string name="str_collection1">En cours</string>
+    <string name="str_collection2">Terminée</string>
+    <string name="str_bought">Acheté : </string>
+    <string name="str_chapter">Chapitre renseigné : </string>
+    <string name="str_episode">Episode renseigné : </string>
+    <string name="str_favorite">Favori : </string>
 </resources>

@@ -36,17 +36,15 @@ public class MainActivity extends AppCompatActivity {
         library_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(),SeeAllActivity.class );
-                // par défaut on veut tout afficher :
-                i.putExtra("annee_search", 0);
-                i.putExtra("int_radio_collection", -1);
-                i.putExtra("int_radio_possession", -1);
-                i.putExtra("int_radio_scan", -1);
-                i.putExtra("int_radio_anime", -1);
-                i.putExtra("Titre_search", "");
-                i.putExtra("auteur_search", "");
-                i.putExtra("str_radio_type", "manga");
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                getApplicationContext().startActivity(i);
+            }
+        });
 
-               // i.setClassName("com.klein.bookmemo", "com.klein.bookmemo.SeeAllActivity");
+        search_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),SearchActivity.class );
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 getApplicationContext().startActivity(i);

@@ -7,6 +7,7 @@
     <string name="desc_add_button">button to add a book</string>
     <string name="desc_search_button">button to search a book</string>
     <string name="desc_stats_button">button to display statistics</string>
+    <string name="desc_validate_button">button to validate Search</string>
 
     <!-- image description -->
     <string name="desc_update_image">Image button to update Info</string>
@@ -30,4 +31,26 @@
     <string name="increment_tome">Tome</string>
     <string name="increment_chapter">Chapter</string>
     <string name="increment_episode">Episode</string>
+    <string name="modify_book">Do you want to Modify this Book ?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <!--SearchActivity-->
+    <string name="str_searchBook">Search a book :</string>
+    <string name="hint_editText">edit</string>
+    <string name="str_title">Title : </string>
+    <string name="str_author">Author : </string>
+    <string name="str_year">Year : </string>
+    <string name="str_all">All</string>
+    <string name="str_type">Type : </string>
+    <string name="str_type1">Literature </string>
+    <string name="str_type2">Manga </string>
+    <string name="str_type3">Comic </string>
+    <string name="str_collection">Collection : </string>
+    <string name="str_collection1">Pending</string>
+    <string name="str_collection2">Finished</string>
+    <string name="str_bought">Bought : </string>
+    <string name="str_chapter">Chapter filled : </string>
+    <string name="str_episode">Episode filled : </string>
+    <string name="str_favorite">Favorite : </string>
 </resources>

@@ -7,7 +7,7 @@
     >
 
     <ImageView
-        android:id="@+id/avatar"
+        android:id="@+id/update_bt"
         android:contentDescription="@string/desc_update_image"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -20,8 +20,8 @@
         android:layout_height="wrap_content"
         android:textColor="@color/colorPrimaryDark"
         android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/avatar"
-        android:layout_alignTop="@+id/avatar"
+        android:layout_toRightOf="@+id/update_bt"
+        android:layout_alignTop="@+id/update_bt"
         android:textStyle="bold"
         tools:text="@string/action_about"
         />

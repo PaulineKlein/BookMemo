@@ -4,6 +4,7 @@ package com.pklein.bookmemo;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -28,6 +29,7 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
     public SeeAllAdapter() {
     }
 
+
     public class SeeAllAdapterViewHolder extends RecyclerView.ViewHolder {
 
         public final TextView TV_title;
@@ -38,6 +40,7 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
         public final TextView TV_comment;
         public final TextView TV_episode;
         public final ImageView iv_star;
+        public final ImageView iv_mofify;
 
         public SeeAllAdapterViewHolder(View view) {
             super(view);
@@ -49,6 +52,7 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
             TV_comment = view.findViewById(R.id.TV_comment);
             TV_episode = view.findViewById(R.id.TV_episode);
             iv_star = view.findViewById(R.id.star);
+            iv_mofify = view.findViewById(R.id.update_bt);
         }
     }
 
@@ -102,7 +106,49 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
         else
             seeAllAdapterViewHolder.iv_star.setVisibility(View.INVISIBLE);
 
+        // listener to click on the modify image :
+        // memorize the position of the book inside the imagView :
+       // seeAllAdapterViewHolder.iv_mofify.setTag(position);
+        seeAllAdapterViewHolder.iv_mofify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+              //  Integer position = (Integer)v.getTag();
+                Log.w(TAG, "onClickImage : "+BookSelected.getTitle());
+                final Context context = v.getContext();
+
+                Builder builder = new AlertDialog.Builder(v.getContext());
+                builder.setTitle(BookSelected.getTitle());
+                builder.setMessage(R.string.modify_book);
+
+                builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        dialog.cancel();
+                        Intent i = new Intent(context,SeeSelectedBooksActivity.class );
+
+                        i.putExtra("title_search", BookSelected.getTitle());
+                        i.putExtra("author_search", "");
+                        i.putExtra("type_search", BookSelected.getType());
+                        i.putExtra("year_search", -1);
+                        i.putExtra("finish_search", -1);
+                        i.putExtra("bought_search", -1);
+                        i.putExtra("chapter_search", -1);
+                        i.putExtra("episode_search", -1);
+                        i.putExtra("favorite_search", -1);
+
+                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        context.startActivity(i);
+                    }
+                });
+
+                builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) { dialog.cancel(); }
+                });
+
+                builder.show();
+            }
+        });
 
 
         seeAllAdapterViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
