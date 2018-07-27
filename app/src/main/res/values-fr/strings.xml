@@ -24,6 +24,8 @@
     <!-- Titles -->
     <string name="title_seeAll">Ma Bibliothèque</string>
     <string name="error_message">Une erreur est survenue.</string>
+    <string name="title_add">Ajouter un livre</string>
+    <string name="str_searchBook">Rechercher un Livre :</string>
 
     <!-- AlertDialog-->
     <string name="increment_book">Voulez-vous incrémenter cette série ?</string>
@@ -33,9 +35,10 @@
     <string name="modify_book">Voulez-vous modifier cette série ?</string>
     <string name="yes">Oui</string>
     <string name="no">Non</string>
+    <string name="empty_title">Le titre ne peut pas être vide</string>
+    <string name="add_error">Une erreur est survenue, cet élément existe déjà</string>
 
     <!--SearchActivity-->
-    <string name="str_searchBook">Rechercher un Livre :</string>
     <string name="hint_editText">éditer</string>
     <string name="str_title">Titre : </string>
     <string name="str_author">Auteur : </string>
@@ -52,4 +55,8 @@
     <string name="str_chapter">Chapitre renseigné : </string>
     <string name="str_episode">Episode renseigné : </string>
     <string name="str_favorite">Favori : </string>
+    <string name="str_tome">Tome : </string>
+    <string name="str_chapter_read">Chapitre : </string>
+    <string name="str_episode_seen">Episode : </string>
+    <string name="str_Desc">Description : </string>
 </resources>

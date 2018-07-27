@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical">
+
+    <LinearLayout  android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:paddingTop="30dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"  >
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_title"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/colorWhite"/>
+            <EditText
+                android:id="@+id/editTitle_form"
+                android:hint="@string/hint_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10">
+            </EditText>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_author"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/colorWhite"/>
+            <EditText
+                android:id="@+id/editAuthor_form"
+                android:hint="@string/hint_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10">
+            </EditText>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_year"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/colorWhite"/>
+            <EditText
+                android:id="@+id/editYear_form"
+                android:hint="@string/hint_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number">
+            </EditText>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_tome"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/colorWhite"/>
+            <EditText
+                android:id="@+id/editTome_form"
+                android:hint="@string/hint_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number">
+            </EditText>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_chapter_read"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/colorWhite"/>
+            <EditText
+                android:id="@+id/editChapter_form"
+                android:hint="@string/hint_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number">
+            </EditText>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_episode_seen"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/colorWhite"/>
+            <EditText
+                android:id="@+id/editEpisode_form"
+                android:hint="@string/hint_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number">
+            </EditText>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_Desc"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/colorWhite"
+                android:layout_span="2"/>
+        </TableRow>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip" >
+            <EditText
+                android:id="@+id/editDesc_form"
+                android:hint="@string/hint_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_span="2"
+                android:ems="10">
+            </EditText>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_type"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/colorWhite"
+                android:layout_span="2"/>
+        </TableRow>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip" >
+            <RadioGroup
+                android:id="@+id/radio_type_form"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_span="2">
+                <RadioButton android:id="@+id/radio_type1_form"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_type1"
+                    android:textColor="@color/colorBlack"
+                    android:onClick="onRadio_typeClicked_form"/>
+                <RadioButton android:id="@+id/radio_type2_form"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_type2"
+                    android:textColor="@color/colorBlack"
+                    android:onClick="onRadio_typeClicked_form"/>
+                <RadioButton android:id="@+id/radio_type3_form"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_type3"
+                    android:textColor="@color/colorBlack"
+                    android:onClick="onRadio_typeClicked_form"/>
+            </RadioGroup>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_collection"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/colorWhite"
+                android:layout_span="2"/>
+        </TableRow>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip" >
+            <RadioGroup
+                android:id="@+id/radio_collection_form"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_span="2">
+                <RadioButton android:id="@+id/radio_collection1_form"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_collection1"
+                    android:textColor="@color/colorBlack"
+                    android:onClick="onRadio_collectionClicked_form"/>
+                <RadioButton android:id="@+id/radio_collection2_form"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_collection2"
+                    android:textColor="@color/colorBlack"
+                    android:onClick="onRadio_collectionClicked_form" />
+            </RadioGroup>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_bought"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/colorWhite"
+                android:layout_span="2"/>
+        </TableRow>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip" >
+            <RadioGroup
+                android:id="@+id/radio_bought_form"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_span="2">
+                <RadioButton android:id="@+id/radio_bought1_form"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/yes"
+                    android:textColor="@color/colorBlack"
+                    android:onClick="onRadio_boughtClicked_form"/>
+                <RadioButton android:id="@+id/radio_bought2_form"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no"
+                    android:textColor="@color/colorBlack"
+                    android:onClick="onRadio_boughtClicked_form" />
+            </RadioGroup>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_favorite"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/colorWhite"
+                android:layout_span="2"/>
+        </TableRow>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip" >
+            <RadioGroup
+                android:id="@+id/radio_favorite_form"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_span="2">
+                <RadioButton android:id="@+id/radio_favorite1_form"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/yes"
+                    android:textColor="@color/colorBlack"
+                    android:onClick="onRadio_favoriteClicked_form"/>
+                <RadioButton android:id="@+id/radio_favorite2_form"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no"
+                    android:textColor="@color/colorBlack"
+                    android:onClick="onRadio_favoriteClicked_form" />
+            </RadioGroup>
+        </TableRow>
+
+        </TableLayout>
+    </LinearLayout>
+</ScrollView>

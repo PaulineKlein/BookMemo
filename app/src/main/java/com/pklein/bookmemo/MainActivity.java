@@ -42,6 +42,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        add_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),AddActivity.class );
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                getApplicationContext().startActivity(i);
+            }
+        });
+
         search_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(),SearchActivity.class );

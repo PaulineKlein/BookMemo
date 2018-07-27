@@ -33,7 +33,7 @@ public class BookDbTool {
         String str8 = "";
         String str9 = "";
 
-        if(!title.equals("") || !author.equals("") || !type.equals("") || year !=0 || finish !=-1 || bought !=-1 || chapter !=-1 || episode !=-1 || favorite !=1)
+        if((title != null && !title.equals("")) || (author != null && !author.equals("")) || (type != null && !type.equals("")) || year !=0 || finish !=-1 || bought !=-1 || chapter !=-1 || episode !=-1 || favorite !=1)
         {
             res = "BEGIN";
 
@@ -56,27 +56,28 @@ public class BookDbTool {
             if(chapter !=-1)
             {
                 if(chapter ==0) // don't display chapters
-                    str7+= "AND "+BookContract.BookDb.COLUMN_CHAPTER+" = 0";
+                    str7+= "AND "+BookContract.BookDb.COLUMN_CHAPTER+" = 0 ";
                 else if(chapter ==1) // display chapter
-                    str7+= "AND "+BookContract.BookDb.COLUMN_CHAPTER+" != 0";
+                    str7+= "AND "+BookContract.BookDb.COLUMN_CHAPTER+" != 0 ";
             }
             if(episode !=-1)
             {
                 if(episode ==0) // don't display anime
-                    str8+= "AND "+BookContract.BookDb.COLUMN_EPISODE+" = 0";
+                    str8+= "AND "+BookContract.BookDb.COLUMN_EPISODE+" = 0 ";
                 else if(episode ==1) // display anime
-                    str8+= "AND "+BookContract.BookDb.COLUMN_EPISODE+" != 0";
+                    str8+= "AND "+BookContract.BookDb.COLUMN_EPISODE+" != 0 ";
             }
             if(favorite !=-1)
             {
                 if(favorite ==0) // don't display favorite
-                    str9+= "AND "+BookContract.BookDb.COLUMN_FAVORITE+" = 0";
+                    str9+= "AND "+BookContract.BookDb.COLUMN_FAVORITE+" = 0 ";
                 else if(favorite ==1) // display favorite
-                    str9+= "AND "+BookContract.BookDb.COLUMN_FAVORITE+" != 0";
+                    str9+= "AND "+BookContract.BookDb.COLUMN_FAVORITE+" != 0 ";
             }
 
             res+=str1+str2+str3+str4+str5+str6+str7+str8+str9;
             res = res.replace("BEGINAND", "");
+            res = res.replace("BEGIN", "");
         }
         Log.w(TAG, "res = "+res);
 
@@ -122,19 +123,19 @@ public class BookDbTool {
         return ListBook;
     }
 
-    public void insertBook(ContentResolver contentResolver){
+    public void insertBook(ContentResolver contentResolver,String title, String author, String desc, String type,int year,int finish, int bought, int chapter, int tome, int episode, int favorite) throws Exception {
         ContentValues values = new ContentValues();
-        values.put(BookContract.BookDb.COLUMN_TITLE, "l'appel");
-        values.put(BookContract.BookDb.COLUMN_AUTHOR, "moi");
-        values.put(BookContract.BookDb.COLUMN_DESC, "desc");
-        values.put(BookContract.BookDb.COLUMN_TYPE, BookContract.TYPE_MANGA);
-        values.put(BookContract.BookDb.COLUMN_YEAR, 1990);
-        values.put(BookContract.BookDb.COLUMN_BOUGHT, 0);
-        values.put(BookContract.BookDb.COLUMN_FINISH, 1);
-        values.put(BookContract.BookDb.COLUMN_TOME, 1);
-        values.put(BookContract.BookDb.COLUMN_CHAPTER, 1);
-        values.put(BookContract.BookDb.COLUMN_EPISODE, 1);
-        values.put(BookContract.BookDb.COLUMN_FAVORITE,1);
+        values.put(BookContract.BookDb.COLUMN_TITLE, title);
+        values.put(BookContract.BookDb.COLUMN_AUTHOR, author);
+        values.put(BookContract.BookDb.COLUMN_DESC, desc);
+        values.put(BookContract.BookDb.COLUMN_TYPE, type);
+        values.put(BookContract.BookDb.COLUMN_YEAR, year);
+        values.put(BookContract.BookDb.COLUMN_BOUGHT, bought);
+        values.put(BookContract.BookDb.COLUMN_FINISH, finish);
+        values.put(BookContract.BookDb.COLUMN_TOME, tome);
+        values.put(BookContract.BookDb.COLUMN_CHAPTER, chapter);
+        values.put(BookContract.BookDb.COLUMN_EPISODE, episode);
+        values.put(BookContract.BookDb.COLUMN_FAVORITE, favorite);
 
         Log.i(TAG, values.toString());
 
@@ -143,6 +144,7 @@ public class BookDbTool {
             Uri result = contentResolver.insert(uri, values);
         }catch (Exception e){
             Log.e(TAG, e.getMessage());
+            throw new Exception("insert Error");
         }
     }
 }

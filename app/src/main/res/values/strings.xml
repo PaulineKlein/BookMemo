@@ -25,6 +25,8 @@
     <!-- Titles -->
     <string name="title_seeAll">My Library</string>
     <string name="error_message">An error has occured</string>
+    <string name="title_add">Add a book</string>
+    <string name="str_searchBook">Search a book</string>
 
     <!-- AlertDialog-->
     <string name="increment_book">Do you want to increment one characteristic below ?</string>
@@ -34,9 +36,10 @@
     <string name="modify_book">Do you want to Modify this Book ?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="empty_title">Title can\'t be empty</string>
+    <string name="add_error">An error has occured, this book is already into the Library</string>
 
     <!--SearchActivity-->
-    <string name="str_searchBook">Search a book :</string>
     <string name="hint_editText">edit</string>
     <string name="str_title">Title : </string>
     <string name="str_author">Author : </string>
@@ -53,4 +56,8 @@
     <string name="str_chapter">Chapter filled : </string>
     <string name="str_episode">Episode filled : </string>
     <string name="str_favorite">Favorite : </string>
+    <string name="str_tome">Tome : </string>
+    <string name="str_chapter_read">Chapter : </string>
+    <string name="str_episode_seen">Episode : </string>
+    <string name="str_Desc">Description : </string>
 </resources>

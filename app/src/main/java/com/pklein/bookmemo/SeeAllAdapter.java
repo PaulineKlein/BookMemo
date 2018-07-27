@@ -29,7 +29,6 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
     public SeeAllAdapter() {
     }
 
-
     public class SeeAllAdapterViewHolder extends RecyclerView.ViewHolder {
 
         public final TextView TV_title;
@@ -158,22 +157,22 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
                 builder.setTitle(BookSelected.getTitle());
                 builder.setMessage(R.string.increment_book);
 
-                builder.setPositiveButton(R.string.increment_tome, new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(R.string.increment_episode, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,int id) {
                         // if this button is clicked, update database
                         dialog.cancel();
                     }
                 });
-                builder.setNeutralButton (R.string.increment_chapter, new DialogInterface.OnClickListener() {
+                builder.setNeutralButton (R.string.increment_tome, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,int id) {
                         // if this button is clicked, update database
                         dialog.cancel();
                     }
                 });
 
-                builder.setNegativeButton(R.string.increment_episode, new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(R.string.increment_chapter, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,int id) {
-                        // if this button is clicked, just close the dialog box and do nothing
+                        // if this button is clicked, update database
                         dialog.cancel();
                     }
                 });

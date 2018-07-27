@@ -18,10 +18,10 @@ public class SearchActivity extends AppCompatActivity {
 
     private static final String TAG = SearchActivity.class.getSimpleName();
 
-    @BindView(R.id.editTitle) EditText editTitle =null;
-    @BindView(R.id.editauthor) EditText editauthor = null;
-    @BindView(R.id.editYear) EditText editYear = null;
-    @BindView(R.id.validate_button) ImageButton validate_button = null;
+    @BindView(R.id.editTitle) EditText editTitle;
+    @BindView(R.id.editauthor) EditText editauthor;
+    @BindView(R.id.editYear) EditText editYear;
+    @BindView(R.id.validate_button) ImageButton validate_button;
 
     private String str_radio_type = "";
     private int int_radio_collection = -1;
@@ -47,13 +47,9 @@ public class SearchActivity extends AppCompatActivity {
                     year_search = Integer.parseInt(editYear.getText().toString());
 
                 Intent i = new Intent(getApplicationContext(),SeeSelectedBooksActivity.class );
-                //if(title_search != null)
-                    i.putExtra("title_search", title_search);
-                //if(author_search != null)
-                    i.putExtra("auteur_search", author_search);
-                //if(str_radio_type != null)
-                    i.putExtra("str_radio_type", str_radio_type);
-
+                i.putExtra("title_search", title_search);
+                i.putExtra("author_search", author_search);
+                i.putExtra("type_search", str_radio_type);
                 i.putExtra("year_search", year_search);
                 i.putExtra("finish_search", int_radio_collection);
                 i.putExtra("bought_search", int_radio_possession);
@@ -67,14 +63,11 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
-
         Log.i(TAG, "End SearchActivity");
     }
 
     public void onRadio_typeClicked(View view) {
-        // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
-        // Check which radio button was clicked
         switch(view.getId()) {
             case R.id.radio_type1:
                 if (checked)
@@ -95,9 +88,7 @@ public class SearchActivity extends AppCompatActivity {
         }
     }
     public void onRadio_collectionClicked(View view) {
-        // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
-        // Check which radio button was clicked
         switch(view.getId()) {
             case R.id.radio_collection1:
                 if (checked)
@@ -115,9 +106,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     public void onRadio_boughtClicked(View view) {
-        // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
-        // Check which radio button was clicked
         switch(view.getId()) {
             case R.id.radio_bought1:
                 if (checked)
@@ -135,9 +124,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     public void onRadio_chapterClicked(View view) {
-        // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
-        // Check which radio button was clicked
         switch(view.getId()) {
             case R.id.radio_chapter1:
                 if (checked)
@@ -155,9 +142,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     public void onRadio_episodeClicked(View view) {
-        // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
-        // Check which radio button was clicked
         switch(view.getId()) {
             case R.id.radio_episode1:
                 if (checked)
@@ -175,9 +160,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     public void onRadio_favoriteClicked(View view) {
-        // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
-        // Check which radio button was clicked
         switch(view.getId()) {
             case R.id.radio_favorite1:
                 if (checked)
