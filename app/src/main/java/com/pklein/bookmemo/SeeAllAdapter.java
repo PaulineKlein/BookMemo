@@ -122,7 +122,7 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
                 builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,int id) {
                         dialog.cancel();
-                        Intent i = configureIntent(context, BookSelected);
+                        Intent i = configureIntent(context, BookSelected,"Update");
                         context.startActivity(i);
                     }
                 });
@@ -154,7 +154,7 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
                             int value = BookSelected.getEpisode() + 1;
                             bookDbTool.updateOneColumn(contentResolver, BookSelected.getId(), BookContract.BookDb.COLUMN_EPISODE, value);
 
-                            Intent i = configureIntent(context, BookSelected);
+                            Intent i = configureIntent(context, BookSelected,"See");
                             context.startActivity(i);
                         }
                         catch(Exception e)
@@ -170,7 +170,7 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
                             int value = BookSelected.getTome() + 1;
                             bookDbTool.updateOneColumn(contentResolver, BookSelected.getId(), BookContract.BookDb.COLUMN_TOME, value);
 
-                            Intent i = configureIntent(context, BookSelected);
+                            Intent i = configureIntent(context, BookSelected ,"See");
                             context.startActivity(i);
                         }
                         catch(Exception e)
@@ -187,7 +187,7 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
                             int value = BookSelected.getChapter() + 1;
                             bookDbTool.updateOneColumn(contentResolver, BookSelected.getId(), BookContract.BookDb.COLUMN_CHAPTER, value);
 
-                            Intent i = configureIntent(context, BookSelected);
+                            Intent i = configureIntent(context, BookSelected, "See");
                             context.startActivity(i);
                         }
                         catch(Exception e)
@@ -213,10 +213,19 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
         notifyDataSetChanged();
     }
 
-    private Intent configureIntent(Context context, Book BookSelected){
-        Book BookToLookFor = new Book(-1,BookSelected.getTitle(), "","",BookSelected.getType(),-1,-1,-1,-1,-1,-1,-1);
+    private Intent configureIntent(Context context, Book BookSelected, String ActivityChosen){
 
-        Intent i =new Intent(context,SeeSelectedBooksActivity.class );
+        Intent i;
+        Book BookToLookFor;
+
+        if(ActivityChosen.equals("Update")) {
+            i = new Intent(context, UpdateActivity.class);
+            BookToLookFor = new Book(BookSelected.getId(),BookSelected.getTitle(), BookSelected.getAuthor(),"",BookSelected.getType(),BookSelected.getYear(),BookSelected.getBought(),BookSelected.getFinish(),BookSelected.getTome(),BookSelected.getChapter(),BookSelected.getEpisode(),BookSelected.getFavorite());
+        }
+        else{
+            i = new Intent(context, SeeSelectedBooksActivity.class);
+            BookToLookFor = new Book(-1,BookSelected.getTitle(), "","",BookSelected.getType(),-1,-1,-1,-1,-1,-1,-1);
+        }
      /*   i.putExtra("title_search", BookSelected.getTitle());
         i.putExtra("author_search", "");
         i.putExtra("type_search", BookSelected.getType());

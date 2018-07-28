@@ -7,10 +7,11 @@
     <string name="desc_search_button">Bouton pour chercher un livre</string>
     <string name="desc_stats_button">Bouton pour voir les statistiques</string>
     <string name="desc_validate_button">bouton pour valider la Recherche</string>
+    <string name="desc_delete_button">Bouton pour supprimer les infos</string>
 
     <!-- image description -->
     <string name="desc_update_image">Bouton Image pour mettre à jour les ingfos</string>
-    <string name="desc_star_image">Image pour montrer si un livre a été acheté</string>
+    <string name="desc_star_image">Image pour montrer si un livre a été mis en favori</string>
     <string name="ProgressBar_content_description">Progress Bar</string>
 
     <!-- menu -->
@@ -25,6 +26,7 @@
     <string name="title_seeAll">Ma Bibliothèque</string>
     <string name="error_message">Une erreur est survenue.</string>
     <string name="title_add">Ajouter un livre</string>
+    <string name="title_update">Modifier un livre</string>
     <string name="str_searchBook">Rechercher un Livre :</string>
 
     <!-- AlertDialog-->

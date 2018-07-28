@@ -8,10 +8,11 @@
     <string name="desc_search_button">button to search a book</string>
     <string name="desc_stats_button">button to display statistics</string>
     <string name="desc_validate_button">button to validate Search</string>
+    <string name="desc_delete_button">Image button to delete Info</string>
 
     <!-- image description -->
     <string name="desc_update_image">Image button to update Info</string>
-    <string name="desc_star_image">Image to show if a book has been bought</string>
+    <string name="desc_star_image">Image to show if a book has been set to favorite</string>
     <string name="ProgressBar_content_description">Progress Bar</string>
 
     <!-- menu -->
@@ -26,6 +27,7 @@
     <string name="title_seeAll">My Library</string>
     <string name="error_message">An error has occured</string>
     <string name="title_add">Add a book</string>
+    <string name="title_update">Update a book</string>
     <string name="str_searchBook">Search a book</string>
 
     <!-- AlertDialog-->
