@@ -19,7 +19,7 @@ public class BookProvider extends ContentProvider {
 
     /* Codes for the UriMatcher */
     private static final int ALL_BOOK = 100;
-    private static final int BOOK_WITH_TITLE = 101;
+    private static final int BOOK_WITH_ID = 101;
 
 
     private static UriMatcher buildUriMatcher(){
@@ -28,7 +28,7 @@ public class BookProvider extends ContentProvider {
 
         // TYPE of URI :
         matcher.addURI(authority, BookContract.BookDb.TABLE_NAME, ALL_BOOK);
-        matcher.addURI(authority, BookContract.BookDb.TABLE_NAME + "/#", BOOK_WITH_TITLE);
+        matcher.addURI(authority, BookContract.BookDb.TABLE_NAME + "/#", BOOK_WITH_ID);
 
         return matcher;
     }
@@ -50,7 +50,7 @@ public class BookProvider extends ContentProvider {
             case ALL_BOOK:{
                 return BookContract.BookDb.CONTENT_DIR_TYPE;
             }
-            case BOOK_WITH_TITLE:{
+            case BOOK_WITH_ID:{
                 return BookContract.BookDb.CONTENT_ITEM_TYPE;
             }
             default:{
@@ -77,11 +77,11 @@ public class BookProvider extends ContentProvider {
                 return retCursor;
             }
             // Individual Book based on title selected
-            case BOOK_WITH_TITLE:{
+            case BOOK_WITH_ID:{
                 retCursor = mBookDbHelper.getReadableDatabase().query(
                         BookContract.BookDb.TABLE_NAME,                         // The table to query
                         projection,                                                             // The columns to return
-                        BookContract.BookDb.COLUMN_TITLE + " = ?",   // The columns for the WHERE clause
+                        BookContract.BookDb.COLUMN_ID + " = ?",   // The columns for the WHERE clause
                         new String[] {String.valueOf(ContentUris.parseId(uri))},                // The values for the WHERE clause
                         null,                                                           // don't group the rows
                         null,                                                            // don't filter by row groups
@@ -127,7 +127,7 @@ public class BookProvider extends ContentProvider {
             case ALL_BOOK:
                 numDeleted = db.delete(BookContract.BookDb.TABLE_NAME, selection, selectionArgs);
                 break;
-            case BOOK_WITH_TITLE:
+            case BOOK_WITH_ID:
                 numDeleted = db.delete(BookContract.BookDb.TABLE_NAME,
                         BookContract.BookDb.COLUMN_TITLE + " = ?",
                         new String[]{String.valueOf(ContentUris.parseId(uri))});
@@ -156,10 +156,10 @@ public class BookProvider extends ContentProvider {
                         selectionArgs);
                 break;
             }
-            case BOOK_WITH_TITLE: {
+            case BOOK_WITH_ID: {
                 numUpdated = db.update(BookContract.BookDb.TABLE_NAME,
                         contentValues,
-                        BookContract.BookDb.COLUMN_TITLE + " = ?",
+                        BookContract.BookDb.COLUMN_ID + " = ?",
                         new String[] {String.valueOf(ContentUris.parseId(uri))});
                 break;
             }

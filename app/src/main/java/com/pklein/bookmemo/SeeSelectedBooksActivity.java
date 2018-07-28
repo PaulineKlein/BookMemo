@@ -1,7 +1,9 @@
 package com.pklein.bookmemo;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -29,6 +31,11 @@ public class SeeSelectedBooksActivity extends AppCompatActivity {
     @BindView(R.id.loading_indicator_seeAll) ProgressBar mLoadingIndicator;
     private SeeAllAdapter mSeeAllAdapter;
     private LinearLayoutManager mLayoutManager;
+    private Book mbookToLookFor;
+
+    private Parcelable mSavedRecyclerViewState;
+    private static final String RECYCLER_STATE = "recycler";
+    private static final String LIFECYCLE_BOOK_FILTER_KEY = "filter";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,26 +44,33 @@ public class SeeSelectedBooksActivity extends AppCompatActivity {
         setContentView(R.layout.see_all_literature);
         ButterKnife.bind(this);
 
-        Bundle b = getIntent().getExtras();
-        String title_search = b.getString("title_search");
-        String author_search = b.getString("author_search");
-        String type_search = b.getString("type_search");
-        int year_search = b.getInt("year_search");
-        int finish_search = b.getInt("finish_search");
-        int bought_search = b.getInt("bought_search");
-        int chapter_search = b.getInt("chapter_search");
-        int episode_search = b.getInt("episode_search");
-        int favorite_search = b.getInt("favorite_search");
-
-        mLayoutManager= new LinearLayoutManager(this);
+        mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setHasFixedSize(true);
 
         mSeeAllAdapter = new SeeAllAdapter();
         mRecyclerView.setAdapter(mSeeAllAdapter);
 
+        if (savedInstanceState != null) { // if a filter is already saved, read it
+            if (savedInstanceState.containsKey(LIFECYCLE_BOOK_FILTER_KEY)) {
+                mbookToLookFor = savedInstanceState.getParcelable(LIFECYCLE_BOOK_FILTER_KEY);
+                loadBook(mbookToLookFor);
+            }
+            else { showErrorMessage(); }
+        } else {
+            if(this.getIntent().hasExtra("BookToLookFor")) {
+                mbookToLookFor = this.getIntent().getExtras().getParcelable("BookToLookFor");
+                loadBook(mbookToLookFor);
+            }
+            else { showErrorMessage(); }
+        }
+
+        Log.i(TAG, "End SeeSelectedBooksActivity");
+    }
+
+    private void loadBook(Book bookToLookFor){
         BookDbTool bookDbTool = new BookDbTool();
-        String subquery = bookDbTool.constructSubQuery(title_search, author_search, type_search,year_search,finish_search, bought_search, chapter_search, episode_search, favorite_search);
+        String subquery = bookDbTool.constructSubQuery(bookToLookFor.getTitle(), bookToLookFor.getAuthor(), bookToLookFor.getType(), bookToLookFor.getYear(), bookToLookFor.getFinish(), bookToLookFor.getBought(),  bookToLookFor.getChapter(), bookToLookFor.getEpisode(), bookToLookFor.getFavorite());
         List<Book> listOfBooks = bookDbTool.getSelectedBookfromDatabase(subquery, this.getContentResolver());
 
         if (listOfBooks != null) {
@@ -65,8 +79,6 @@ public class SeeSelectedBooksActivity extends AppCompatActivity {
         } else {
             showErrorMessage();
         }
-
-        Log.i(TAG, "End SeeSelectedBooksActivity");
     }
 
     private void showLitteratureListView() {
@@ -77,5 +89,22 @@ public class SeeSelectedBooksActivity extends AppCompatActivity {
     private void showErrorMessage() {
         mRecyclerView.setVisibility(View.INVISIBLE);
         mErrorMessageDisplay.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // save filter + recyclerview position :
+        outState.putParcelable(LIFECYCLE_BOOK_FILTER_KEY, mbookToLookFor);
+        outState.putParcelable(RECYCLER_STATE,mLayoutManager.onSaveInstanceState());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        //It will restore recycler view at same position
+        if (savedInstanceState != null) {
+            mSavedRecyclerViewState = savedInstanceState.getParcelable(RECYCLER_STATE);
+        }
     }
 }

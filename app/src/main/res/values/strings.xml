@@ -38,6 +38,7 @@
     <string name="no">No</string>
     <string name="empty_title">Title can\'t be empty</string>
     <string name="add_error">An error has occured, this book is already into the Library</string>
+    <string name="update_error">An error has occured</string>
 
     <!--SearchActivity-->
     <string name="hint_editText">edit</string>

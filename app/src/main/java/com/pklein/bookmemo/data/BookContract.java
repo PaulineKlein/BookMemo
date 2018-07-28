@@ -16,6 +16,7 @@ public class BookContract {
 
     public static final class BookDb implements BaseColumns {
         public static final String TABLE_NAME = "Book";
+        public static final String COLUMN_ID = "id";
         public static final String COLUMN_TYPE = "type"; // manga, book, comic
         public static final String COLUMN_TITLE = "title";
         public static final String COLUMN_AUTHOR = "author";

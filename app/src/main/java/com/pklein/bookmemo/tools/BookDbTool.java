@@ -99,6 +99,7 @@ public class BookDbTool {
             while (!cursor.isAfterLast()) {
 
                 Book book = new Book();
+                book.setId(cursor.getInt(cursor.getColumnIndex(BookContract.BookDb.COLUMN_ID)));
                 book.setTitle(cursor.getString(cursor.getColumnIndex(BookContract.BookDb.COLUMN_TITLE)));
                 book.setAuthor(cursor.getString(cursor.getColumnIndex(BookContract.BookDb.COLUMN_AUTHOR)));
                 book.setDesc(cursor.getString(cursor.getColumnIndex(BookContract.BookDb.COLUMN_DESC)));
@@ -145,6 +146,20 @@ public class BookDbTool {
         }catch (Exception e){
             Log.e(TAG, e.getMessage());
             throw new Exception("insert Error");
+        }
+    }
+
+    public void updateOneColumn(ContentResolver contentResolver,int id, String Column, int ColumnValue) throws Exception{
+       // Uri uri =BookContract.BookDb.CONTENT_URI;
+        Uri uri = BookContract.BookDb.buildBookUri(id);
+        try {
+            ContentValues values = new ContentValues();
+            values.put(Column, ColumnValue);
+            //use the id of the book to build the URI, and then to update it
+            int result = contentResolver.update(uri, values,null,null);
+        }catch (Exception e){
+            Log.e(TAG, e.getMessage());
+            throw new Exception("update Error");
         }
     }
 }

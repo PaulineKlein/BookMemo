@@ -37,6 +37,7 @@
     <string name="no">Non</string>
     <string name="empty_title">Le titre ne peut pas être vide</string>
     <string name="add_error">Une erreur est survenue, cet élément existe déjà</string>
+    <string name="update_error">Une erreur est survenue</string>
 
     <!--SearchActivity-->
     <string name="hint_editText">éditer</string>

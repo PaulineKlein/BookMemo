@@ -23,7 +23,8 @@ public class BookDbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         // create the table
         final String SQL_CREATE_WAITLIST_TABLE = "CREATE TABLE " + BookContract.BookDb.TABLE_NAME + " (" +
-                BookContract.BookDb.COLUMN_TITLE + " TEXT NOT NULL PRIMARY KEY, " +
+                BookContract.BookDb.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                BookContract.BookDb.COLUMN_TITLE + " TEXT NOT NULL UNIQUE, " +
                 BookContract.BookDb.COLUMN_TYPE + " TEXT NOT NULL, " +
                 BookContract.BookDb.COLUMN_AUTHOR + " TEXT NULL, " +
                 BookContract.BookDb.COLUMN_YEAR + " INTEGER DEFAULT 0, " +

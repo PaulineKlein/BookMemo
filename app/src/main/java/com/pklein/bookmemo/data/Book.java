@@ -1,18 +1,21 @@
 package com.pklein.bookmemo.data;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 
 import com.pklein.bookmemo.SeeAllAdapter;
 
 import java.util.ArrayList;
 
-public class Book {
+public class Book implements Parcelable {
 
 	public final static int FINISH = 1;
 	public final static int PENDING = 0;
 	public final static int BOUGHT = 1;
 	public final static int NOTBOUGHT = 0;
-		
+
+	private int mId;
 	private String mtitle;
 	private String mAuthor;
 	private String mDesc;
@@ -27,6 +30,7 @@ public class Book {
 
 	public Book()
 	{
+		mId = 0;
 		mtitle = "";
 		mAuthor = "";
 		mDesc = "";
@@ -40,7 +44,8 @@ public class Book {
 		mFavorite = 0;
 	}
 	
-	public Book(String title, String author, String desc, String type, int year, int bought, int finish, int tome, int chapter, int episode, int favorite) {
+	public Book(int id,String title, String author, String desc, String type, int year, int bought, int finish, int tome, int chapter, int episode, int favorite) {
+		mId = id;
 		mtitle = title;
 		mAuthor = author;
 		mDesc = desc;
@@ -53,18 +58,61 @@ public class Book {
 		mEpisode = episode;
 		mFavorite = favorite;
 	}
-	
-	public static ArrayList<Book> getAListOfBook() {
-		ArrayList<Book> listBook = new ArrayList<Book>();
-		
-		listBook.add(new Book("title1", "author1", "desc", BookContract.TYPE_MANGA,1990,BOUGHT,PENDING,50,300,0,0));
-		listBook.add(new Book("title2", "author2", "desc", BookContract.TYPE_LITERATURE,1991,NOTBOUGHT,FINISH,51,300,0,0));
-		listBook.add(new Book("title3", "author3", "desc", BookContract.TYPE_LITERATURE,1992,NOTBOUGHT,FINISH,52,300,0,0));
-		listBook.add(new Book("title4", "author4", "desc", BookContract.TYPE_MANGA,1993,BOUGHT,PENDING,53,300,0,0));
-		return listBook;
+
+	public Book(Parcel in) {
+		mId = in.readInt();
+        mtitle = in.readString();
+        mAuthor = in.readString();
+        mDesc = in.readString();
+        mType = in.readString();
+        mYear = in.readInt();
+        mBought = in.readInt();
+        mFinish = in.readInt();
+        mTome = in.readInt();
+        mChapter = in.readInt();
+        mEpisode = in.readInt();
+        mFavorite = in.readInt();
 	}
-	
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(mId);
+        dest.writeString(mtitle);
+        dest.writeString(mAuthor);
+        dest.writeString(mDesc);
+        dest.writeString(mType);
+        dest.writeInt(mYear);
+        dest.writeInt(mBought);
+        dest.writeInt(mFinish);
+        dest.writeInt(mTome);
+        dest.writeInt(mChapter);
+        dest.writeInt(mEpisode);
+        dest.writeInt(mFavorite);
+    }
+
+    public static final Parcelable.Creator<Book> CREATOR = new Parcelable.Creator<Book>() {
+
+        public Book createFromParcel(Parcel in) {
+            return new Book(in);
+        }
+        public Book[] newArray(int size) {
+            return new Book[size];
+        }
+    };
+
 	/* ------------------------------------------  GETTER AND SETTER --------------------------------- */
+	public int getId() {
+		return mId;
+	}
+	public void setId(int id) {
+		this.mId = id;
+	}
+
 	public String getTitle() {
 		return mtitle;
 	}
