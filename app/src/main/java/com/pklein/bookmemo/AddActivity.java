@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.pklein.bookmemo.data.Book;
 import com.pklein.bookmemo.data.BookContract;
 import com.pklein.bookmemo.tools.BookDbTool;
 
@@ -54,7 +55,6 @@ public class AddActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 String title = editTitle.getText().toString();
-             //   title = title.replaceAll("'", " ");
                 String author = editAuthor.getText().toString();
                 String desc = editDesc.getText().toString();
 
@@ -79,19 +79,8 @@ public class AddActivity extends AppCompatActivity {
                         bookDbTool.insertBook(contentResolver,title, author, desc, str_radio_type,year,int_radio_collection, int_radio_possession, chapter, tome, episode, int_radio_favorite);
 
                         Intent i = new Intent(getApplicationContext(),SeeSelectedBooksActivity.class );
-                        if(title != null)
-                            i.putExtra("title_search", title);
-                        else
-                            i.putExtra("title_search", "");
-                        i.putExtra("year_search", 0);
-                        i.putExtra("finish_search", -1);
-                        i.putExtra("bought_search", -1);
-                        i.putExtra("chapter_search", -1);
-                        i.putExtra("episode_search", -1);
-                        i.putExtra("favorite_search", -1);
-                        i.putExtra("author_search", "");
-                        i.putExtra("type_search", "");
-
+                        Book BookToLookFor = new Book(-1,title, "","","",-1,-1,-1,-1,-1,-1,-1);
+                        i.putExtra("BookToLookFor",BookToLookFor);
                         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         getApplicationContext().startActivity(i);

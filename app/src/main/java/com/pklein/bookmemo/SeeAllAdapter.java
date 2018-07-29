@@ -220,22 +220,13 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
 
         if(ActivityChosen.equals("Update")) {
             i = new Intent(context, UpdateActivity.class);
-            BookToLookFor = new Book(BookSelected.getId(),BookSelected.getTitle(), BookSelected.getAuthor(),"",BookSelected.getType(),BookSelected.getYear(),BookSelected.getBought(),BookSelected.getFinish(),BookSelected.getTome(),BookSelected.getChapter(),BookSelected.getEpisode(),BookSelected.getFavorite());
+            BookToLookFor = BookSelected;
         }
         else{
             i = new Intent(context, SeeSelectedBooksActivity.class);
-            BookToLookFor = new Book(-1,BookSelected.getTitle(), "","",BookSelected.getType(),-1,-1,-1,-1,-1,-1,-1);
+            BookToLookFor = new Book(-1,BookSelected.getTitle(), "","","",-1,-1,-1,-1,-1,-1,-1);
         }
-     /*   i.putExtra("title_search", BookSelected.getTitle());
-        i.putExtra("author_search", "");
-        i.putExtra("type_search", BookSelected.getType());
-        i.putExtra("year_search", -1);
-        i.putExtra("finish_search", -1);
-        i.putExtra("bought_search", -1);
-        i.putExtra("chapter_search", -1);
-        i.putExtra("episode_search", -1);
-        i.putExtra("favorite_search", -1);
-    */
+
         i.putExtra("BookToLookFor",BookToLookFor);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

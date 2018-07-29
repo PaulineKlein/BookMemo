@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 
+import com.pklein.bookmemo.data.Book;
 import com.pklein.bookmemo.data.BookContract;
 
 import butterknife.BindView;
@@ -47,15 +48,9 @@ public class SearchActivity extends AppCompatActivity {
                     year_search = Integer.parseInt(editYear.getText().toString());
 
                 Intent i = new Intent(getApplicationContext(),SeeSelectedBooksActivity.class );
-                i.putExtra("title_search", title_search);
-                i.putExtra("author_search", author_search);
-                i.putExtra("type_search", str_radio_type);
-                i.putExtra("year_search", year_search);
-                i.putExtra("finish_search", int_radio_collection);
-                i.putExtra("bought_search", int_radio_possession);
-                i.putExtra("chapter_search", int_radio_chapter);
-                i.putExtra("episode_search", int_radio_episode);
-                i.putExtra("favorite_search", int_radio_favorite);
+
+                Book BookToLookFor = new Book(-1,title_search, author_search,"",str_radio_type,year_search,int_radio_possession,int_radio_collection,-1,int_radio_chapter,int_radio_episode,int_radio_favorite);
+                i.putExtra("BookToLookFor",BookToLookFor);
 
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

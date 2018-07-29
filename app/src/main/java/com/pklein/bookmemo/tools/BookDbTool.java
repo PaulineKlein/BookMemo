@@ -125,6 +125,10 @@ public class BookDbTool {
     }
 
     public void insertBook(ContentResolver contentResolver,String title, String author, String desc, String type,int year,int finish, int bought, int chapter, int tome, int episode, int favorite) throws Exception {
+
+        if(type.equals(""))
+            type=BookContract.TYPE_LITERATURE;
+
         ContentValues values = new ContentValues();
         values.put(BookContract.BookDb.COLUMN_TITLE, title);
         values.put(BookContract.BookDb.COLUMN_AUTHOR, author);
@@ -150,11 +154,34 @@ public class BookDbTool {
     }
 
     public void updateOneColumn(ContentResolver contentResolver,int id, String Column, int ColumnValue) throws Exception{
-       // Uri uri =BookContract.BookDb.CONTENT_URI;
         Uri uri = BookContract.BookDb.buildBookUri(id);
         try {
             ContentValues values = new ContentValues();
             values.put(Column, ColumnValue);
+            //use the id of the book to build the URI, and then to update it
+            int result = contentResolver.update(uri, values,null,null);
+        }catch (Exception e){
+            Log.e(TAG, e.getMessage());
+            throw new Exception("update Error");
+        }
+    }
+
+    public void updateAllColumn(ContentResolver contentResolver,int id, String title, String author, String desc, String type,int year,int finish, int bought, int chapter, int tome, int episode, int favorite) throws Exception{
+        Uri uri = BookContract.BookDb.buildBookUri(id);
+        try {
+            ContentValues values = new ContentValues();
+            values.put(BookContract.BookDb.COLUMN_TITLE, title);
+            values.put(BookContract.BookDb.COLUMN_AUTHOR, author);
+            values.put(BookContract.BookDb.COLUMN_DESC, desc);
+            values.put(BookContract.BookDb.COLUMN_TYPE, type);
+            values.put(BookContract.BookDb.COLUMN_YEAR, year);
+            values.put(BookContract.BookDb.COLUMN_BOUGHT, bought);
+            values.put(BookContract.BookDb.COLUMN_FINISH, finish);
+            values.put(BookContract.BookDb.COLUMN_TOME, tome);
+            values.put(BookContract.BookDb.COLUMN_CHAPTER, chapter);
+            values.put(BookContract.BookDb.COLUMN_EPISODE, episode);
+            values.put(BookContract.BookDb.COLUMN_FAVORITE, favorite);
+
             //use the id of the book to build the URI, and then to update it
             int result = contentResolver.update(uri, values,null,null);
         }catch (Exception e){
