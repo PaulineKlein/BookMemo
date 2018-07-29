@@ -1,6 +1,8 @@
 package com.pklein.bookmemo;
 
+import android.app.AlertDialog;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+import android.app.AlertDialog.Builder;
 
 import com.pklein.bookmemo.data.Book;
 import com.pklein.bookmemo.data.BookContract;
@@ -144,6 +147,41 @@ public class UpdateActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), R.string.update_error, Toast.LENGTH_LONG).show();
                     }
                 }
+            }
+        });
+
+
+        // To delete a Book
+        delete_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                Builder builder = new AlertDialog.Builder(UpdateActivity.this);
+                builder.setTitle(mbookToUpdate.getTitle());
+                builder.setMessage(R.string.delete_book);
+
+                builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        dialog.cancel();
+
+                        try
+                        {
+                            BookDbTool bookDbTool = new BookDbTool();
+                            bookDbTool.deleteBook(contentResolver,mbookToUpdate.getId());
+                            Toast.makeText(getApplicationContext(), R.string.delete_ok, Toast.LENGTH_LONG).show();
+                            UpdateActivity.this.finish();
+                        }
+                        catch(Exception e)
+                        {
+                            Toast.makeText(getApplicationContext(), R.string.update_error, Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
+                builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) { dialog.cancel(); }
+                });
+
+                builder.show();
             }
         });
 

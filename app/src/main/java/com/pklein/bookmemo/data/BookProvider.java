@@ -129,7 +129,7 @@ public class BookProvider extends ContentProvider {
                 break;
             case BOOK_WITH_ID:
                 numDeleted = db.delete(BookContract.BookDb.TABLE_NAME,
-                        BookContract.BookDb.COLUMN_TITLE + " = ?",
+                        BookContract.BookDb.COLUMN_ID + " = ?",
                         new String[]{String.valueOf(ContentUris.parseId(uri))});
                 break;
             default:

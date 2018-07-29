@@ -36,11 +36,13 @@
     <string name="increment_chapter">Chapter</string>
     <string name="increment_episode">Episode</string>
     <string name="modify_book">Do you want to Modify this Book ?</string>
+    <string name="delete_book">Do you want to Delete this Book ?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="empty_title">Title can\'t be empty</string>
     <string name="add_error">An error has occured, this book is already into the Library</string>
     <string name="update_error">An error has occured</string>
+    <string name="delete_ok">Suppression succeed !</string>
 
     <!--SearchActivity-->
     <string name="hint_editText">edit</string>

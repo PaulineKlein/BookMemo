@@ -35,11 +35,13 @@
     <string name="increment_chapter">Chapitre</string>
     <string name="increment_episode">Episode</string>
     <string name="modify_book">Voulez-vous modifier cette série ?</string>
+    <string name="delete_book">Voulez-vous supprimer cette série ?</string>
     <string name="yes">Oui</string>
     <string name="no">Non</string>
     <string name="empty_title">Le titre ne peut pas être vide</string>
     <string name="add_error">Une erreur est survenue, cet élément existe déjà</string>
     <string name="update_error">Une erreur est survenue</string>
+    <string name="delete_ok">Suppression réussit !</string>
 
     <!--SearchActivity-->
     <string name="hint_editText">éditer</string>

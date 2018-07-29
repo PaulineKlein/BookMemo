@@ -189,4 +189,17 @@ public class BookDbTool {
             throw new Exception("update Error");
         }
     }
+
+    public void deleteBook(ContentResolver contentResolver,int id) throws Exception{
+
+        Uri uri = BookContract.BookDb.buildBookUri(id);
+        Log.i(TAG, "TRY DELETE : "+id+ " URI "+uri);
+        try {
+            //use the id of the book to build the URI, and then to delete it
+            int result = contentResolver.delete(uri, null,null);
+        }catch (Exception e){
+            Log.e(TAG, e.getMessage());
+            throw new Exception("Delete Error");
+        }
+    }
 }
