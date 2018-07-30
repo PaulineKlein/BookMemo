@@ -12,7 +12,9 @@
     <!-- image description -->
     <string name="desc_update_image">Bouton Image pour mettre à jour les ingfos</string>
     <string name="desc_star_image">Image pour montrer si un livre a été mis en favori</string>
+    <string name="desc_readMore_image">Image pour en savoir plus sur le livre</string>
     <string name="ProgressBar_content_description">Progress Bar</string>
+    <string name="image_appbar">Image de fleurs</string>
 
     <!-- menu -->
     <string name="action_import">Importer</string>
@@ -28,6 +30,7 @@
     <string name="error_found">Aucun Livre trouvé</string>
     <string name="title_add">Ajouter un livre</string>
     <string name="title_update">Modifier un livre</string>
+    <string name="title_readMore">En Savoir Plus</string>
     <string name="str_searchBook">Rechercher un Livre :</string>
 
     <!-- AlertDialog-->
@@ -69,4 +72,7 @@
     <string name="str_chapter_read">Chapitre : </string>
     <string name="str_episode_seen">Episode : </string>
     <string name="str_Desc">Description : </string>
+
+    <!-- internet -->
+    <string name="Wiki_URL">https://fr.wikipedia.org/w/api.php</string>
 </resources>

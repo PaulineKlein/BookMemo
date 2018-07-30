@@ -99,4 +99,14 @@
         android:layout_marginRight="5dp"
         tools:text="@string/action_about"
         />
+
+    <ImageView
+        android:id="@+id/readMore"
+        android:contentDescription="@string/desc_readMore_image"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/readmore_button"
+        android:layout_below="@+id/TV_episode"
+        />
 </RelativeLayout>

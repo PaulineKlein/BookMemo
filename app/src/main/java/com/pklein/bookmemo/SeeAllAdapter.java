@@ -44,6 +44,7 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
         public final TextView TV_episode;
         public final ImageView iv_star;
         public final ImageView iv_mofify;
+        public final ImageView iv_readMore;
 
         public SeeAllAdapterViewHolder(View view) {
             super(view);
@@ -56,6 +57,7 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
             TV_episode = view.findViewById(R.id.TV_episode);
             iv_star = view.findViewById(R.id.star);
             iv_mofify = view.findViewById(R.id.update_bt);
+            iv_readMore = view.findViewById(R.id.readMore);
         }
     }
 
@@ -83,16 +85,16 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
         seeAllAdapterViewHolder.TV_comment.setText(BookSelected.getDesc());
 
         if(BookSelected.getTome() != 0){
-            seeAllAdapterViewHolder.TV_number.setText(String.valueOf(BookSelected.getTome()));
+            seeAllAdapterViewHolder.TV_number.setText("T"+String.valueOf(BookSelected.getTome()));
         }
         if(BookSelected.getChapter() != 0){
-            seeAllAdapterViewHolder.TV_chapter.setText(String.valueOf(BookSelected.getChapter()));
+            seeAllAdapterViewHolder.TV_chapter.setText("Chap. "+String.valueOf(BookSelected.getChapter()));
         }
         if(BookSelected.getYear() != 0){
             seeAllAdapterViewHolder.TV_year.setText(String.valueOf(BookSelected.getYear()));
         }
         if(BookSelected.getEpisode() != 0){
-            seeAllAdapterViewHolder.TV_episode.setText(String.valueOf(BookSelected.getEpisode()));
+            seeAllAdapterViewHolder.TV_episode.setText("Ep. "+String.valueOf(BookSelected.getEpisode()));
         }
 
         //SET COLOR in cased it is finished
@@ -132,6 +134,19 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
                 });
 
                 builder.show();
+            }
+        });
+
+        seeAllAdapterViewHolder.iv_readMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.w(TAG, "onClickReadMore : "+BookSelected.getTitle());
+
+                Intent i = new Intent(v.getContext(), ReadMoreActivity.class);
+                i.putExtra("BookToLookFor",BookSelected);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                v.getContext().startActivity(i);
             }
         });
 

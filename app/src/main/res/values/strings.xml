@@ -13,7 +13,9 @@
     <!-- image description -->
     <string name="desc_update_image">Image button to update Info</string>
     <string name="desc_star_image">Image to show if a book has been set to favorite</string>
+    <string name="desc_readMore_image">Image clickable to connect to internet to read more</string>
     <string name="ProgressBar_content_description">Progress Bar</string>
+    <string name="image_appbar">Image of Flowers</string>
 
     <!-- menu -->
     <string name="action_import">Import</string>
@@ -29,6 +31,7 @@
     <string name="error_found">No Book Found</string>
     <string name="title_add">Add a book</string>
     <string name="title_update">Update a book</string>
+    <string name="title_readMore">Read More</string>
     <string name="str_searchBook">Search a book</string>
 
     <!-- AlertDialog-->
@@ -70,4 +73,7 @@
     <string name="str_chapter_read">Chapter : </string>
     <string name="str_episode_seen">Episode : </string>
     <string name="str_Desc">Description : </string>
+
+    <!-- internet -->
+    <string name="Wiki_URL">https://en.wikipedia.org/w/api.php</string>
 </resources>
