@@ -1,9 +1,13 @@
 package com.pklein.bookmemo;
 
+import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +18,9 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.Toast;
+
+import com.pklein.bookmemo.tools.FileEditor;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,6 +39,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        // to be able to import /export data from files :
+        if (shouldAskPermissions()) {
+            askPermissions();
+        }
 
         library_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -74,11 +86,33 @@ public class MainActivity extends AppCompatActivity {
 
         if (id == R.id.action_import) {
             Log.i(TAG, "action_import ");
+
+            FileEditor importFile = new FileEditor();
+            try{
+                importFile.importData(this.getContentResolver());
+                Toast.makeText(getApplicationContext(), R.string.file_OK_import, Toast.LENGTH_LONG).show();
+            }catch (Exception e)
+            {
+                Log.e(TAG, e.getMessage());
+                if(e.getMessage().equals("Absent"))
+                    Toast.makeText(getApplicationContext(), R.string.file_absent, Toast.LENGTH_LONG).show();
+                else
+                    Toast.makeText(getApplicationContext(), R.string.file_error, Toast.LENGTH_LONG).show();
+            }
             return true;
         }
 
         if (id == R.id.action_export) {
-            Log.i(TAG, "action_import ");
+            Log.i(TAG, "action_export ");
+
+            FileEditor exportFile = new FileEditor();
+            try{
+                exportFile.exportData(exportFile.getFile(), this.getContentResolver());
+                Toast.makeText(getApplicationContext(), R.string.file_OK_export, Toast.LENGTH_LONG).show();
+            }catch (Exception e)
+            {
+                Toast.makeText(getApplicationContext(), R.string.file_error, Toast.LENGTH_LONG).show();
+            }
             return true;
         }
 
@@ -88,5 +122,25 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /* with the Help of https://stackoverflow.com/questions/8854359/exception-open-failed-eacces-permission-denied-on-android */
+    protected boolean shouldAskPermissions() {
+        if ((ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+                || ((ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED))){
+
+            return (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1);
+        }
+        return false;
+    }
+
+    @TargetApi(23)
+    protected void askPermissions() {
+        String[] permissions = {
+                "android.permission.READ_EXTERNAL_STORAGE",
+                "android.permission.WRITE_EXTERNAL_STORAGE"
+        };
+        int requestCode = 200;
+        requestPermissions(permissions, requestCode);
     }
 }

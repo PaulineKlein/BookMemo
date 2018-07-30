@@ -124,6 +124,42 @@ public class BookDbTool {
         return ListBook;
     }
 
+    public String getAllforFile(ContentResolver contentResolver)
+    {
+        String info ="Title;Author;Description;Type;Year;Bought;Finish;Tome;Chapter;Episode;Favorite;"+System.getProperty("line.separator");
+
+        Uri uri = BookContract.BookDb.CONTENT_URI;
+        String[] projection = null; // we want all columns return
+        String selection ="";
+        String sortOrder = BookContract.BookDb.COLUMN_TITLE;
+
+        Cursor cursor = contentResolver.query(uri,projection,selection,null,sortOrder );
+
+        if (cursor !=null && cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+
+                String title = cursor.getString(cursor.getColumnIndex(BookContract.BookDb.COLUMN_TITLE));
+                String author = cursor.getString(cursor.getColumnIndex(BookContract.BookDb.COLUMN_AUTHOR));
+                String desc = cursor.getString(cursor.getColumnIndex(BookContract.BookDb.COLUMN_DESC));
+                String type = cursor.getString(cursor.getColumnIndex(BookContract.BookDb.COLUMN_TYPE));
+                int year = cursor.getInt(cursor.getColumnIndex(BookContract.BookDb.COLUMN_YEAR));
+                int bought = cursor.getInt(cursor.getColumnIndex(BookContract.BookDb.COLUMN_BOUGHT));
+                int finish = cursor.getInt(cursor.getColumnIndex(BookContract.BookDb.COLUMN_FINISH));
+                int tome = cursor.getInt(cursor.getColumnIndex(BookContract.BookDb.COLUMN_TOME));
+                int chapter = cursor.getInt(cursor.getColumnIndex(BookContract.BookDb.COLUMN_CHAPTER));
+                int episode = cursor.getInt(cursor.getColumnIndex(BookContract.BookDb.COLUMN_EPISODE));
+                int favorite = cursor.getInt(cursor.getColumnIndex(BookContract.BookDb.COLUMN_FAVORITE));
+
+                info = info+title+";"+author+";"+desc+";"+type+";"+year+";"+bought+";"+finish+";"+tome+";"+chapter+";"+episode+";"+favorite+";"+System.getProperty("line.separator");
+
+                cursor.moveToNext();
+            }
+          }
+
+        cursor.close();
+        return info;
+    }
+
     public void insertBook(ContentResolver contentResolver,String title, String author, String desc, String type,int year,int finish, int bought, int chapter, int tome, int episode, int favorite) throws Exception {
 
         if(type.equals(""))

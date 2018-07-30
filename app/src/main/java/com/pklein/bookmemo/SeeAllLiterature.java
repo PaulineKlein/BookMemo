@@ -102,6 +102,7 @@ public class SeeAllLiterature extends Fragment {
     private void showErrorMessage() {
         mRecyclerView.setVisibility(View.INVISIBLE);
         mErrorMessageDisplay.setVisibility(View.VISIBLE);
+        mErrorMessageDisplay.setText(R.string.error_found);
     }
 
     // with the help of https://inthecheesefactory.com/blog/fragment-state-saving-best-practices/en
