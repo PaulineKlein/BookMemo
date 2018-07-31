@@ -2,11 +2,15 @@ package com.pklein.bookmemo;
 
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -28,11 +32,19 @@ public class ReadMoreActivity extends AppCompatActivity {
 
     @BindView(R.id.title_book_readMore)    TextView title_book_readMore;
     @BindView(R.id.content_book_readMore) TextView content_book_readMore;
+    @BindView(R.id.tv_error_message_display_readMore) TextView mErrorMessageDisplay;
     @BindView(R.id.loading_indicator) ProgressBar mLoadingIndicator;
+    @BindView(R.id.toolbar_container_wiki)CollapsingToolbarLayout mCollapsingToolbarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+                            View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+        }
+
         setContentView(R.layout.activity_read_more);
         ButterKnife.bind(this);
 
@@ -47,6 +59,7 @@ public class ReadMoreActivity extends AppCompatActivity {
         }
 
         title_book_readMore.setText(mbookToReadMore.getTitle());
+        mCollapsingToolbarLayout.setTitle(mbookToReadMore.getTitle());
         loadWikiData(mbookToReadMore.getTitle());
     }
 
@@ -95,13 +108,24 @@ public class ReadMoreActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String content) {
             mLoadingIndicator.setVisibility(View.INVISIBLE);
-            if (content != null) {
+            if (content != null && !content.equals("")) {
+                showWikiView();
                 content_book_readMore.setText(Html.fromHtml(content));
             } else {
-                Log.i(TAG,"ERROR");
-                //showErrorMessage();
+                Log.e(TAG,"ERROR");
+                showErrorMessage();
             }
         }
+    }
+
+    private void showWikiView() {
+        mErrorMessageDisplay.setVisibility(View.INVISIBLE);
+        content_book_readMore.setVisibility(View.VISIBLE);
+    }
+
+    private void showErrorMessage() {
+        mErrorMessageDisplay.setVisibility(View.VISIBLE);
+        content_book_readMore.setVisibility(View.INVISIBLE);
     }
 
     @Override

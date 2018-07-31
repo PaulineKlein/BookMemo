@@ -42,9 +42,12 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
         public final TextView TV_year;
         public final TextView TV_comment;
         public final TextView TV_episode;
+        public final TextView TV_bought_or_not;
+        public final TextView TV_finish_or_not;
         public final ImageView iv_star;
         public final ImageView iv_mofify;
         public final ImageView iv_readMore;
+        public final ImageView iv_addOne;
 
         public SeeAllAdapterViewHolder(View view) {
             super(view);
@@ -55,9 +58,12 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
             TV_year = view.findViewById(R.id.TV_year);
             TV_comment = view.findViewById(R.id.TV_comment);
             TV_episode = view.findViewById(R.id.TV_episode);
+            TV_bought_or_not = view.findViewById(R.id.TV_bought_or_not);
+            TV_finish_or_not = view.findViewById(R.id.TV_finish_or_not);
             iv_star = view.findViewById(R.id.star);
             iv_mofify = view.findViewById(R.id.update_bt);
             iv_readMore = view.findViewById(R.id.readMore);
+            iv_addOne = view.findViewById(R.id.add_one);
         }
     }
 
@@ -85,16 +91,27 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
         seeAllAdapterViewHolder.TV_comment.setText(BookSelected.getDesc());
 
         if(BookSelected.getTome() != 0){
-            seeAllAdapterViewHolder.TV_number.setText("T"+String.valueOf(BookSelected.getTome()));
+            seeAllAdapterViewHolder.TV_number.setText(String.valueOf(BookSelected.getTome()));
+        }
+        else{
+            seeAllAdapterViewHolder.TV_number.setText("");
         }
         if(BookSelected.getChapter() != 0){
-            seeAllAdapterViewHolder.TV_chapter.setText("Chap. "+String.valueOf(BookSelected.getChapter()));
+            seeAllAdapterViewHolder.TV_chapter.setText(String.valueOf(BookSelected.getChapter()));
+        }
+        else{
+            seeAllAdapterViewHolder.TV_chapter.setText("");
         }
         if(BookSelected.getYear() != 0){
             seeAllAdapterViewHolder.TV_year.setText(String.valueOf(BookSelected.getYear()));
         }
+        else{
+            seeAllAdapterViewHolder.TV_year.setText("");
+        }
         if(BookSelected.getEpisode() != 0){
-            seeAllAdapterViewHolder.TV_episode.setText("Ep. "+String.valueOf(BookSelected.getEpisode()));
+            seeAllAdapterViewHolder.TV_episode.setText(String.valueOf(BookSelected.getEpisode()));
+        }else{
+            seeAllAdapterViewHolder.TV_episode.setText("");
         }
 
         //SET COLOR in cased it is finished
@@ -103,6 +120,24 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
             seeAllAdapterViewHolder.TV_number.setTextColor(seeAllAdapterViewHolder.itemView.getContext().getResources().getColor(R.color.colorGold));
             seeAllAdapterViewHolder.TV_chapter.setTextColor(seeAllAdapterViewHolder.itemView.getContext().getResources().getColor(R.color.colorGold));
             seeAllAdapterViewHolder.TV_episode.setTextColor(seeAllAdapterViewHolder.itemView.getContext().getResources().getColor(R.color.colorGold));
+            seeAllAdapterViewHolder.TV_finish_or_not.setText(R.string.str_collection2);
+            seeAllAdapterViewHolder.TV_finish_or_not.setTextColor(seeAllAdapterViewHolder.itemView.getContext().getResources().getColor(R.color.colorGold));
+        }
+        else{
+            seeAllAdapterViewHolder.TV_number.setTextColor(seeAllAdapterViewHolder.itemView.getContext().getResources().getColor(R.color.colorBlack));
+            seeAllAdapterViewHolder.TV_chapter.setTextColor(seeAllAdapterViewHolder.itemView.getContext().getResources().getColor(R.color.colorBlack));
+            seeAllAdapterViewHolder.TV_episode.setTextColor(seeAllAdapterViewHolder.itemView.getContext().getResources().getColor(R.color.colorBlack));
+            seeAllAdapterViewHolder.TV_finish_or_not.setText(R.string.str_collection1);
+            seeAllAdapterViewHolder.TV_finish_or_not.setTextColor(seeAllAdapterViewHolder.itemView.getContext().getResources().getColor(R.color.colorBlack));
+        }
+
+        //Verify if it is bought or not :
+        if (BookSelected.getBought()!=0)
+        {
+            seeAllAdapterViewHolder.TV_bought_or_not.setText(R.string.str_bought_display);
+        }
+        else{
+            seeAllAdapterViewHolder.TV_bought_or_not.setText(R.string.str_not_bought_display);
         }
 
         //IF favorite DISPLAY STAR
@@ -150,8 +185,8 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
             }
         });
 
-
-        seeAllAdapterViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+        //itemView
+        seeAllAdapterViewHolder.iv_addOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final BookDbTool bookDbTool = new BookDbTool();

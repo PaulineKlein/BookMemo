@@ -10,10 +10,11 @@
     android:fitsSystemWindows="true">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar_article"
+        android:id="@+id/appbar_wiki"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:fitsSystemWindows="true"
+        android:theme="@style/Theme.ReadMore"
         android:stateListAnimator="@animator/appbar_always_elevated"
         >
         <android.support.design.widget.CollapsingToolbarLayout
@@ -32,9 +33,9 @@
                 android:id="@+id/photo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
+                android:fitsSystemWindows="true"
                 app:layout_collapseMode="parallax"
-                android:src="@drawable/homepage_background"
+                android:src="@drawable/data"
                 android:contentDescription="@string/image_appbar" />
             <LinearLayout
                 android:id="@+id/meta_bar"
@@ -52,7 +53,7 @@
                     style="?android:attr/textAppearanceLarge"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="16dp"
+                    android:paddingBottom="4dp"
                     android:fontFamily="sans-serif-condensed"
                     android:textColor="@color/colorWhite"
                     android:textStyle="bold"
@@ -67,8 +68,8 @@
                 app:contentInsetStart="72dp"
                 app:elevation="4dp"
                 android:fitsSystemWindows="true"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
                 app:layout_collapseMode="pin"
                 />
         </android.support.design.widget.CollapsingToolbarLayout>
@@ -100,6 +101,18 @@
                 android:textSize="18sp"
                 android:textColor="@color/colorWhite"
                 tools:text="@string/app_name" />
+
+            <TextView
+                android:id="@+id/tv_error_message_display_readMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:padding="15dp"
+                android:text="@string/error_wiki"
+                android:textSize="20sp"
+                android:textColor="@color/colorAccent"
+                android:visibility="invisible" />
 
             <ProgressBar
                 android:id="@+id/loading_indicator"
