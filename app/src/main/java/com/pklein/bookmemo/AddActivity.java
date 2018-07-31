@@ -1,5 +1,7 @@
 package com.pklein.bookmemo;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -77,6 +79,14 @@ public class AddActivity extends AppCompatActivity {
                     {
                         BookDbTool bookDbTool = new BookDbTool();
                         bookDbTool.insertBook(contentResolver,title, author, desc, str_radio_type,year,int_radio_collection, int_radio_possession, chapter, tome, episode, int_radio_favorite);
+
+                        //UPDATE WIDGET :
+                        //With the Help of : https://stackoverflow.com/questions/3455123/programmatically-update-widget-from-activity-service-receiver?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
+                        Intent intent = new Intent(getApplicationContext(), BookWidget.class);
+                        intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+                        int ids[] = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), BookWidget.class));
+                        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
+                        sendBroadcast(intent);
 
                         Intent i = new Intent(getApplicationContext(),SeeSelectedBooksActivity.class );
                         Book BookToLookFor = new Book(-1,title, "","","",-1,-1,-1,-1,-1,-1,-1);

@@ -1,6 +1,8 @@
 package com.pklein.bookmemo;
 
 import android.app.AlertDialog;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -135,6 +137,13 @@ public class UpdateActivity extends AppCompatActivity {
                         BookDbTool bookDbTool = new BookDbTool();
                         bookDbTool.updateAllColumn(contentResolver,mbookToUpdate.getId(),newtitle, author, desc, str_radio_type,year,int_radio_collection, int_radio_possession, chapter, tome, episode, int_radio_favorite);
 
+                        //UPDATE WIDGET :
+                        Intent intent = new Intent(getApplicationContext(), BookWidget.class);
+                        intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+                        int ids[] = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), BookWidget.class));
+                        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
+                        sendBroadcast(intent);
+
                         Intent i = new Intent(getApplicationContext(),SeeSelectedBooksActivity.class );
                         Book BookToLookFor = new Book(-1,newtitle, "","","",-1,-1,-1,-1,-1,-1,-1);
                         i.putExtra("BookToLookFor",BookToLookFor);
@@ -168,6 +177,14 @@ public class UpdateActivity extends AppCompatActivity {
                             BookDbTool bookDbTool = new BookDbTool();
                             bookDbTool.deleteBook(contentResolver,mbookToUpdate.getId());
                             Toast.makeText(getApplicationContext(), R.string.delete_ok, Toast.LENGTH_LONG).show();
+
+                            //UPDATE WIDGET :
+                            Intent intent = new Intent(getApplicationContext(), BookWidget.class);
+                            intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+                            int ids[] = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), BookWidget.class));
+                            intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
+                            sendBroadcast(intent);
+
                             UpdateActivity.this.finish();
                         }
                         catch(Exception e)

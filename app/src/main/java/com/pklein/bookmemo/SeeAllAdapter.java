@@ -2,6 +2,8 @@ package com.pklein.bookmemo;
 
 
 import android.app.AlertDialog;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -203,6 +205,13 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
                         try {
                             int value = BookSelected.getEpisode() + 1;
                             bookDbTool.updateOneColumn(contentResolver, BookSelected.getId(), BookContract.BookDb.COLUMN_EPISODE, value);
+
+                            //UPDATE WIDGET :
+                            Intent intent = new Intent(context, BookWidget.class);
+                            intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+                            int ids[] = AppWidgetManager.getInstance(context).getAppWidgetIds(new ComponentName(context, BookWidget.class));
+                            intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
+                            context.sendBroadcast(intent);
 
                             Intent i = configureIntent(context, BookSelected,"See");
                             context.startActivity(i);
