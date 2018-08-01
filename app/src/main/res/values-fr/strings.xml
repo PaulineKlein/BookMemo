@@ -42,6 +42,7 @@
     <string name="title_update">Modifier un livre</string>
     <string name="title_readMore">En Savoir plus sur Wikipedia</string>
     <string name="str_searchBook">Rechercher un Livre :</string>
+    <string name="title_stats">Statistiques</string>
 
     <!-- AlertDialog-->
     <string name="increment_book">Voulez-vous incrémenter cette série ?</string>

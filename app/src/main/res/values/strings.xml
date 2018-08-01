@@ -45,6 +45,7 @@
     <string name="title_update">Update a book</string>
     <string name="title_readMore">Read More on Wikipedia</string>
     <string name="str_searchBook">Search a book</string>
+    <string name="title_stats">Statistics</string>
 
     <!-- AlertDialog-->
     <string name="increment_book">Do you want to increment one characteristic below ?</string>
