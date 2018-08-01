@@ -14,7 +14,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.app.AlertDialog.Builder;
 import android.widget.Toast;
@@ -31,12 +34,14 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
 
     private static final String TAG= SeeAllAdapter.class.getSimpleName();
     private List<Book> mBookData = new ArrayList<>();
+    private boolean displayCard = false;
 
     public SeeAllAdapter() {
     }
 
     public class SeeAllAdapterViewHolder extends RecyclerView.ViewHolder {
 
+        public final LinearLayout linear_layout;
         public final TextView TV_title;
         public final TextView TV_number;
         public final TextView TV_author;
@@ -47,12 +52,13 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
         public final TextView TV_bought_or_not;
         public final TextView TV_finish_or_not;
         public final ImageView iv_star;
-        public final ImageView iv_mofify;
-        public final ImageView iv_readMore;
-        public final ImageView iv_addOne;
+        public final ImageView iv_modify;
+        public final Button iv_readMore;
+        public final Button iv_addOne;
 
         public SeeAllAdapterViewHolder(View view) {
             super(view);
+            linear_layout = view.findViewById(R.id.linear_layout);
             TV_title = view.findViewById(R.id.TV_title);
             TV_number = view.findViewById(R.id.TV_number);
             TV_author = view.findViewById(R.id.TV_author);
@@ -63,7 +69,7 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
             TV_bought_or_not = view.findViewById(R.id.TV_bought_or_not);
             TV_finish_or_not = view.findViewById(R.id.TV_finish_or_not);
             iv_star = view.findViewById(R.id.star);
-            iv_mofify = view.findViewById(R.id.update_bt);
+            iv_modify = view.findViewById(R.id.update_bt);
             iv_readMore = view.findViewById(R.id.readMore);
             iv_addOne = view.findViewById(R.id.add_one);
         }
@@ -83,26 +89,36 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
     public void onBindViewHolder( SeeAllAdapter.SeeAllAdapterViewHolder seeAllAdapterViewHolder, int position) {
 
         final Book BookSelected = mBookData.get(position);
+        final SeeAllAdapterViewHolder adaptviewholder = seeAllAdapterViewHolder;
 
         Log.i(TAG,"titre : "+BookSelected.getTitle() );
         Log.i(TAG,"position : "+position );
 
+        //HIDE BookCard :
+        displayBookCard(seeAllAdapterViewHolder, false);
+
         // SET VALUE
         seeAllAdapterViewHolder.TV_title.setText(BookSelected.getTitle());
-        seeAllAdapterViewHolder.TV_author.setText(BookSelected.getAuthor());
+
+        if(!BookSelected.getAuthor().equals("")){
+            seeAllAdapterViewHolder.TV_author.setText(BookSelected.getAuthor());
+        }else{
+            seeAllAdapterViewHolder.TV_author.setText("unknown");
+        }
+
         seeAllAdapterViewHolder.TV_comment.setText(BookSelected.getDesc());
 
         if(BookSelected.getTome() != 0){
             seeAllAdapterViewHolder.TV_number.setText(String.valueOf(BookSelected.getTome()));
         }
         else{
-            seeAllAdapterViewHolder.TV_number.setText("");
+            seeAllAdapterViewHolder.TV_number.setText("-");
         }
         if(BookSelected.getChapter() != 0){
             seeAllAdapterViewHolder.TV_chapter.setText(String.valueOf(BookSelected.getChapter()));
         }
         else{
-            seeAllAdapterViewHolder.TV_chapter.setText("");
+            seeAllAdapterViewHolder.TV_chapter.setText("-");
         }
         if(BookSelected.getYear() != 0){
             seeAllAdapterViewHolder.TV_year.setText(String.valueOf(BookSelected.getYear()));
@@ -113,42 +129,39 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
         if(BookSelected.getEpisode() != 0){
             seeAllAdapterViewHolder.TV_episode.setText(String.valueOf(BookSelected.getEpisode()));
         }else{
-            seeAllAdapterViewHolder.TV_episode.setText("");
+            seeAllAdapterViewHolder.TV_episode.setText("-");
         }
 
         //SET COLOR in cased it is finished
         if (BookSelected.getFinish()!=0)
         {
-            seeAllAdapterViewHolder.TV_number.setTextColor(seeAllAdapterViewHolder.itemView.getContext().getResources().getColor(R.color.colorGold));
-            seeAllAdapterViewHolder.TV_chapter.setTextColor(seeAllAdapterViewHolder.itemView.getContext().getResources().getColor(R.color.colorGold));
-            seeAllAdapterViewHolder.TV_episode.setTextColor(seeAllAdapterViewHolder.itemView.getContext().getResources().getColor(R.color.colorGold));
-            seeAllAdapterViewHolder.TV_finish_or_not.setText(R.string.str_collection2);
-            seeAllAdapterViewHolder.TV_finish_or_not.setTextColor(seeAllAdapterViewHolder.itemView.getContext().getResources().getColor(R.color.colorGold));
+           seeAllAdapterViewHolder.TV_finish_or_not.setText(R.string.str_collection2);
+           seeAllAdapterViewHolder.TV_finish_or_not.setTextColor(seeAllAdapterViewHolder.itemView.getContext().getResources().getColor(R.color.colorGold));
         }
         else{
-            seeAllAdapterViewHolder.TV_number.setTextColor(seeAllAdapterViewHolder.itemView.getContext().getResources().getColor(R.color.colorBlack));
-            seeAllAdapterViewHolder.TV_chapter.setTextColor(seeAllAdapterViewHolder.itemView.getContext().getResources().getColor(R.color.colorBlack));
-            seeAllAdapterViewHolder.TV_episode.setTextColor(seeAllAdapterViewHolder.itemView.getContext().getResources().getColor(R.color.colorBlack));
-            seeAllAdapterViewHolder.TV_finish_or_not.setText(R.string.str_collection1);
-            seeAllAdapterViewHolder.TV_finish_or_not.setTextColor(seeAllAdapterViewHolder.itemView.getContext().getResources().getColor(R.color.colorBlack));
+           seeAllAdapterViewHolder.TV_finish_or_not.setText(R.string.str_collection1);
+           seeAllAdapterViewHolder.TV_finish_or_not.setTextColor(seeAllAdapterViewHolder.itemView.getContext().getResources().getColor(R.color.colorBlack));
         }
 
+        seeAllAdapterViewHolder.TV_bought_or_not.setText(R.string.str_bought_display);
         //Verify if it is bought or not :
         if (BookSelected.getBought()!=0)
         {
-            seeAllAdapterViewHolder.TV_bought_or_not.setText(R.string.str_bought_display);
+            seeAllAdapterViewHolder.TV_bought_or_not.getPaint().setStrikeThruText(false);
+            seeAllAdapterViewHolder.TV_bought_or_not.setTextColor(seeAllAdapterViewHolder.itemView.getContext().getResources().getColor(R.color.colorGold));
         }
         else{
-            seeAllAdapterViewHolder.TV_bought_or_not.setText(R.string.str_not_bought_display);
+            seeAllAdapterViewHolder.TV_bought_or_not.getPaint().setStrikeThruText(true);
+            seeAllAdapterViewHolder.TV_bought_or_not.setTextColor(seeAllAdapterViewHolder.itemView.getContext().getResources().getColor(R.color.colorBlack));
         }
 
         //IF favorite DISPLAY STAR
         if (BookSelected.getFavorite() != 0)
             seeAllAdapterViewHolder.iv_star.setVisibility(View.VISIBLE);
         else
-            seeAllAdapterViewHolder.iv_star.setVisibility(View.INVISIBLE);
+            seeAllAdapterViewHolder.iv_star.setVisibility(View.GONE);
 
-        seeAllAdapterViewHolder.iv_mofify.setOnClickListener(new View.OnClickListener() {
+        seeAllAdapterViewHolder.iv_modify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.w(TAG, "onClickImage : "+BookSelected.getTitle());
@@ -187,7 +200,17 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
             }
         });
 
-        //itemView
+
+
+        seeAllAdapterViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Log.w(TAG, "onClickDisplayCard : ");
+                displayBookCard(adaptviewholder, displayCard);
+            }
+        });
+
         seeAllAdapterViewHolder.iv_addOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -290,5 +313,22 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         return i;
+    }
+
+    private void displayBookCard(SeeAllAdapterViewHolder seeAllAdapterViewHolder, boolean seen){
+        if(seen) {
+            seeAllAdapterViewHolder.linear_layout.setVisibility(View.VISIBLE);
+            seeAllAdapterViewHolder.iv_modify.setVisibility(View.VISIBLE);
+            seeAllAdapterViewHolder.iv_readMore.setVisibility(View.VISIBLE);
+            seeAllAdapterViewHolder.iv_addOne.setVisibility(View.VISIBLE);
+            displayCard = false;
+        }
+        else{
+            seeAllAdapterViewHolder.linear_layout.setVisibility(View.GONE);
+            seeAllAdapterViewHolder.iv_modify.setVisibility(View.GONE);
+            seeAllAdapterViewHolder.iv_readMore.setVisibility(View.GONE);
+            seeAllAdapterViewHolder.iv_addOne.setVisibility(View.GONE);
+            displayCard = true;
+        }
     }
 }

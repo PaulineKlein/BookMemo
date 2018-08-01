@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
@@ -31,7 +32,7 @@ public class AddActivity extends AppCompatActivity {
     @BindView(R.id.editChapter_form) EditText editChapter;
     @BindView(R.id.editEpisode_form) EditText editEpisode;
     @BindView(R.id.editDesc_form) EditText editDesc;
-    @BindView(R.id.validate_button_form) ImageButton validate_button;
+    @BindView(R.id.validate_button_form)    Button validate_button;
 
     private String str_radio_type = "";
     private int int_radio_collection = 0;

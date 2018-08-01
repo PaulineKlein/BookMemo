@@ -3,7 +3,8 @@
     android:id="@+id/ScrollView02"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/background">
+    android:theme="@style/AppTheme2"
+    >
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -14,20 +15,35 @@
 
         <include layout="@layout/form_add_modify" />
 
-        <ImageButton android:id="@+id/validate_button_update"
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+
+        <Button android:id="@+id/validate_button_update"
+            style="@style/ColorButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:paddingHorizontal="20dp"
             android:contentDescription="@string/desc_validate_button"
-            android:background="@null"
-            android:src="@drawable/validate_button"
+            android:text="@string/validate_button"
+            android:textColor="@color/colorWhite"
             />
-        <ImageButton android:id="@+id/delete_button"
+        <Button android:id="@+id/delete_button"
+            style="@style/ColorButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="10dp"
+            android:paddingHorizontal="30dp"
             android:contentDescription="@string/desc_delete_button"
-            android:background="@null"
-            android:src="@drawable/delete_button"
+            android:text="@string/delete_button"
+            android:textColor="@color/colorWhite"
             />
 
+    </LinearLayout>
     </LinearLayout>
 </ScrollView>

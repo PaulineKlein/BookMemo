@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
@@ -22,7 +23,7 @@ public class SearchActivity extends AppCompatActivity {
     @BindView(R.id.editTitle) EditText editTitle;
     @BindView(R.id.editauthor) EditText editauthor;
     @BindView(R.id.editYear) EditText editYear;
-    @BindView(R.id.validate_button) ImageButton validate_button;
+    @BindView(R.id.validate_button)    Button validate_button;
 
     private String str_radio_type = "";
     private int int_radio_collection = -1;

@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
@@ -40,8 +41,8 @@ public class UpdateActivity extends AppCompatActivity {
     @BindView(R.id.radio_bought_form) RadioGroup radiogroupBought;
     @BindView(R.id.radio_favorite_form) RadioGroup radiogroupFavorite;
 
-    @BindView(R.id.validate_button_update)  ImageButton validate_button;
-    @BindView(R.id.delete_button)  ImageButton delete_button;
+    @BindView(R.id.validate_button_update)    Button validate_button;
+    @BindView(R.id.delete_button)  Button delete_button;
 
     private String str_radio_type = "";
     private int int_radio_collection = 0;

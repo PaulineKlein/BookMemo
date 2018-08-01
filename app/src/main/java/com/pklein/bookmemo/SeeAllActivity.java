@@ -23,7 +23,7 @@ public class SeeAllActivity extends AppCompatActivity {
 
         tabLayout = findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
-        tabLayout.setTabTextColors(R.color.colorWhite, ContextCompat.getColor(this,R.color.colorPrimaryDark));
+        tabLayout.setTabTextColors(ContextCompat.getColor(this,R.color.colorBluePale),ContextCompat.getColor(this,R.color.colorGold));
     }
 
 

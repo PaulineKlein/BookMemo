@@ -3,8 +3,8 @@
     android:id="@+id/ScrollView01"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/background"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:theme="@style/AppTheme2">
 
     <LinearLayout  android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -27,15 +27,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/str_title"
-                android:textStyle="bold"
                 android:textSize="18sp"
-                android:textColor="@color/colorWhite"/>
+                android:textColor="@color/colorBluePale"/>
             <EditText
                 android:id="@+id/editTitle_form"
                 android:hint="@string/hint_editText"
+                android:textColor="@color/colorGold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10">
+                android:ems="12">
             </EditText>
         </TableRow>
 
@@ -47,15 +47,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/str_author"
-                android:textStyle="bold"
                 android:textSize="18sp"
-                android:textColor="@color/colorWhite"/>
+                android:textColor="@color/colorBluePale"/>
             <EditText
                 android:id="@+id/editAuthor_form"
                 android:hint="@string/hint_editText"
+                android:textColor="@color/colorGold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10">
+                android:ems="12">
             </EditText>
         </TableRow>
 
@@ -67,15 +67,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/str_year"
-                android:textStyle="bold"
                 android:textSize="18sp"
-                android:textColor="@color/colorWhite"/>
+                android:textColor="@color/colorBluePale"/>
             <EditText
                 android:id="@+id/editYear_form"
                 android:hint="@string/hint_editText"
+                android:textColor="@color/colorGold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10"
+                android:ems="12"
                 android:inputType="number">
             </EditText>
         </TableRow>
@@ -88,15 +88,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/str_tome"
-                android:textStyle="bold"
                 android:textSize="18sp"
-                android:textColor="@color/colorWhite"/>
+                android:textColor="@color/colorBluePale"/>
             <EditText
                 android:id="@+id/editTome_form"
                 android:hint="@string/hint_editText"
+                android:textColor="@color/colorGold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10"
+                android:ems="12"
                 android:inputType="number">
             </EditText>
         </TableRow>
@@ -109,15 +109,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/str_chapter_read"
-                android:textStyle="bold"
                 android:textSize="18sp"
-                android:textColor="@color/colorWhite"/>
+                android:textColor="@color/colorBluePale"/>
             <EditText
                 android:id="@+id/editChapter_form"
                 android:hint="@string/hint_editText"
+                android:textColor="@color/colorGold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10"
+                android:ems="12"
                 android:inputType="number">
             </EditText>
         </TableRow>
@@ -130,15 +130,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/str_episode_seen"
-                android:textStyle="bold"
                 android:textSize="18sp"
-                android:textColor="@color/colorWhite"/>
+                android:textColor="@color/colorBluePale"/>
             <EditText
                 android:id="@+id/editEpisode_form"
                 android:hint="@string/hint_editText"
+                android:textColor="@color/colorGold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10"
+                android:ems="12"
                 android:inputType="number">
             </EditText>
         </TableRow>
@@ -151,9 +151,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/str_Desc"
-                android:textStyle="bold"
                 android:textSize="18sp"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBluePale"
                 android:layout_span="2"/>
         </TableRow>
         <TableRow
@@ -163,10 +162,11 @@
             <EditText
                 android:id="@+id/editDesc_form"
                 android:hint="@string/hint_editText"
+                android:textColor="@color/colorGold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_span="2"
-                android:ems="10">
+                android:ems="12">
             </EditText>
         </TableRow>
 
@@ -178,9 +178,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/str_type"
-                android:textStyle="bold"
                 android:textSize="18sp"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBluePale"
                 android:layout_span="2"/>
         </TableRow>
         <TableRow
@@ -197,19 +196,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/str_type1"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorGold"
                     android:onClick="onRadio_typeClicked_form"/>
                 <RadioButton android:id="@+id/radio_type2_form"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/str_type2"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorGold"
                     android:onClick="onRadio_typeClicked_form"/>
                 <RadioButton android:id="@+id/radio_type3_form"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/str_type3"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorGold"
                     android:onClick="onRadio_typeClicked_form"/>
             </RadioGroup>
         </TableRow>
@@ -222,9 +221,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/str_collection"
-                android:textStyle="bold"
                 android:textSize="18sp"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBluePale"
                 android:layout_span="2"/>
         </TableRow>
         <TableRow
@@ -241,13 +239,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/str_collection1"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorGold"
                     android:onClick="onRadio_collectionClicked_form"/>
                 <RadioButton android:id="@+id/radio_collection2_form"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/str_collection2"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorGold"
                     android:onClick="onRadio_collectionClicked_form" />
             </RadioGroup>
         </TableRow>
@@ -260,9 +258,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/str_bought"
-                android:textStyle="bold"
                 android:textSize="18sp"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBluePale"
                 android:layout_span="2"/>
         </TableRow>
         <TableRow
@@ -279,13 +276,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/yes"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorGold"
                     android:onClick="onRadio_boughtClicked_form"/>
                 <RadioButton android:id="@+id/radio_bought2_form"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/no"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorGold"
                     android:onClick="onRadio_boughtClicked_form" />
             </RadioGroup>
         </TableRow>
@@ -298,9 +295,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/str_favorite"
-                android:textStyle="bold"
                 android:textSize="18sp"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBluePale"
                 android:layout_span="2"/>
         </TableRow>
         <TableRow
@@ -317,13 +313,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/yes"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorGold"
                     android:onClick="onRadio_favoriteClicked_form"/>
                 <RadioButton android:id="@+id/radio_favorite2_form"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/no"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorGold"
                     android:onClick="onRadio_favoriteClicked_form" />
             </RadioGroup>
         </TableRow>

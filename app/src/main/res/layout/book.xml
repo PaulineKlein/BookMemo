@@ -7,32 +7,20 @@
     android:padding="10dp"
     >
 
-    <ImageView
-        android:id="@+id/update_bt"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:contentDescription="@string/desc_update_image"
-        android:src="@drawable/update_bt"
-        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/TV_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constrainedWidth="true"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/colorBluePale"
+        android:textSize="25sp"
         android:textStyle="bold"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/update_bt"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/str_title" />
+
 
     <ImageView
         android:id="@+id/star"
@@ -43,191 +31,203 @@
         android:layout_marginTop="8dp"
         android:contentDescription="@string/desc_star_image"
         android:src="@drawable/star"
-        app:layout_constraintBottom_toTopOf="@+id/TV_author"
+        app:layout_constraintBottom_toTopOf="@+id/linear_layout"
         app:layout_constraintStart_toEndOf="@+id/TV_title"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/TV_author"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constrainedWidth="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/colorWhite"
-        app:layout_constraintStart_toEndOf="@+id/update_bt"
-        app:layout_constraintTop_toBottomOf="@+id/TV_title"
-        tools:text="@string/str_author" />
 
-    <TextView
-        android:id="@+id/TV_year"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constrainedWidth="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/colorWhite"
-        app:layout_constraintStart_toEndOf="@+id/TV_author"
-        app:layout_constraintTop_toBottomOf="@+id/TV_title"
-        tools:text="@string/str_year" />
-
-    <TextView
-        android:id="@+id/TV_comment"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/colorBlack"
-        android:textStyle="italic"
-        app:layout_constrainedWidth="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.069"
-        app:layout_constraintStart_toEndOf="@+id/update_bt"
-        app:layout_constraintTop_toBottomOf="@+id/TV_author"
-        tools:text="@string/str_Desc" />
-
-    <TableLayout
-        android:id="@+id/tableLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/border"
-        android:orientation="horizontal"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="10dp"
-        app:layout_constraintStart_toEndOf="@+id/update_bt"
-        app:layout_constraintTop_toBottomOf="@+id/TV_comment">
-
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dip">
-
-            <TextView
-                android:id="@+id/TV_number_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:text="@string/str_tome"
-                android:textColor="@color/colorBlack"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/TV_number"
-                android:gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:textColor="@color/colorBlack"
-                android:textStyle="bold"
-                tools:text="@string/str_tome" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dip">
-
-            <TextView
-                android:id="@+id/TV_chapter_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:text="@string/str_chapter_read"
-                android:textColor="@color/colorBlack" />
-
-            <TextView
-                android:id="@+id/TV_chapter"
-                android:gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:textColor="@color/colorBlack"
-                tools:text="@string/action_about" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dip">
-
-            <TextView
-                android:id="@+id/TV_episode_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:text="@string/str_episode_seen"
-                android:textColor="@color/colorBlack" />
-
-            <TextView
-                android:id="@+id/TV_episode"
-                android:gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:textColor="@color/colorBlack"
-                tools:text="@string/str_episode_seen" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dip">
-
-            <TextView
-                android:id="@+id/TV_bought_or_not"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:background="@drawable/border"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="5dp"
-                android:textColor="@color/colorBlack"
-                tools:text="@string/str_bought_display" />
-
-            <TextView
-                android:id="@+id/TV_finish_or_not"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:background="@drawable/border"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="5dp"
-                android:textColor="@color/colorBlack"
-                tools:text="@string/str_collection2" />
-        </TableRow>
-    </TableLayout>
-
-    <ImageView
-        android:id="@+id/add_one"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="0dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:contentDescription="@string/desc_add_one_image"
-        android:src="@drawable/add_1_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/readMore"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/TV_title">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <TextView
+            android:id="@+id/TV_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/colorWhite"
+            tools:text="@string/str_author" />
+        <TextView
+            android:id="@+id/TV_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/colorWhite"
+            tools:text="@string/str_year" />
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/TV_bought_or_not"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:textColor="@color/colorVeryDark"
+            tools:text="@string/str_bought_display" />
+
+        <TextView
+            android:id="@+id/TV_finish_or_not"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:textColor="@color/colorVeryDark"
+            tools:text="@string/str_collection2" />
+    </LinearLayout>
+
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/TV_number_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:text="@string/str_tome"
+                    android:textColor="@color/colorVeryDark"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/TV_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/colorGold"
+                    android:textStyle="bold"
+                    tools:text="@string/str_tome" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/TV_chapter_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_chapter_read"
+                    android:textColor="@color/colorVeryDark" />
+
+                <TextView
+                    android:id="@+id/TV_chapter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/colorGold"
+                    tools:text="@string/action_about" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/TV_episode_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_episode_seen"
+                    android:textColor="@color/colorVeryDark" />
+
+                <TextView
+                    android:id="@+id/TV_episode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/colorGold"
+                    tools:text="@string/str_episode_seen" />
+            </TableRow>
+        </TableLayout>
+
+        <TextView
+            android:id="@+id/TV_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/colorVeryDark"
+            android:textStyle="italic"
+            tools:text="@string/str_Desc" />
+
+    </LinearLayout>
 
     <ImageView
-        android:id="@+id/readMore"
-        android:layout_width="150dp"
+        android:id="@+id/update_bt"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:contentDescription="@string/desc_update_image"
+        android:src="@drawable/update_bt"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/add_one"
+        style="@style/ColorButton"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:contentDescription="@string/desc_readMore_image"
-        android:src="@drawable/readmore_button"
+        android:contentDescription="@string/desc_plus_button"
+        android:text="@string/plus_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/readMore"
+        app:layout_constraintStart_toEndOf="@+id/update_bt"
+        app:layout_constraintTop_toBottomOf="@+id/linear_layout" />
+
+    <Button
+        android:id="@+id/readMore"
+        style="@style/ColorButton"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/desc_readMore_button"
+        android:text="@string/readMore_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/add_one"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+        app:layout_constraintTop_toBottomOf="@+id/linear_layout"
         app:layout_constraintVertical_bias="0.2" />
 </android.support.constraint.ConstraintLayout>

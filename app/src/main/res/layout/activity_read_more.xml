@@ -6,7 +6,6 @@
     android:id="@+id/Coordinator_layout_wiki"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
     android:fitsSystemWindows="true">
 
     <android.support.design.widget.AppBarLayout
@@ -14,7 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:fitsSystemWindows="true"
-        android:theme="@style/Theme.ReadMore"
         android:stateListAnimator="@animator/appbar_always_elevated"
         >
         <android.support.design.widget.CollapsingToolbarLayout

@@ -2,18 +2,26 @@
     <string name="app_name">Book Memo</string>
 
     <!-- button description -->
+    <string name="library_button">Ma Bibliotheque</string>
     <string name="desc_library_button">Bouton pour afficher votre bibliotheque</string>
+    <string name="add_button">Ajouter</string>
     <string name="desc_add_button">Bouton pour ajouter un livre</string>
+    <string name="search_button">Recherche</string>
     <string name="desc_search_button">Bouton pour chercher un livre</string>
+    <string name="stats_button">Statistiques</string>
     <string name="desc_stats_button">Bouton pour voir les statistiques</string>
+    <string name="validate_button">Valider</string>
     <string name="desc_validate_button">bouton pour valider la Recherche</string>
+    <string name="delete_button">Supprimer</string>
     <string name="desc_delete_button">Bouton pour supprimer les infos</string>
+    <string name="plus_button">+1</string>
+    <string name="desc_plus_button">Bouton pour incrémenter les infos</string>
+    <string name="readMore_button">En Savoir Plus</string>
+    <string name="desc_readMore_button">Bouton pour en savoir plus sur le livre</string>
 
     <!-- image description -->
     <string name="desc_update_image">Bouton Image pour mettre à jour les ingfos</string>
     <string name="desc_star_image">Image pour montrer si un livre a été mis en favori</string>
-    <string name="desc_readMore_image">Image pour en savoir plus sur le livre</string>
-    <string name="desc_add_one_image">Image pour incrémenter les valeurs d\'un livre</string>
     <string name="ProgressBar_content_description">Progress Bar</string>
     <string name="image_appbar">Image de data</string>
 
@@ -57,6 +65,7 @@
     <string name="hint_editText">éditer</string>
     <string name="str_title">Titre : </string>
     <string name="str_author">Auteur : </string>
+    <string name="str_author_unknown">Auteur inconnu</string>
     <string name="str_year">Année : </string>
     <string name="str_all">Tout</string>
     <string name="str_type">Type : </string>
@@ -69,7 +78,7 @@
     <string name="str_bought">Acheté : </string>
     <string name="str_chapter">Chapitre renseigné : </string>
     <string name="str_episode">Episode renseigné : </string>
-    <string name="str_favorite">Favori (Ajout au Widget) : </string>
+    <string name="str_favorite">Favori : </string>
     <string name="str_tome">Tome : </string>
     <string name="str_chapter_read">Chapitre : </string>
     <string name="str_episode_seen">Episode : </string>
