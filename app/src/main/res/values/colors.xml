@@ -7,6 +7,7 @@
     <color name="colorWhite">#ffffff</color>
     <color name="colorBlack">#000000</color>
     <color name="colorBluePale">#8a9aef</color>
+    <color name="colorGreen">#1fa971</color>
     <color name="colorGold">#f0cc07</color>
     <color name="colorPink">#FF4081</color>
 </resources>

@@ -2,13 +2,9 @@
     <string name="app_name">Book Memo</string>
 
     <!-- button description -->
-    <string name="library_button">Ma Bibliotheque</string>
     <string name="desc_library_button">Bouton pour afficher votre bibliotheque</string>
-    <string name="add_button">Ajouter</string>
     <string name="desc_add_button">Bouton pour ajouter un livre</string>
-    <string name="search_button">Recherche</string>
     <string name="desc_search_button">Bouton pour chercher un livre</string>
-    <string name="stats_button">Statistiques</string>
     <string name="desc_stats_button">Bouton pour voir les statistiques</string>
     <string name="validate_button">Valider</string>
     <string name="desc_validate_button">bouton pour valider la Recherche</string>
@@ -21,9 +17,9 @@
 
     <!-- image description -->
     <string name="desc_update_image">Bouton Image pour mettre à jour les ingfos</string>
-    <string name="desc_star_image">Image pour montrer si un livre a été mis en favori</string>
     <string name="ProgressBar_content_description">Progress Bar</string>
     <string name="image_appbar">Image de data</string>
+    <string name="image_main">Image d\'un livre</string>
 
     <!-- menu -->
     <string name="action_import">Importer</string>
@@ -32,6 +28,7 @@
     <string name="TAB_literature">Litterature</string>
     <string name="TAB_manga">Manga</string>
     <string name="TAB_comic">BD</string>
+    <string name="TAB_global">Global</string>
 
     <!-- Titles -->
     <string name="title_seeAll">Ma Bibliothèque</string>
@@ -79,7 +76,8 @@
     <string name="str_bought">Acheté : </string>
     <string name="str_chapter">Chapitre renseigné : </string>
     <string name="str_episode">Episode renseigné : </string>
-    <string name="str_favorite">Favori : </string>
+    <string name="str_favorite">Favori (ajout sur le Widget) : </string>
+    <string name="str_favorite_yes">Favori</string>
     <string name="str_tome">Tome : </string>
     <string name="str_chapter_read">Chapitre : </string>
     <string name="str_episode_seen">Episode : </string>
@@ -89,4 +87,11 @@
 
     <!-- internet -->
     <string name="Wiki_URL">https://fr.wikipedia.org/w/api.php</string>
+
+    <!-- CHART -->
+    <string name="manga_read">Manga lu</string>
+    <string name="manga_read_diff">Serie lue</string>
+    <string name="manga_bought">Manga acheté</string>
+    <string name="anime_seen">Animé vu</string>
+    <string name="count">Nombre total</string>
 </resources>

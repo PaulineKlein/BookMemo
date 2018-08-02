@@ -1,5 +1,8 @@
 package com.pklein.bookmemo;
 
+import android.support.design.widget.TabLayout;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -11,36 +14,33 @@ import com.github.mikephil.charting.data.BarEntry;
 import java.util.ArrayList;
 
 public class StatsActivity extends AppCompatActivity {
+    public static String POSITION = "POSITION";
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats);
 
-        ArrayList<BarEntry> entries = new ArrayList<>();
-        entries.add(new BarEntry(4f, 0));
-        entries.add(new BarEntry(8f, 1));
-        entries.add(new BarEntry(6f, 2));
-        entries.add(new BarEntry(12f, 3));
-        entries.add(new BarEntry(18f, 4));
-        entries.add(new BarEntry(9f, 5));
+        // Get the ViewPager and set it's PagerAdapter so that it can display items
+        viewPager = findViewById(R.id.viewpager);
+        viewPager.setAdapter(new StatsFragmentPagerAdapter(getSupportFragmentManager(),StatsActivity.this));
 
-        BarDataSet dataset = new BarDataSet(entries, "# of Calls");
+        tabLayout = findViewById(R.id.sliding_tabs);
+        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setTabTextColors(ContextCompat.getColor(this,R.color.colorBluePale),ContextCompat.getColor(this,R.color.colorGold));
+    }
 
-        ArrayList<String> labels = new ArrayList<String>();
-        labels.add("January");
-        labels.add("February");
-        labels.add("March");
-        labels.add("April");
-        labels.add("May");
-        labels.add("June");
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(POSITION, tabLayout.getSelectedTabPosition());
+    }
 
-        BarChart chart = new BarChart(this);
-        setContentView(chart);
-
-        BarData data = new BarData(labels, dataset);
-        chart.setData(data);
-
-        chart.setDescription("# of times Alice called Bob");
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        viewPager.setCurrentItem(savedInstanceState.getInt(POSITION));
     }
 }

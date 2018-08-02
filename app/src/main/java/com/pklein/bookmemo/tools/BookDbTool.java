@@ -160,6 +160,24 @@ public class BookDbTool {
         return info;
     }
 
+    public int getCount(String subQuery, ContentResolver contentResolver, String[] projections){
+        Log.i(TAG, "getCount ");
+
+        int result = 0;
+        Uri uri = BookContract.BookDb.CONTENT_URI;
+        String[] projection = projections;
+        String selection =subQuery;
+        String sortOrder = null;
+
+        Cursor cursor = contentResolver.query(uri,projection,selection,null,sortOrder );
+
+        cursor.moveToFirst();
+        result = cursor.getInt(0);
+
+        Log.i(TAG, "end getCount : result =  "+result);
+        return result;
+    }
+
     public void insertBook(ContentResolver contentResolver,String title, String author, String desc, String type,int year,int finish, int bought, int chapter, int tome, int episode, int favorite) throws Exception {
 
         if(type.equals(""))
