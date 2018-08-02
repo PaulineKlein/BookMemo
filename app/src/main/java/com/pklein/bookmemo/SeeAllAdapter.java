@@ -51,7 +51,7 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
         public final TextView TV_episode;
         public final TextView TV_bought_or_not;
         public final TextView TV_finish_or_not;
-        public final ImageView iv_star;
+        public final TextView TV_favorite_or_not;
         public final ImageView iv_modify;
         public final Button iv_readMore;
         public final Button iv_addOne;
@@ -68,7 +68,7 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
             TV_episode = view.findViewById(R.id.TV_episode);
             TV_bought_or_not = view.findViewById(R.id.TV_bought_or_not);
             TV_finish_or_not = view.findViewById(R.id.TV_finish_or_not);
-            iv_star = view.findViewById(R.id.star);
+            TV_favorite_or_not = view.findViewById(R.id.TV_favorite_or_not);
             iv_modify = view.findViewById(R.id.update_bt);
             iv_readMore = view.findViewById(R.id.readMore);
             iv_addOne = view.findViewById(R.id.add_one);
@@ -103,7 +103,7 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
         if(!BookSelected.getAuthor().equals("")){
             seeAllAdapterViewHolder.TV_author.setText(BookSelected.getAuthor());
         }else{
-            seeAllAdapterViewHolder.TV_author.setText("unknown");
+            seeAllAdapterViewHolder.TV_author.setText(R.string.str_author_unknown);
         }
 
         seeAllAdapterViewHolder.TV_comment.setText(BookSelected.getDesc());
@@ -157,9 +157,9 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
 
         //IF favorite DISPLAY STAR
         if (BookSelected.getFavorite() != 0)
-            seeAllAdapterViewHolder.iv_star.setVisibility(View.VISIBLE);
+            seeAllAdapterViewHolder.TV_favorite_or_not.setVisibility(View.VISIBLE);
         else
-            seeAllAdapterViewHolder.iv_star.setVisibility(View.GONE);
+            seeAllAdapterViewHolder.TV_favorite_or_not.setVisibility(View.GONE);
 
         seeAllAdapterViewHolder.iv_modify.setOnClickListener(new View.OnClickListener() {
             @Override
