@@ -20,6 +20,7 @@ import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.pklein.bookmemo.tools.FileEditor;
 
 import butterknife.BindView;
@@ -28,6 +29,7 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @BindView(R.id.library_button) ImageButton library_button;
     @BindView(R.id.add_button) ImageButton add_button;
@@ -39,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         // to be able to import /export data from files :
         if (shouldAskPermissions()) {
@@ -108,6 +113,12 @@ public class MainActivity extends AppCompatActivity {
                 else
                     Toast.makeText(getApplicationContext(), R.string.file_error, Toast.LENGTH_LONG).show();
             }
+
+            Bundle bundle = new Bundle();
+            bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "import");
+            bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "action import file");
+            bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "file");
+            mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
             return true;
         }
 
@@ -122,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
             {
                 Toast.makeText(getApplicationContext(), R.string.file_error, Toast.LENGTH_LONG).show();
             }
+
             return true;
         }
 

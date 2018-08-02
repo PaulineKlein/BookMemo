@@ -23,4 +23,6 @@ Main features of this application:
 - Import data from a csv file
 - Add a favorite books List inside a widget
 - Display Information from Wikipedia API
-- Report information into Firebase
+- Report information into Firebase 
+
+=> For this purpose you will need to add your google-services.json file into this project /app directory
