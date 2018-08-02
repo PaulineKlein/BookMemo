@@ -139,6 +139,11 @@ public class MainActivity extends AppCompatActivity {
 
         if (id == R.id.action_about) {
             Log.i(TAG, "action_about ");
+            Intent i = new Intent(getApplicationContext(),AboutActivity.class );
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            getApplicationContext().startActivity(i);
+
             return true;
         }
 

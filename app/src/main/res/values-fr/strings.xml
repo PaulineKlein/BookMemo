@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Book Memo</string>
+    <string name="content_authority">com.pklein.bookmemo.app</string>
 
     <!-- button description -->
     <string name="desc_library_button">Bouton pour afficher votre bibliotheque</string>
@@ -87,6 +88,8 @@
 
     <!-- internet -->
     <string name="Wiki_URL">https://fr.wikipedia.org/w/api.php</string>
+    <string name="appwidget_text">EXEMPLE</string>
+    <string name="add_widget">Ajouter un widget</string>
 
     <!-- CHART -->
     <string name="manga_read">Manga lu</string>
@@ -94,4 +97,34 @@
     <string name="manga_bought">Manga acheté</string>
     <string name="anime_seen">Animé vu</string>
     <string name="count">Nombre total</string>
+
+    <!-- ABOUT -->
+    <string name="action_about_title">A propos de CSV</string>
+    <string name="about_Bigtitle">Pour importer un fichier CSV</string>
+    <string name="about_description">Creer un fichier CSV depuis votre ordinateur et appelez le BookMemo.csv.
+        Vous pouvez aussi cliquer sur le bouton Exporter de l\'application pour avoir un fichier d\'exemple et le renommer.
+        Le fichier doit être copié dans le répertoire /BookMemo dans le stockage interne de votre téléphone. Puis il suffit de cliquer sur le bouton d\'import.</string>
+    <string name="about_columns">Voila les colonnes nécessaires au fichier, au nombre de 11 :</string>
+    <string name="about_title">Title</string>
+    <string name="about_title_desc">Le titre de vos livres</string>
+    <string name="about_author">Author</string>
+    <string name="about_author_desc">L\'auteur de vos livres</string>
+    <string name="about_desc">Description</string>
+    <string name="about_desc_desc">Une description</string>
+    <string name="about_Type">Type</string>
+    <string name="about_Type_desc">Le type : peut prendre 3 valeurs uniquement :  LITERATURE, MANGA ou COMIC</string>
+    <string name="about_year">Year</string>
+    <string name="about_year_desc">L\'année de parution, 0 par défaut</string>
+    <string name="about_bought">Bought</string>
+    <string name="about_bought_desc">Si le livre a été acheté mettre 1 sinon mettre 0</string>
+    <string name="about_Finish">Finish</string>
+    <string name="about_Finish_desc">Si la série est terminée mettre 1 sinon mettre 0</string>
+    <string name="about_Tome">Tome</string>
+    <string name="about_Tome_desc">Le nombre de tomes lus, 0 par défaut</string>
+    <string name="about_Chapter">Chapter</string>
+    <string name="about_Chapter_desc">Le nombre de chapitres lus, 0 par défaut</string>
+    <string name="about_Episode">Episode</string>
+    <string name="about_Episode_desc">Le nombre d\'animés vus, 0 par défaut</string>
+    <string name="about_Favorite">Favorite</string>
+    <string name="about_Favorite_desc">Si la série est dans vos favoris mettre 1 sinon mettre 0</string>
 </resources>

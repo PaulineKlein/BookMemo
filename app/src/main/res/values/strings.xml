@@ -97,4 +97,34 @@
     <string name="manga_bought">Manga bought</string>
     <string name="anime_seen">Anime Seen</string>
     <string name="count">Number of elements</string>
+
+    <!-- ABOUT -->
+    <string name="action_about_title">About CSV</string>
+    <string name="about_Bigtitle">In order to import a CSV File</string>
+    <string name="about_description">Create a CSV file from your computer and call it BookMemo.csv.
+        You can also click on Export button of the application, to get an example file, and rename it correctly.
+        The File must be copied inside /BookMemo Directory into your Phone root Directory. Then just clicked on Import button.</string>
+    <string name="about_columns">Here are the 11 columns you need to write into your file :</string>
+    <string name="about_title">Title</string>
+    <string name="about_title_desc">Title of your books</string>
+    <string name="about_author">Author</string>
+    <string name="about_author_desc">Author of your books</string>
+    <string name="about_desc">Description</string>
+    <string name="about_desc_desc">One description</string>
+    <string name="about_Type">Type</string>
+    <string name="about_Type_desc">The type : it can only be one of these 3 : LITERATURE, MANGA ou COMIC</string>
+    <string name="about_year">Year</string>
+    <string name="about_year_desc">Published Year, 0 by default</string>
+    <string name="about_bought">Bought</string>
+    <string name="about_bought_desc">If the book has been bought, write 1 otherwhise 0</string>
+    <string name="about_Finish">Finish</string>
+    <string name="about_Finish_desc">If the Serie is finished, write 1 otherwhise 0</string>
+    <string name="about_Tome">Tome</string>
+    <string name="about_Tome_desc">Number of Tomes read, 0 by default</string>
+    <string name="about_Chapter">Chapter</string>
+    <string name="about_Chapter_desc">Number of Chapters read, 0 by default</string>
+    <string name="about_Episode">Episode</string>
+    <string name="about_Episode_desc">Number of Animes seen, 0 by default</string>
+    <string name="about_Favorite">Favorite</string>
+    <string name="about_Favorite_desc">If the book is a favorite one, write 1 otherwhise 0</string>
 </resources>
