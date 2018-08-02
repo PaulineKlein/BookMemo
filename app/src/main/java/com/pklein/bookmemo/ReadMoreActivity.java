@@ -3,6 +3,10 @@ package com.pklein.bookmemo;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
+import android.support.test.espresso.IdlingResource;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +22,7 @@ import android.widget.TextView;
 import com.pklein.bookmemo.data.Book;
 import com.pklein.bookmemo.tools.JsonUtils;
 import com.pklein.bookmemo.tools.NetworkUtils;
+import com.pklein.bookmemo.tools.SimpleIdlingResource;
 
 import java.net.URL;
 
@@ -35,6 +40,19 @@ public class ReadMoreActivity extends AppCompatActivity {
     @BindView(R.id.tv_error_message_display_readMore) TextView mErrorMessageDisplay;
     @BindView(R.id.loading_indicator) ProgressBar mLoadingIndicator;
     @BindView(R.id.toolbar_container_wiki)CollapsingToolbarLayout mCollapsingToolbarLayout;
+
+    // Only called FROM Tests : null in production.
+    @Nullable
+    private SimpleIdlingResource mIdlingResource;
+
+    @VisibleForTesting
+    @NonNull
+    public IdlingResource getIdlingResource() {
+        if (mIdlingResource == null) {
+            mIdlingResource = new SimpleIdlingResource();
+        }
+        return mIdlingResource;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
