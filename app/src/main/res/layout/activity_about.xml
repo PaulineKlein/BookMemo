@@ -3,11 +3,10 @@
     android:id="@+id/ScrollView01"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <LinearLayout  android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="left">
         <TextView
@@ -45,8 +44,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
 
             <TableRow android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -249,5 +247,4 @@
         </TableLayout>
 
     </LinearLayout>
-
 </ScrollView>

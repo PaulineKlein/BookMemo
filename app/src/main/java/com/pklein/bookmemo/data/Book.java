@@ -2,11 +2,6 @@ package com.pklein.bookmemo.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
-
-import com.pklein.bookmemo.SeeAllAdapter;
-
-import java.util.ArrayList;
 
 public class Book implements Parcelable {
 

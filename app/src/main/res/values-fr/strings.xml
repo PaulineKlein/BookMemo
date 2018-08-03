@@ -84,7 +84,6 @@
     <string name="str_episode_seen">Episode : </string>
     <string name="str_Desc">Description : </string>
     <string name="str_bought_display">Acheté </string>
-    <string name="str_not_bought_display">non Acheté</string>
 
     <!-- internet -->
     <string name="Wiki_URL">https://fr.wikipedia.org/w/api.php</string>

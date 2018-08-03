@@ -6,11 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.pklein.bookmemo.data.BookContract;
-
-/**
- * Created by Pauline on 02/08/2018.
- */
 
 public class StatsFragmentPagerAdapter extends FragmentPagerAdapter {
     final int PAGE_COUNT = 2;

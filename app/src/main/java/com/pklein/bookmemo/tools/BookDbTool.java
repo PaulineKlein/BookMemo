@@ -90,10 +90,9 @@ public class BookDbTool {
         List<Book> ListBook = new ArrayList<>();
         Uri uri = BookContract.BookDb.CONTENT_URI;
         String[] projection = null; // we want all columns return
-        String selection =subQuery;
         String sortOrder = BookContract.BookDb.COLUMN_TITLE;
 
-        Cursor cursor = contentResolver.query(uri,projection,selection,null,sortOrder );
+        Cursor cursor = contentResolver.query(uri,projection,subQuery,null,sortOrder );
 
         if (cursor !=null && cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
@@ -165,15 +164,14 @@ public class BookDbTool {
 
         int result = 0;
         Uri uri = BookContract.BookDb.CONTENT_URI;
-        String[] projection = projections;
-        String selection =subQuery;
         String sortOrder = null;
 
-        Cursor cursor = contentResolver.query(uri,projection,selection,null,sortOrder );
+        Cursor cursor = contentResolver.query(uri,projections,subQuery,null,sortOrder );
 
         cursor.moveToFirst();
         result = cursor.getInt(0);
 
+        cursor.close();
         Log.i(TAG, "end getCount : result =  "+result);
         return result;
     }

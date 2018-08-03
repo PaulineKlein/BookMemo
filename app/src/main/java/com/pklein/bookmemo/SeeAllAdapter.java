@@ -2,24 +2,22 @@ package com.pklein.bookmemo;
 
 
 import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.app.AlertDialog.Builder;
 import android.widget.Toast;
 
 import com.pklein.bookmemo.data.Book;

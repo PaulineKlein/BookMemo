@@ -1,11 +1,8 @@
 package com.pklein.bookmemo;
 
-import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
+import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,10 +11,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.pklein.bookmemo.data.Book;
-import com.pklein.bookmemo.data.BookContract;
 import com.pklein.bookmemo.tools.BookDbTool;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;

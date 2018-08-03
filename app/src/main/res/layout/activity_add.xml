@@ -3,28 +3,26 @@
     android:id="@+id/ScrollView02"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:theme="@style/AppTheme2"
-    >
+    android:theme="@style/AppTheme2">
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center"
-        >
+        android:gravity="center">
 
         <include layout="@layout/form_add_modify" />
 
         <Button android:id="@+id/validate_button_form"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="30dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
             android:layout_marginBottom="10dp"
             android:contentDescription="@string/desc_validate_button"
             style="@style/ColorButton"
             android:text="@string/validate_button"
-            android:textColor="@color/colorWhite"
-            />
+            android:textColor="@color/colorWhite" />
 
     </LinearLayout>
 </ScrollView>

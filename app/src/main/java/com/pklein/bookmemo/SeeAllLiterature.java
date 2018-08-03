@@ -1,8 +1,5 @@
 package com.pklein.bookmemo;
 
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
@@ -20,7 +17,6 @@ import com.pklein.bookmemo.data.Book;
 import com.pklein.bookmemo.data.BookContract;
 import com.pklein.bookmemo.tools.BookDbTool;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;

@@ -1,6 +1,5 @@
 package com.pklein.bookmemo;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;

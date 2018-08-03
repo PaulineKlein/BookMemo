@@ -33,7 +33,7 @@
 
     <!-- Titles -->
     <string name="title_seeAll">My Library</string>
-    <string name="error_message">An error has occured</string>
+    <string name="error_message">An error has occurred</string>
     <string name="error_wiki">No Information Found</string>
     <string name="error_found">No Book Found</string>
     <string name="title_add">Add a book</string>
@@ -52,12 +52,12 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="empty_title">Title can\'t be empty</string>
-    <string name="add_error">An error has occured, this book is already into the Library</string>
-    <string name="update_error">An error has occured during Update</string>
-    <string name="file_error">An error has occured during the process</string>
+    <string name="add_error">An error has occurred, this book is already into the Library</string>
+    <string name="update_error">An error has occurred during Update</string>
+    <string name="file_error">An error has occurred during the process</string>
     <string name="file_OK_export">File correctly exported into BookMemo Directory</string>
     <string name="file_OK_import">File correctly imported</string>
-    <string name="file_absent">An error has occured : no File Found </string>
+    <string name="file_absent">An error has occurred : no File Found </string>
     <string name="delete_ok">Suppression succeed !</string>
 
     <!--SearchActivity-->
@@ -84,7 +84,6 @@
     <string name="str_episode_seen">Episode : </string>
     <string name="str_Desc">Description : </string>
     <string name="str_bought_display">Bought </string>
-    <string name="str_not_bought_display">not Bought</string>
 
     <!-- internet -->
     <string name="Wiki_URL">https://en.wikipedia.org/w/api.php</string>

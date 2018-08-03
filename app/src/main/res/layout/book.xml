@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp"
-    >
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/TV_title"
@@ -22,7 +21,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/str_title" />
-
 
     <LinearLayout
         android:id="@+id/linear_layout"
@@ -41,57 +39,59 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-        <TextView
-            android:id="@+id/TV_author"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/colorWhite"
-            tools:text="@string/str_author" />
-        <TextView
-            android:id="@+id/TV_year"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/colorWhite"
-            tools:text="@string/str_year" />
+
+            <TextView
+                android:id="@+id/TV_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/colorWhite"
+                tools:text="@string/str_author" />
+
+            <TextView
+                android:id="@+id/TV_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/colorWhite"
+                tools:text="@string/str_year" />
         </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:id="@+id/TV_bought_or_not"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:textColor="@color/colorVeryDark"
-            tools:text="@string/str_bought_display" />
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/TV_bought_or_not"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:textColor="@color/colorVeryDark"
+                tools:text="@string/str_bought_display" />
 
-        <TextView
-            android:id="@+id/TV_finish_or_not"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:textColor="@color/colorVeryDark"
-            tools:text="@string/str_collection2" />
+            <TextView
+                android:id="@+id/TV_finish_or_not"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:textColor="@color/colorVeryDark"
+                tools:text="@string/str_collection2" />
 
-        <TextView
-            android:id="@+id/TV_favorite_or_not"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:textColor="@color/colorGold"
-            android:text="@string/str_favorite_yes" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/TV_favorite_or_not"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:textColor="@color/colorGold"
+                android:text="@string/str_favorite_yes" />
+        </LinearLayout>
 
         <TableLayout
             android:id="@+id/tableLayout"
@@ -108,7 +108,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp">
-
                 <TextView
                     android:id="@+id/TV_number_title"
                     android:layout_width="wrap_content"
@@ -132,7 +131,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp">
-
                 <TextView
                     android:id="@+id/TV_chapter_title"
                     android:layout_width="wrap_content"

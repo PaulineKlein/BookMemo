@@ -13,8 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:fitsSystemWindows="true"
-        android:stateListAnimator="@animator/appbar_always_elevated"
-        >
+        android:stateListAnimator="@animator/appbar_always_elevated">
+
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/toolbar_container_wiki"
             android:layout_width="match_parent"
@@ -25,8 +25,8 @@
             app:expandedTitleMarginStart="48dp"
             app:expandedTitleMarginEnd="64dp"
             app:expandedTitleTextAppearance="@style/TransparentText"
-            app:collapsedTitleTextAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse"
-            >
+            app:collapsedTitleTextAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+
             <ImageView
                 android:id="@+id/photo"
                 android:layout_width="match_parent"
@@ -46,6 +46,7 @@
                 android:paddingRight="16dp"
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp">
+
                 <TextView
                     android:id="@+id/title_book_readMore"
                     style="?android:attr/textAppearanceLarge"
@@ -68,8 +69,7 @@
                 android:fitsSystemWindows="true"
                 android:layout_marginLeft="0dp"
                 android:layout_marginRight="0dp"
-                app:layout_collapseMode="pin"
-                />
+                app:layout_collapseMode="pin" />
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
@@ -79,8 +79,7 @@
         android:layout_height="match_parent"
         android:fillViewport="true"
         android:layout_gravity="fill_vertical"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        >
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -104,22 +103,24 @@
                 android:id="@+id/tv_error_message_display_readMore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:paddingBottom="88dp"
                 android:padding="15dp"
                 android:text="@string/error_wiki"
                 android:textSize="20sp"
                 android:textColor="@color/colorAccent"
-                android:visibility="invisible" />
+                android:visibility="gone" />
 
             <ProgressBar
                 android:id="@+id/loading_indicator"
                 android:layout_height="50dp"
                 android:layout_width="50dp"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
                 android:contentDescription="@string/ProgressBar_content_description"
-                android:visibility="invisible" />
+                android:visibility="gone" />
 
         </LinearLayout>
 

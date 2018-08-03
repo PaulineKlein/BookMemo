@@ -11,319 +11,323 @@
         android:orientation="vertical"
         android:gravity="center">
 
-    <TableLayout
-        android:layout_width="fill_parent"
-        android:paddingTop="30dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"  >
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:paddingTop="30dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"  >
 
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dip" >
-            <TextView
+            <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/str_title"
-                android:textSize="18sp"
-                android:textColor="@color/colorBluePale"/>
-            <EditText
-                android:id="@+id/editTitle_form"
-                android:hint="@string/hint_editText"
-                android:textColor="@color/colorGold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="12">
-            </EditText>
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dip" >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/str_author"
-                android:textSize="18sp"
-                android:textColor="@color/colorBluePale"/>
-            <EditText
-                android:id="@+id/editAuthor_form"
-                android:hint="@string/hint_editText"
-                android:textColor="@color/colorGold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="12">
-            </EditText>
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dip" >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/str_year"
-                android:textSize="18sp"
-                android:textColor="@color/colorBluePale"/>
-            <EditText
-                android:id="@+id/editYear_form"
-                android:hint="@string/hint_editText"
-                android:textColor="@color/colorGold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="12"
-                android:inputType="number">
-            </EditText>
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dip" >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/str_tome"
-                android:textSize="18sp"
-                android:textColor="@color/colorBluePale"/>
-            <EditText
-                android:id="@+id/editTome_form"
-                android:hint="@string/hint_editText"
-                android:textColor="@color/colorGold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="12"
-                android:inputType="number">
-            </EditText>
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dip" >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/str_chapter_read"
-                android:textSize="18sp"
-                android:textColor="@color/colorBluePale"/>
-            <EditText
-                android:id="@+id/editChapter_form"
-                android:hint="@string/hint_editText"
-                android:textColor="@color/colorGold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="12"
-                android:inputType="number">
-            </EditText>
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dip" >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/str_episode_seen"
-                android:textSize="18sp"
-                android:textColor="@color/colorBluePale"/>
-            <EditText
-                android:id="@+id/editEpisode_form"
-                android:hint="@string/hint_editText"
-                android:textColor="@color/colorGold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="12"
-                android:inputType="number">
-            </EditText>
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dip" >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/str_Desc"
-                android:textSize="18sp"
-                android:textColor="@color/colorBluePale"
-                android:layout_span="2"/>
-        </TableRow>
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dip" >
-            <EditText
-                android:id="@+id/editDesc_form"
-                android:hint="@string/hint_editText"
-                android:textColor="@color/colorGold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_span="2"
-                android:ems="12">
-            </EditText>
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dip" >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/str_type"
-                android:textSize="18sp"
-                android:textColor="@color/colorBluePale"
-                android:layout_span="2"/>
-        </TableRow>
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dip" >
-            <RadioGroup
-                android:id="@+id/radio_type_form"
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_span="2">
-                <RadioButton android:id="@+id/radio_type1_form"
+                android:padding="5dp" >
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/str_type1"
+                    android:text="@string/str_title"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorBluePale"/>
+                <EditText
+                    android:id="@+id/editTitle_form"
+                    android:hint="@string/hint_editText"
                     android:textColor="@color/colorGold"
-                    android:onClick="onRadio_typeClicked_form"/>
-                <RadioButton android:id="@+id/radio_type2_form"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/str_type2"
-                    android:textColor="@color/colorGold"
-                    android:onClick="onRadio_typeClicked_form"/>
-                <RadioButton android:id="@+id/radio_type3_form"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/str_type3"
-                    android:textColor="@color/colorGold"
-                    android:onClick="onRadio_typeClicked_form"/>
-            </RadioGroup>
-        </TableRow>
+                    android:ems="12">
+                </EditText>
+            </TableRow>
 
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dip" >
-            <TextView
+            <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/str_collection"
-                android:textSize="18sp"
-                android:textColor="@color/colorBluePale"
-                android:layout_span="2"/>
-        </TableRow>
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dip" >
-            <RadioGroup
-                android:id="@+id/radio_collection_form"
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_span="2">
-                <RadioButton android:id="@+id/radio_collection1_form"
+                android:padding="5dp" >
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/str_collection1"
+                    android:text="@string/str_author"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorBluePale"/>
+                <EditText
+                    android:id="@+id/editAuthor_form"
+                    android:hint="@string/hint_editText"
                     android:textColor="@color/colorGold"
-                    android:onClick="onRadio_collectionClicked_form"/>
-                <RadioButton android:id="@+id/radio_collection2_form"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/str_collection2"
-                    android:textColor="@color/colorGold"
-                    android:onClick="onRadio_collectionClicked_form" />
-            </RadioGroup>
-        </TableRow>
+                    android:ems="12">
+                </EditText>
+            </TableRow>
 
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dip" >
-            <TextView
+            <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/str_bought"
-                android:textSize="18sp"
-                android:textColor="@color/colorBluePale"
-                android:layout_span="2"/>
-        </TableRow>
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dip" >
-            <RadioGroup
-                android:id="@+id/radio_bought_form"
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_span="2">
-                <RadioButton android:id="@+id/radio_bought1_form"
+                android:padding="5dp" >
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/yes"
+                    android:text="@string/str_year"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorBluePale"/>
+                <EditText
+                    android:id="@+id/editYear_form"
+                    android:hint="@string/hint_editText"
                     android:textColor="@color/colorGold"
-                    android:onClick="onRadio_boughtClicked_form"/>
-                <RadioButton android:id="@+id/radio_bought2_form"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/no"
-                    android:textColor="@color/colorGold"
-                    android:onClick="onRadio_boughtClicked_form" />
-            </RadioGroup>
-        </TableRow>
+                    android:ems="12"
+                    android:inputType="number">
+                </EditText>
+            </TableRow>
 
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dip" >
-            <TextView
+            <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/str_favorite"
-                android:textSize="18sp"
-                android:textColor="@color/colorBluePale"
-                android:layout_span="2"/>
-        </TableRow>
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dip" >
-            <RadioGroup
-                android:id="@+id/radio_favorite_form"
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_span="2">
-                <RadioButton android:id="@+id/radio_favorite1_form"
+                android:padding="5dp" >
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/yes"
+                    android:text="@string/str_tome"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorBluePale"/>
+                <EditText
+                    android:id="@+id/editTome_form"
+                    android:hint="@string/hint_editText"
                     android:textColor="@color/colorGold"
-                    android:onClick="onRadio_favoriteClicked_form"/>
-                <RadioButton android:id="@+id/radio_favorite2_form"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/no"
-                    android:textColor="@color/colorGold"
-                    android:onClick="onRadio_favoriteClicked_form" />
-            </RadioGroup>
-        </TableRow>
+                    android:ems="12"
+                    android:inputType="number">
+                </EditText>
+            </TableRow>
 
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_chapter_read"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorBluePale"/>
+                <EditText
+                    android:id="@+id/editChapter_form"
+                    android:hint="@string/hint_editText"
+                    android:textColor="@color/colorGold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="12"
+                    android:inputType="number">
+                </EditText>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_episode_seen"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorBluePale"/>
+                <EditText
+                    android:id="@+id/editEpisode_form"
+                    android:hint="@string/hint_editText"
+                    android:textColor="@color/colorGold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="12"
+                    android:inputType="number">
+                </EditText>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_Desc"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorBluePale"
+                    android:layout_span="2"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp" >
+                <EditText
+                    android:id="@+id/editDesc_form"
+                    android:hint="@string/hint_editText"
+                    android:textColor="@color/colorGold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_span="2"
+                    android:ems="12">
+                </EditText>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_type"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorBluePale"
+                    android:layout_span="2"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp" >
+                <RadioGroup
+                    android:id="@+id/radio_type_form"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_span="2">
+                    <RadioButton android:id="@+id/radio_type1_form"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_type1"
+                        android:textColor="@color/colorGold"
+                        android:onClick="onRadio_typeClicked_form"/>
+                    <RadioButton android:id="@+id/radio_type2_form"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_type2"
+                        android:textColor="@color/colorGold"
+                        android:onClick="onRadio_typeClicked_form"/>
+                    <RadioButton android:id="@+id/radio_type3_form"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_type3"
+                        android:textColor="@color/colorGold"
+                        android:onClick="onRadio_typeClicked_form"/>
+                </RadioGroup>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_collection"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorBluePale"
+                    android:layout_span="2"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp" >
+                <RadioGroup
+                    android:id="@+id/radio_collection_form"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_span="2">
+                    <RadioButton android:id="@+id/radio_collection1_form"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_collection1"
+                        android:textColor="@color/colorGold"
+                        android:onClick="onRadio_collectionClicked_form"/>
+                    <RadioButton android:id="@+id/radio_collection2_form"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_collection2"
+                        android:textColor="@color/colorGold"
+                        android:onClick="onRadio_collectionClicked_form" />
+                </RadioGroup>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_bought"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorBluePale"
+                    android:layout_span="2"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp" >
+                <RadioGroup
+                    android:id="@+id/radio_bought_form"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_span="2">
+                    <RadioButton android:id="@+id/radio_bought1_form"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/yes"
+                        android:textColor="@color/colorGold"
+                        android:onClick="onRadio_boughtClicked_form"/>
+                    <RadioButton android:id="@+id/radio_bought2_form"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/no"
+                        android:textColor="@color/colorGold"
+                        android:onClick="onRadio_boughtClicked_form" />
+                </RadioGroup>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_favorite"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorBluePale"
+                    android:layout_span="2"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp" >
+                <RadioGroup
+                    android:id="@+id/radio_favorite_form"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_span="2">
+                    <RadioButton android:id="@+id/radio_favorite1_form"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/yes"
+                        android:textColor="@color/colorGold"
+                        android:onClick="onRadio_favoriteClicked_form"/>
+                    <RadioButton android:id="@+id/radio_favorite2_form"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/no"
+                        android:textColor="@color/colorGold"
+                        android:onClick="onRadio_favoriteClicked_form" />
+                </RadioGroup>
+            </TableRow>
         </TableLayout>
     </LinearLayout>
 </ScrollView>
