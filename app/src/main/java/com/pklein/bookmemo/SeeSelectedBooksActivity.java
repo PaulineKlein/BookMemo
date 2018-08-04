@@ -1,7 +1,10 @@
 package com.pklein.bookmemo;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,13 +15,13 @@ import android.widget.TextView;
 
 import com.pklein.bookmemo.data.Book;
 import com.pklein.bookmemo.tools.BookDbTool;
-
-import java.util.List;
+import com.pklein.bookmemo.tools.BookLoader;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SeeSelectedBooksActivity extends AppCompatActivity {
+public class SeeSelectedBooksActivity extends AppCompatActivity implements
+        LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final String TAG= SeeSelectedBooksActivity.class.getSimpleName();
     @BindView(R.id.recyclerview_seeAll) RecyclerView mRecyclerView;
@@ -27,6 +30,7 @@ public class SeeSelectedBooksActivity extends AppCompatActivity {
     private SeeAllAdapter mSeeAllAdapter;
     private LinearLayoutManager mLayoutManager;
     private Book mbookToLookFor;
+    private Cursor mCursor;
 
     private Parcelable mSavedRecyclerViewState;
     private static final String RECYCLER_STATE = "recycler";
@@ -49,13 +53,13 @@ public class SeeSelectedBooksActivity extends AppCompatActivity {
         if (savedInstanceState != null) { // if a filter is already saved, read it
             if (savedInstanceState.containsKey(LIFECYCLE_BOOK_FILTER_KEY)) {
                 mbookToLookFor = savedInstanceState.getParcelable(LIFECYCLE_BOOK_FILTER_KEY);
-                loadBook(mbookToLookFor);
+                getSupportLoaderManager().initLoader(0, null, this);
             }
             else { showErrorMessage(); }
         } else {
             if(this.getIntent().hasExtra("BookToLookFor")) {
                 mbookToLookFor = this.getIntent().getExtras().getParcelable("BookToLookFor");
-                loadBook(mbookToLookFor);
+                getSupportLoaderManager().initLoader(0, null, this);
             }
             else { showErrorMessage(); }
         }
@@ -63,17 +67,34 @@ public class SeeSelectedBooksActivity extends AppCompatActivity {
         Log.i(TAG, "End SeeSelectedBooksActivity");
     }
 
-    private void loadBook(Book bookToLookFor){
+    //with the help of the Udacity project xyz-reader-starter-code-master :
+    @Override
+    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         BookDbTool bookDbTool = new BookDbTool();
-        String subquery = bookDbTool.constructSubQuery(bookToLookFor.getTitle(), bookToLookFor.getAuthor(), bookToLookFor.getType(), bookToLookFor.getYear(), bookToLookFor.getFinish(), bookToLookFor.getBought(),  bookToLookFor.getChapter(), bookToLookFor.getEpisode(), bookToLookFor.getFavorite());
-        List<Book> listOfBooks = bookDbTool.getSelectedBookfromDatabase(subquery, this.getContentResolver());
+        String subquery = bookDbTool.constructSubQuery(mbookToLookFor.getTitle(), mbookToLookFor.getAuthor(), mbookToLookFor.getType(), mbookToLookFor.getYear(), mbookToLookFor.getFinish(), mbookToLookFor.getBought(),  mbookToLookFor.getChapter(), mbookToLookFor.getEpisode(), mbookToLookFor.getFavorite());
+        return BookLoader.getSelectedBookfromDatabase(this,subquery);
+    }
 
-        if (listOfBooks != null) {
+    @Override
+    public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
+        mCursor = cursor;
+        if (mCursor != null && !mCursor.moveToFirst()) {
+            Log.e(TAG, "Error reading item detail cursor");
+            mCursor.close();
+            mCursor = null;
+        }
+
+        if (mCursor != null) {
             showLitteratureListView();
-            mSeeAllAdapter.setBookData(listOfBooks);
+            mSeeAllAdapter.setBookData(mCursor);
         } else {
             showErrorMessage();
         }
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> cursorLoader) {
+        mSeeAllAdapter.setBookData(null);
     }
 
     private void showLitteratureListView() {

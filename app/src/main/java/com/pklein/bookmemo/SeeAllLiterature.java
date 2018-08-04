@@ -1,9 +1,12 @@
 package com.pklein.bookmemo;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,16 +16,15 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.pklein.bookmemo.data.Book;
 import com.pklein.bookmemo.data.BookContract;
-import com.pklein.bookmemo.tools.BookDbTool;
-
-import java.util.List;
+import com.pklein.bookmemo.tools.BookLoader;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SeeAllLiterature extends Fragment {
+public class SeeAllLiterature extends Fragment implements
+        LoaderManager.LoaderCallbacks<Cursor> {
+
     private static final String TAG= SeeAllLiterature.class.getSimpleName();
 
     @BindView(R.id.recyclerview_seeAll) RecyclerView mRecyclerView;
@@ -32,6 +34,7 @@ public class SeeAllLiterature extends Fragment {
     private SeeAllAdapter mSeeAllAdapter;
     private LinearLayoutManager mLayoutManager;
     private String mLiterature_Type;
+    private Cursor mCursor;
 
     private Parcelable mSavedRecyclerViewState;
     private static final String RECYCLER_STATE = "recycler";
@@ -77,17 +80,44 @@ public class SeeAllLiterature extends Fragment {
         mSeeAllAdapter = new SeeAllAdapter();
         mRecyclerView.setAdapter(mSeeAllAdapter);
 
-        BookDbTool bookDbTool = new BookDbTool();
-        String subquery = BookContract.BookDb.COLUMN_TYPE + "='" + mLiterature_Type + "'";
-        List<Book> listOfBooks = bookDbTool.getSelectedBookfromDatabase(subquery, getActivity().getContentResolver());
+        getLoaderManager().initLoader(0, null, this);
+        Log.i(TAG, "End onStart");
+    }
 
-        if (listOfBooks != null) {
+    //with the help of the Udacity project xyz-reader-starter-code-master :
+    @Override
+    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+        String subquery = BookContract.BookDb.COLUMN_TYPE + "='" + mLiterature_Type + "'";
+        return BookLoader.getSelectedBookfromDatabase(getActivity(),subquery);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
+        if (!isAdded()) {
+            if (cursor != null) {
+                cursor.close();
+            }
+            return;
+        }
+
+        mCursor = cursor;
+        if (mCursor != null && !mCursor.moveToFirst()) {
+            Log.e(TAG, "Error reading item detail cursor");
+            mCursor.close();
+            mCursor = null;
+        }
+
+        if (mCursor != null) {
             showLitteratureListView();
-            mSeeAllAdapter.setBookData(listOfBooks);
+            mSeeAllAdapter.setBookData(mCursor);
         } else {
             showErrorMessage();
         }
-        Log.i(TAG, "End onStart");
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> cursorLoader) {
+        mSeeAllAdapter.setBookData(null);
     }
 
     private void showLitteratureListView() {

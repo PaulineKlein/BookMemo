@@ -1,6 +1,5 @@
 package com.pklein.bookmemo;
 
-
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.appwidget.AppWidgetManager;
@@ -9,6 +8,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,14 +24,11 @@ import com.pklein.bookmemo.data.Book;
 import com.pklein.bookmemo.data.BookContract;
 import com.pklein.bookmemo.tools.BookDbTool;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdapterViewHolder> {
 
     private static final String TAG= SeeAllAdapter.class.getSimpleName();
-    private List<Book> mBookData = new ArrayList<>();
+    private Cursor mBookData ;
     private boolean displayCard = false;
 
     public SeeAllAdapter() {
@@ -86,11 +83,24 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
     @Override
     public void onBindViewHolder( SeeAllAdapter.SeeAllAdapterViewHolder seeAllAdapterViewHolder, int position) {
 
-        final Book BookSelected = mBookData.get(position);
-        final SeeAllAdapterViewHolder adaptviewholder = seeAllAdapterViewHolder;
+        final Book BookSelected = new Book();
 
-        Log.i(TAG,"titre : "+BookSelected.getTitle() );
-        Log.i(TAG,"position : "+position );
+        //populate Data :
+        mBookData.moveToPosition(position);
+        BookSelected.setId(mBookData.getInt(mBookData.getColumnIndex(BookContract.BookDb.COLUMN_ID)));
+        BookSelected.setTitle(mBookData.getString(mBookData.getColumnIndex(BookContract.BookDb.COLUMN_TITLE)));
+        BookSelected.setAuthor(mBookData.getString(mBookData.getColumnIndex(BookContract.BookDb.COLUMN_AUTHOR)));
+        BookSelected.setDesc(mBookData.getString(mBookData.getColumnIndex(BookContract.BookDb.COLUMN_DESC)));
+        BookSelected.setType(mBookData.getString(mBookData.getColumnIndex(BookContract.BookDb.COLUMN_TYPE)));
+        BookSelected.setYear(mBookData.getInt(mBookData.getColumnIndex(BookContract.BookDb.COLUMN_YEAR)));
+        BookSelected.setBought(mBookData.getInt(mBookData.getColumnIndex(BookContract.BookDb.COLUMN_BOUGHT)));
+        BookSelected.setFinish(mBookData.getInt(mBookData.getColumnIndex(BookContract.BookDb.COLUMN_FINISH)));
+        BookSelected.setTome(mBookData.getInt(mBookData.getColumnIndex(BookContract.BookDb.COLUMN_TOME)));
+        BookSelected.setChapter(mBookData.getInt(mBookData.getColumnIndex(BookContract.BookDb.COLUMN_CHAPTER)));
+        BookSelected.setEpisode(mBookData.getInt(mBookData.getColumnIndex(BookContract.BookDb.COLUMN_EPISODE)));
+        BookSelected.setFavorite(mBookData.getInt(mBookData.getColumnIndex(BookContract.BookDb.COLUMN_FAVORITE)));
+
+        final SeeAllAdapterViewHolder adaptviewholder = seeAllAdapterViewHolder;
 
         //HIDE BookCard :
         displayBookCard(seeAllAdapterViewHolder, false);
@@ -285,11 +295,11 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
     @Override
     public int getItemCount() {
         if (null == mBookData) return 0;
-        return mBookData.size();
+        return mBookData.getCount();
     }
 
-    public void setBookData(List<Book> bookData) {
-        mBookData = bookData;
+    public void setBookData(Cursor newCursor) {
+        mBookData = newCursor;
         notifyDataSetChanged();
     }
 

@@ -84,15 +84,10 @@ public class BookDbTool {
         return res;
     }
 
-    public List<Book> getSelectedBookfromDatabase(String subQuery, ContentResolver contentResolver){
-        Log.i(TAG, "getSelectedBookfromDatabase ");
+    public List<Book> getSelectedBookfromCursor(Cursor cursor){
+        Log.i(TAG, "getSelectedBookfromCursor ");
 
         List<Book> ListBook = new ArrayList<>();
-        Uri uri = BookContract.BookDb.CONTENT_URI;
-        String[] projection = null; // we want all columns return
-        String sortOrder = BookContract.BookDb.COLUMN_TITLE;
-
-        Cursor cursor = contentResolver.query(uri,projection,subQuery,null,sortOrder );
 
         if (cursor !=null && cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
@@ -118,6 +113,22 @@ public class BookDbTool {
             }
             cursor.close();
         }
+
+        Log.i(TAG, "end getSelectedBookfromCursor ");
+        return ListBook;
+    }
+
+    //For Widget
+    public List<Book> getSelectedBookfromDatabase(String subQuery, ContentResolver contentResolver){
+        Log.i(TAG, "getSelectedBookfromDatabase ");
+
+        Uri uri = BookContract.BookDb.CONTENT_URI;
+        String[] projection = null; // we want all columns return
+        String sortOrder = BookContract.BookDb.COLUMN_TITLE;
+
+        Cursor cursor = contentResolver.query(uri,projection,subQuery,null,sortOrder );
+
+        List<Book> ListBook = getSelectedBookfromCursor(cursor);
 
         Log.i(TAG, "end getSelectedBookfromDatabase ");
         return ListBook;
