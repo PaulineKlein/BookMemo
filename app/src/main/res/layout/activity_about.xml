@@ -8,7 +8,7 @@
     <LinearLayout  android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="left">
+        android:gravity="start">
         <TextView
             android:id="@+id/about_Bigtitle"
             android:layout_width="wrap_content"
@@ -59,7 +59,7 @@
                     android:id="@+id/about_title_desc"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:textColor="@color/colorBluePale"
                     android:text="@string/about_title_desc" />
             </TableRow>
@@ -77,7 +77,7 @@
                     android:id="@+id/about_author_desc"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:textColor="@color/colorBluePale"
                     android:text="@string/about_author_desc" />
             </TableRow>
@@ -95,7 +95,7 @@
                     android:id="@+id/about_desc_desc"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:textColor="@color/colorBluePale"
                     android:text="@string/about_desc_desc" />
             </TableRow>
@@ -113,7 +113,7 @@
                     android:id="@+id/about_Type_desc"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:textColor="@color/colorBluePale"
                     android:text="@string/about_Type_desc" />
             </TableRow>
@@ -131,7 +131,7 @@
                     android:id="@+id/about_year_desc"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:textColor="@color/colorBluePale"
                     android:text="@string/about_year_desc" />
             </TableRow>
@@ -149,7 +149,7 @@
                     android:id="@+id/about_bought_desc"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:textColor="@color/colorBluePale"
                     android:text="@string/about_bought_desc" />
             </TableRow>
@@ -167,7 +167,7 @@
                     android:id="@+id/about_Finish_desc"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:textColor="@color/colorBluePale"
                     android:text="@string/about_Finish_desc" />
             </TableRow>
@@ -185,7 +185,7 @@
                     android:id="@+id/about_Tome_desc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:textColor="@color/colorBluePale"
                     android:text="@string/about_Tome_desc" />
             </TableRow>
@@ -203,7 +203,7 @@
                     android:id="@+id/about_Chapter_desc"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:textColor="@color/colorBluePale"
                     android:text="@string/about_Chapter_desc" />
             </TableRow>
@@ -222,7 +222,7 @@
                     android:id="@+id/about_Episode_desc"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:textColor="@color/colorBluePale"
                     android:text="@string/about_Episode_desc" />
             </TableRow>
@@ -240,7 +240,7 @@
                     android:id="@+id/about_Favorite_desc"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:textColor="@color/colorBluePale"
                     android:text="@string/about_Favorite_desc" />
             </TableRow>

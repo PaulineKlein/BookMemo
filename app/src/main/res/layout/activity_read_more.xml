@@ -42,8 +42,8 @@
                 android:background="@color/colorPrimaryDark"
                 android:layout_gravity="bottom"
                 android:orientation="vertical"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp">
 
@@ -67,8 +67,8 @@
                 app:contentInsetStart="72dp"
                 app:elevation="4dp"
                 android:fitsSystemWindows="true"
-                android:layout_marginLeft="0dp"
-                android:layout_marginRight="0dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="0dp"
                 app:layout_collapseMode="pin" />
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
@@ -92,8 +92,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:paddingBottom="88dp"
                 android:textSize="18sp"
                 android:textColor="@color/colorWhite"
@@ -104,8 +104,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:paddingBottom="88dp"
                 android:padding="15dp"
                 android:text="@string/error_wiki"
@@ -118,7 +118,7 @@
                 android:layout_height="50dp"
                 android:layout_width="50dp"
                 android:paddingBottom="10dp"
-                android:paddingLeft="10dp"
+                android:paddingStart="10dp"
                 android:contentDescription="@string/ProgressBar_content_description"
                 android:visibility="gone" />
 
