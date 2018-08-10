@@ -2,8 +2,10 @@ package com.pklein.bookmemo;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -16,7 +18,6 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.pklein.bookmemo.tools.FileEditor;
 
 import butterknife.BindView;
@@ -25,7 +26,7 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
-    private FirebaseAnalytics mFirebaseAnalytics;
+    private static final int READ_REQUEST_CODE = 42;
 
     @BindView(R.id.library_button) ImageButton library_button;
     @BindView(R.id.add_button) ImageButton add_button;
@@ -37,9 +38,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
-        // Obtain the FirebaseAnalytics instance.
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         // to be able to import /export data from files :
         if (shouldAskPermissions()) {
@@ -97,24 +95,7 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_import) {
             Log.i(TAG, "action_import ");
 
-            FileEditor importFile = new FileEditor();
-            try{
-                importFile.importData(this.getContentResolver());
-                Toast.makeText(getApplicationContext(), R.string.file_OK_import, Toast.LENGTH_LONG).show();
-            }catch (Exception e)
-            {
-                Log.e(TAG, e.getMessage());
-                if(e.getMessage().equals("Absent"))
-                    Toast.makeText(getApplicationContext(), R.string.file_absent, Toast.LENGTH_LONG).show();
-                else
-                    Toast.makeText(getApplicationContext(), R.string.file_error, Toast.LENGTH_LONG).show();
-            }
-
-            Bundle bundle = new Bundle();
-            bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "import");
-            bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "action import file");
-            bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "file");
-            mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+            performFileSearch();
             return true;
         }
 
@@ -164,5 +145,45 @@ public class MainActivity extends AppCompatActivity {
         };
         int requestCode = 200;
         requestPermissions(permissions, requestCode);
+    }
+
+    // HELP of https://developer.android.com/guide/topics/providers/document-provider
+    public void performFileSearch() {
+
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("text/*"); // HELP of http://androidsbs.blogspot.com/2014/01/intent-settypestring-type-how-to-set.html
+
+        startActivityForResult(intent, READ_REQUEST_CODE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
+        Log.e(TAG, "OPEN : " + requestCode + " " + resultCode);
+        if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            // The document selected by the user won't be returned in the intent.
+            // Instead, a URI to that document will be contained in the return intent provided to this method as a parameter.
+            // Pull that URI using resultData.getData().
+            Uri uri = null;
+            if (resultData != null) {
+                uri = resultData.getData();
+                Log.i(TAG, "Uri: " + uri.toString());
+
+                FileEditor importFile = new FileEditor();
+                try{
+                    importFile.importData(this.getContentResolver(), uri);
+                    Toast.makeText(getApplicationContext(), R.string.file_OK_import, Toast.LENGTH_LONG).show();
+                }catch (Exception e)
+                {
+                    Log.e(TAG, e.getMessage());
+                    if(e.getMessage().equals("Absent"))
+                        Toast.makeText(getApplicationContext(), R.string.file_absent, Toast.LENGTH_LONG).show();
+                    else if (e.getMessage().equals("csv"))
+                        Toast.makeText(getApplicationContext(), R.string.file_csv, Toast.LENGTH_LONG).show();
+                    else
+                        Toast.makeText(getApplicationContext(), R.string.file_error, Toast.LENGTH_LONG).show();
+                }
+            }
+        }
     }
 }

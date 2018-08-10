@@ -58,6 +58,7 @@
     <string name="file_OK_export">File correctly exported into BookMemo Directory</string>
     <string name="file_OK_import">File correctly imported</string>
     <string name="file_absent">An error has occurred : no File Found </string>
+    <string name="file_csv">An error has occurred : File must be CSV </string>
     <string name="delete_ok">Suppression succeed !</string>
 
     <!--SearchActivity-->

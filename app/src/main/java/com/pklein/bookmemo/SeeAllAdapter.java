@@ -103,7 +103,12 @@ public class SeeAllAdapter extends RecyclerView.Adapter<SeeAllAdapter.SeeAllAdap
         final SeeAllAdapterViewHolder adaptviewholder = seeAllAdapterViewHolder;
 
         //HIDE BookCard :
-        displayBookCard(seeAllAdapterViewHolder, false);
+        if(getItemCount() ==1) { // if there is only one element in the page, display it :
+            displayBookCard(seeAllAdapterViewHolder, true);
+        }
+        else{
+            displayBookCard(seeAllAdapterViewHolder, false);
+        }
 
         // SET VALUE
         seeAllAdapterViewHolder.TV_title.setText(BookSelected.getTitle());

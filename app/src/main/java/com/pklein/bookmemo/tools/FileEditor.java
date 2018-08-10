@@ -4,12 +4,17 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.content.ContentResolver;
+import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
+
 
 public class FileEditor {
 
@@ -58,16 +63,26 @@ public class FileEditor {
 
     }
 
-    public void importData(ContentResolver contentResolver) throws Exception
+    public void importData(ContentResolver contentResolver, Uri uri) throws Exception
     {
+        Log.i(TAG,uri.getPath() );
+        if(!uri.getPath().toLowerCase().contains("csv"))
+        {
+            throw new Exception("csv");
+        }
 
-        file = new File(Environment.getExternalStorageDirectory() + File.separator + DIRECTORY, DIRECTORY + ".csv");
+        InputStream inputStream = contentResolver.openInputStream(uri);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+
+       // file = new File(Environment.getExternalStorageDirectory() + File.separator + DIRECTORY, DIRECTORY + ".csv");
+       /* file = new File(uri.getPath());
+       // file = new File(new URI(uri.getPath()));
         if(!file.exists())
         {
             throw new Exception("Absent");
         }
         FileReader filereader = new FileReader(file);
-        BufferedReader reader = new BufferedReader(filereader);
+        BufferedReader reader = new BufferedReader(filereader);*/
 
         try
         {
@@ -101,7 +116,7 @@ public class FileEditor {
             }
 
             reader.close();
-            filereader.close();
+            inputStream.close();
         }
         catch (Exception e){
             Log.e(TAG,e.getMessage());
