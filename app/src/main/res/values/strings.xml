@@ -102,8 +102,8 @@
     <string name="action_about_title">About CSV</string>
     <string name="about_Bigtitle">In order to import a CSV File</string>
     <string name="about_description">Create a CSV file from your computer and call it BookMemo.csv.
-        You can also click on Export button of the application, to get an example file, and rename it correctly.
-        The File must be copied inside /BookMemo Directory into your Phone root Directory. Then just clicked on Import button.</string>
+        You can also click on Export button of the application, to get an example file.
+        The File can be copied inside /BookMemo Directory into your Phone root Directory. Then just clicked on Import button and select the right file.</string>
     <string name="about_columns">Here are the 11 columns you need to write into your file :</string>
     <string name="about_title">Title</string>
     <string name="about_title_desc">Title of your books</string>
