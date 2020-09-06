@@ -12,10 +12,10 @@ android {
     }
     signingConfigs {
         myconfig {
-            keyAlias 'bookmemo'
-            keyPassword 'kogenheim'
-            storeFile file('../key_pklein.jks')
-            storePassword 'kogenheim'
+            storeFile file(STORE_FILE)
+            storePassword STORE_PASSWORD
+            keyAlias KEY_ALIAS
+            keyPassword KEY_PASSWORD
         }
     }
     buildTypes {
