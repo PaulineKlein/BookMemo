@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import android.content.ContentResolver;
 import android.net.Uri;
@@ -27,14 +28,8 @@ public class FileEditor {
 
     public FileEditor()
     {
-        mydate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-        file = new File(Environment.getExternalStorageDirectory() + File.separator + DIRECTORY, DIRECTORY +mydate+".csv");
-
-        File myDir = new File(Environment.getExternalStorageDirectory()+File.separator + DIRECTORY);
-        if (!myDir.exists()) {
-            myDir.mkdir(); //On crée le répertoire (s'il n'existe pas!!)
-        }
-
+        mydate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), DIRECTORY+mydate+".csv");
         Info =   " TEST " + System.getProperty("line.separator" )+" TEST2 ";
     }
 

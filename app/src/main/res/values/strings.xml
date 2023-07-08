@@ -55,7 +55,7 @@
     <string name="add_error">An error has occurred, this book is already into the Library</string>
     <string name="update_error">An error has occurred during Update</string>
     <string name="file_error">An error has occurred during the process</string>
-    <string name="file_OK_export">File correctly exported into BookMemo Directory</string>
+    <string name="file_OK_export">File correctly exported into Download Directory</string>
     <string name="file_OK_import">File correctly imported</string>
     <string name="file_absent">An error has occurred : no File Found </string>
     <string name="file_csv">An error has occurred : File must be CSV </string>

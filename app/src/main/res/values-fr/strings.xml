@@ -55,7 +55,7 @@
     <string name="add_error">Une erreur est survenue, cet élément existe déjà</string>
     <string name="update_error">Une erreur est survenue lors de la mise à jour</string>
     <string name="file_error">Une erreur est survenue lors du traitement du fichier</string>
-    <string name="file_OK_export">Fichier bien exporté dans le répertoire BookMemo</string>
+    <string name="file_OK_export">Fichier bien exporté dans le dossier de téléchargement</string>
     <string name="file_OK_import">Fichier bien importé</string>
     <string name="file_absent">Une erreur est survenue : Aucun fichier trouvé </string>
     <string name="file_csv">Une erreur est survenue : Le fichier doit être un CSV </string>
