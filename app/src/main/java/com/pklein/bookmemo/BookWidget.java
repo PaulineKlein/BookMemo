@@ -27,7 +27,7 @@ public class BookWidget extends AppWidgetProvider {
         Log.i(TAG, "BEGIN updateAppWidget : ");
 
         Intent intent = new Intent(context, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.book_widget);
         views.setOnClickPendingIntent(R.id.content_widget, pendingIntent);
 
