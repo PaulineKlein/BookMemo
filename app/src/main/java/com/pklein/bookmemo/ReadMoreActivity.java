@@ -4,22 +4,25 @@ import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.VisibleForTesting;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
-import androidx.test.espresso.IdlingResource;
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.test.espresso.IdlingResource;
+
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.pklein.bookmemo.data.Book;
 import com.pklein.bookmemo.tools.JsonUtils;
 import com.pklein.bookmemo.tools.NetworkUtils;
 import com.pklein.bookmemo.tools.SimpleIdlingResource;
+import com.pklein.bookmemo.tools.ViewExtension;
 
 import java.net.URL;
 
@@ -28,15 +31,20 @@ import butterknife.ButterKnife;
 
 public class ReadMoreActivity extends AppCompatActivity {
 
-    private static final String TAG= ReadMoreActivity.class.getSimpleName();
+    private static final String TAG = ReadMoreActivity.class.getSimpleName();
     private static final String LIFECYCLE_BOOK_FILTER_KEY = "filter";
     private Book mbookToReadMore;
 
-    @BindView(R.id.title_book_readMore)    TextView title_book_readMore;
-    @BindView(R.id.content_book_readMore) TextView content_book_readMore;
-    @BindView(R.id.tv_error_message_display_readMore) TextView mErrorMessageDisplay;
-    @BindView(R.id.loading_indicator) ProgressBar mLoadingIndicator;
-    @BindView(R.id.toolbar_container_wiki)CollapsingToolbarLayout mCollapsingToolbarLayout;
+    @BindView(R.id.title_book_readMore)
+    TextView title_book_readMore;
+    @BindView(R.id.content_book_readMore)
+    TextView content_book_readMore;
+    @BindView(R.id.tv_error_message_display_readMore)
+    TextView mErrorMessageDisplay;
+    @BindView(R.id.loading_indicator)
+    ProgressBar mLoadingIndicator;
+    @BindView(R.id.toolbar_container_wiki)
+    CollapsingToolbarLayout mCollapsingToolbarLayout;
 
     // Only called FROM Tests : null in production.
     @Nullable
@@ -68,7 +76,7 @@ public class ReadMoreActivity extends AppCompatActivity {
                 mbookToReadMore = savedInstanceState.getParcelable(LIFECYCLE_BOOK_FILTER_KEY);
             }
         } else {
-            if(this.getIntent().hasExtra("BookToLookFor")) {
+            if (this.getIntent().hasExtra("BookToLookFor")) {
                 mbookToReadMore = this.getIntent().getExtras().getParcelable("BookToLookFor");
             }
         }
@@ -76,6 +84,12 @@ public class ReadMoreActivity extends AppCompatActivity {
         title_book_readMore.setText(mbookToReadMore.getTitle());
         mCollapsingToolbarLayout.setTitle(mbookToReadMore.getTitle());
         loadWikiData(mbookToReadMore.getTitle());
+        adaptEdgeToEdge();
+    }
+
+    private void adaptEdgeToEdge() {
+        CoordinatorLayout root = findViewById(R.id.Coordinator_layout_wiki);
+        ViewExtension.addSystemWindowInsetToPadding(root, false, true, false, true);
     }
 
     private void loadWikiData(String filter) {
@@ -101,12 +115,10 @@ public class ReadMoreActivity extends AppCompatActivity {
             String title = params[0];
             String content = "";
 
-            if(!NetworkUtils.isconnected((ConnectivityManager)getSystemService(CONNECTIVITY_SERVICE)))
-            {
+            if (!NetworkUtils.isconnected((ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE))) {
                 return null;
-            }
-            else {
-                title = title.replace(" ","%20");
+            } else {
+                title = title.replace(" ", "%20");
                 URL movieRequestUrl = NetworkUtils.buildListUrl(title, getApplicationContext());
                 try {
                     String jsonWikiResponse = NetworkUtils.getResponseFromHttpUrl(movieRequestUrl);
@@ -127,7 +139,7 @@ public class ReadMoreActivity extends AppCompatActivity {
                 showWikiView();
                 content_book_readMore.setText(Html.fromHtml(content));
             } else {
-                Log.e(TAG,"ERROR");
+                Log.e(TAG, "ERROR");
                 showErrorMessage();
             }
         }

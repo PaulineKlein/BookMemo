@@ -1,7 +1,11 @@
 package com.pklein.bookmemo;
 
 import android.os.Bundle;
+import android.widget.LinearLayout;
+
 import com.google.android.material.tabs.TabLayout;
+import com.pklein.bookmemo.tools.ViewExtension;
+
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +27,12 @@ public class StatsActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabTextColors(ContextCompat.getColor(this,R.color.colorBluePale),ContextCompat.getColor(this,R.color.colorGold));
+        adaptEdgeToEdge();
+    }
+
+    private void adaptEdgeToEdge() {
+        LinearLayout root = findViewById(R.id.root);
+        ViewExtension.addSystemWindowInsetToPadding(root, false, true, false, true);
     }
 
     @Override

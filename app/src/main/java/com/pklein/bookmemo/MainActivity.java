@@ -8,8 +8,6 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,7 +16,13 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
+
 import com.pklein.bookmemo.tools.FileEditor;
+import com.pklein.bookmemo.tools.ViewExtension;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,10 +32,14 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final int READ_REQUEST_CODE = 42;
 
-    @BindView(R.id.library_button) ImageButton library_button;
-    @BindView(R.id.add_button) ImageButton add_button;
-    @BindView(R.id.search_button) ImageButton search_button;
-    @BindView(R.id.stats_button) ImageButton stats_button;
+    @BindView(R.id.library_button)
+    ImageButton library_button;
+    @BindView(R.id.add_button)
+    ImageButton add_button;
+    @BindView(R.id.search_button)
+    ImageButton search_button;
+    @BindView(R.id.stats_button)
+    ImageButton stats_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         library_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),SeeAllActivity.class );
+                Intent i = new Intent(getApplicationContext(), SeeAllActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 getApplicationContext().startActivity(i);
@@ -55,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         add_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),AddActivity.class );
+                Intent i = new Intent(getApplicationContext(), AddActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 getApplicationContext().startActivity(i);
@@ -64,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
         search_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),SearchActivity.class );
+                Intent i = new Intent(getApplicationContext(), SearchActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 getApplicationContext().startActivity(i);
@@ -73,12 +81,22 @@ public class MainActivity extends AppCompatActivity {
 
         stats_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),StatsActivity.class );
+                Intent i = new Intent(getApplicationContext(), StatsActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 getApplicationContext().startActivity(i);
             }
         });
+        adaptEdgeToEdge();
+    }
+
+    private void adaptEdgeToEdge() {
+        ConstraintLayout root = findViewById(R.id.root);
+        ViewExtension.addSystemWindowInsetToPadding(root, false, true, false, true);
+
+        // Force Status Bar font color to be seen on white background (for dark mode) :
+        WindowInsetsControllerCompat windowInsetsController = new WindowInsetsControllerCompat(getWindow(), getWindow().getDecorView());
+        windowInsetsController.setAppearanceLightStatusBars(true);
     }
 
     @Override
@@ -103,11 +121,10 @@ public class MainActivity extends AppCompatActivity {
             Log.i(TAG, "action_export ");
 
             FileEditor exportFile = new FileEditor();
-            try{
+            try {
                 exportFile.exportData(exportFile.getFile(), this.getContentResolver());
                 Toast.makeText(getApplicationContext(), R.string.file_OK_export, Toast.LENGTH_LONG).show();
-            }catch (Exception e)
-            {
+            } catch (Exception e) {
                 Toast.makeText(getApplicationContext(), R.string.file_error, Toast.LENGTH_LONG).show();
             }
 
@@ -115,8 +132,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (id == R.id.action_about) {
-            Log.i(TAG, "action_about ");
-            Intent i = new Intent(getApplicationContext(),AboutActivity.class );
+            Intent i = new Intent(getApplicationContext(), AboutActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             getApplicationContext().startActivity(i);
@@ -130,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
     /* with the Help of https://stackoverflow.com/questions/8854359/exception-open-failed-eacces-permission-denied-on-android */
     protected boolean shouldAskPermissions() {
         if ((ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
-                || ((ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED))){
+                || ((ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED))) {
 
             return (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1);
         }
@@ -170,13 +186,12 @@ public class MainActivity extends AppCompatActivity {
                 Log.i(TAG, "Uri: " + uri.toString());
 
                 FileEditor importFile = new FileEditor();
-                try{
+                try {
                     importFile.importData(this.getContentResolver(), uri);
                     Toast.makeText(getApplicationContext(), R.string.file_OK_import, Toast.LENGTH_LONG).show();
-                }catch (Exception e)
-                {
+                } catch (Exception e) {
                     Log.e(TAG, e.getMessage());
-                    if(e.getMessage().equals("Absent"))
+                    if (e.getMessage().equals("Absent"))
                         Toast.makeText(getApplicationContext(), R.string.file_absent, Toast.LENGTH_LONG).show();
                     else if (e.getMessage().equals("csv"))
                         Toast.makeText(getApplicationContext(), R.string.file_csv, Toast.LENGTH_LONG).show();

@@ -11,11 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.pklein.bookmemo.data.Book;
 import com.pklein.bookmemo.tools.BookDbTool;
 import com.pklein.bookmemo.tools.BookLoader;
+import com.pklein.bookmemo.tools.ViewExtension;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,7 +41,6 @@ public class SeeSelectedBooksActivity extends AppCompatActivity implements
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.i(TAG, "Start SeeSelectedBooksActivity");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.see_all_literature);
         ButterKnife.bind(this);
@@ -63,8 +65,12 @@ public class SeeSelectedBooksActivity extends AppCompatActivity implements
             }
             else { showErrorMessage(); }
         }
+        adaptEdgeToEdge();
+    }
 
-        Log.i(TAG, "End SeeSelectedBooksActivity");
+    private void adaptEdgeToEdge() {
+        RelativeLayout root = findViewById(R.id.root);
+        ViewExtension.addSystemWindowInsetToPadding(root, false, true, false, true);
     }
 
     //with the help of the Udacity project xyz-reader-starter-code-master :

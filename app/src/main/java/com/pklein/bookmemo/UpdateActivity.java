@@ -8,40 +8,57 @@ import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.pklein.bookmemo.data.Book;
 import com.pklein.bookmemo.data.BookContract;
 import com.pklein.bookmemo.tools.BookDbTool;
+import com.pklein.bookmemo.tools.ViewExtension;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class UpdateActivity extends AppCompatActivity {
 
-    private static final String TAG= UpdateActivity.class.getSimpleName();
+    private static final String TAG = UpdateActivity.class.getSimpleName();
 
-    @BindView(R.id.editTitle_form)  EditText editTitle;
-    @BindView(R.id.editAuthor_form) EditText editAuthor;
-    @BindView(R.id.editYear_form) EditText editYear;
-    @BindView(R.id.editTome_form) EditText editTome;
-    @BindView(R.id.editChapter_form) EditText editChapter;
-    @BindView(R.id.editEpisode_form) EditText editEpisode;
-    @BindView(R.id.editDesc_form) EditText editDesc;
-    @BindView(R.id.radio_type_form) RadioGroup radiogroupType;
-    @BindView(R.id.radio_collection_form) RadioGroup radiogroupCollection;
-    @BindView(R.id.radio_bought_form) RadioGroup radiogroupBought;
-    @BindView(R.id.radio_favorite_form) RadioGroup radiogroupFavorite;
+    @BindView(R.id.editTitle_form)
+    EditText editTitle;
+    @BindView(R.id.editAuthor_form)
+    EditText editAuthor;
+    @BindView(R.id.editYear_form)
+    EditText editYear;
+    @BindView(R.id.editTome_form)
+    EditText editTome;
+    @BindView(R.id.editChapter_form)
+    EditText editChapter;
+    @BindView(R.id.editEpisode_form)
+    EditText editEpisode;
+    @BindView(R.id.editDesc_form)
+    EditText editDesc;
+    @BindView(R.id.radio_type_form)
+    RadioGroup radiogroupType;
+    @BindView(R.id.radio_collection_form)
+    RadioGroup radiogroupCollection;
+    @BindView(R.id.radio_bought_form)
+    RadioGroup radiogroupBought;
+    @BindView(R.id.radio_favorite_form)
+    RadioGroup radiogroupFavorite;
 
-    @BindView(R.id.validate_button_update)    Button validate_button;
-    @BindView(R.id.delete_button)  Button delete_button;
+    @BindView(R.id.validate_button_update)
+    Button validate_button;
+    @BindView(R.id.delete_button)
+    Button delete_button;
 
     private String str_radio_type = "";
     private int int_radio_collection = 0;
@@ -58,7 +75,6 @@ public class UpdateActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.w(TAG, "BEGIN UpdateActivity");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
         ButterKnife.bind(this);
@@ -70,7 +86,7 @@ public class UpdateActivity extends AppCompatActivity {
                 mbookToUpdate = savedInstanceState.getParcelable(LIFECYCLE_BOOK_FILTER_KEY);
             }
         } else {
-            if(this.getIntent().hasExtra("BookToLookFor")) {
+            if (this.getIntent().hasExtra("BookToLookFor")) {
                 mbookToUpdate = this.getIntent().getExtras().getParcelable("BookToLookFor");
             }
         }
@@ -78,34 +94,34 @@ public class UpdateActivity extends AppCompatActivity {
         editTitle.setText(mbookToUpdate.getTitle());
         editAuthor.setText(mbookToUpdate.getAuthor());
         editDesc.setText(mbookToUpdate.getDesc());
-        editYear.setText(""+mbookToUpdate.getYear());
-        editTome.setText(""+mbookToUpdate.getTome());
-        editChapter.setText(""+mbookToUpdate.getChapter());
-        editEpisode.setText(""+mbookToUpdate.getEpisode());
+        editYear.setText("" + mbookToUpdate.getYear());
+        editTome.setText("" + mbookToUpdate.getTome());
+        editChapter.setText("" + mbookToUpdate.getChapter());
+        editEpisode.setText("" + mbookToUpdate.getEpisode());
         str_radio_type = mbookToUpdate.getType();
         int_radio_collection = mbookToUpdate.getFinish();
         int_radio_possession = mbookToUpdate.getBought();
         int_radio_favorite = mbookToUpdate.getFavorite();
 
         // Radio Buttons :
-        if(mbookToUpdate.getType().equals(BookContract.TYPE_LITERATURE))
+        if (mbookToUpdate.getType().equals(BookContract.TYPE_LITERATURE))
             radiogroupType.check(R.id.radio_type1_form);
-        else if(mbookToUpdate.getType().equals(BookContract.TYPE_MANGA))
+        else if (mbookToUpdate.getType().equals(BookContract.TYPE_MANGA))
             radiogroupType.check(R.id.radio_type2_form);
         else
             radiogroupType.check(R.id.radio_type3_form);
 
-        if(mbookToUpdate.getFinish() == 1)
+        if (mbookToUpdate.getFinish() == 1)
             radiogroupCollection.check(R.id.radio_collection2_form);
         else
             radiogroupCollection.check(R.id.radio_collection1_form);
 
-        if(mbookToUpdate.getBought() == 1)
+        if (mbookToUpdate.getBought() == 1)
             radiogroupBought.check(R.id.radio_bought1_form);
         else
             radiogroupBought.check(R.id.radio_bought2_form);
 
-        if(mbookToUpdate.getFavorite() == 1)
+        if (mbookToUpdate.getFavorite() == 1)
             radiogroupFavorite.check(R.id.radio_favorite1_form);
         else
             radiogroupFavorite.check(R.id.radio_favorite2_form);
@@ -117,42 +133,38 @@ public class UpdateActivity extends AppCompatActivity {
                 String author = editAuthor.getText().toString();
                 String desc = editDesc.getText().toString();
 
-                if(!editYear.getText().toString().equals(""))
+                if (!editYear.getText().toString().equals(""))
                     year = Integer.parseInt(editYear.getText().toString());
-                if(!editTome.getText().toString().equals(""))
+                if (!editTome.getText().toString().equals(""))
                     tome = Integer.parseInt(editTome.getText().toString());
-                if(!editChapter.getText().toString().equals(""))
+                if (!editChapter.getText().toString().equals(""))
                     chapter = Integer.parseInt(editChapter.getText().toString());
-                if(!editEpisode.getText().toString().equals(""))
+                if (!editEpisode.getText().toString().equals(""))
                     episode = Integer.parseInt(editEpisode.getText().toString());
 
-                if(newtitle.equals(""))
+                if (newtitle.equals(""))
                     Toast.makeText(getApplicationContext(), R.string.empty_title, Toast.LENGTH_LONG).show();
-                else
-                {
-                    Log.w(TAG, "infos : "+newtitle+", "+author+", "+desc+", "+year+", "+tome+", "+chapter+", "+str_radio_type+", "+int_radio_collection+", "+int_radio_possession);
+                else {
+                    Log.w(TAG, "infos : " + newtitle + ", " + author + ", " + desc + ", " + year + ", " + tome + ", " + chapter + ", " + str_radio_type + ", " + int_radio_collection + ", " + int_radio_possession);
 
-                    try
-                    {
+                    try {
                         BookDbTool bookDbTool = new BookDbTool();
-                        bookDbTool.updateAllColumn(contentResolver,mbookToUpdate.getId(),newtitle, author, desc, str_radio_type,year,int_radio_collection, int_radio_possession, chapter, tome, episode, int_radio_favorite);
+                        bookDbTool.updateAllColumn(contentResolver, mbookToUpdate.getId(), newtitle, author, desc, str_radio_type, year, int_radio_collection, int_radio_possession, chapter, tome, episode, int_radio_favorite);
 
                         //UPDATE WIDGET :
                         Intent intent = new Intent(getApplicationContext(), BookWidget.class);
                         intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
                         int ids[] = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), BookWidget.class));
-                        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
+                        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
                         sendBroadcast(intent);
 
-                        Intent i = new Intent(getApplicationContext(),SeeSelectedBooksActivity.class );
-                        Book BookToLookFor = new Book(-1,newtitle, "","","",-1,-1,-1,-1,-1,-1,-1);
-                        i.putExtra("BookToLookFor",BookToLookFor);
+                        Intent i = new Intent(getApplicationContext(), SeeSelectedBooksActivity.class);
+                        Book BookToLookFor = new Book(-1, newtitle, "", "", "", -1, -1, -1, -1, -1, -1, -1);
+                        i.putExtra("BookToLookFor", BookToLookFor);
                         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         getApplicationContext().startActivity(i);
-                    }
-                    catch(Exception e)
-                    {
+                    } catch (Exception e) {
                         Toast.makeText(getApplicationContext(), R.string.update_error, Toast.LENGTH_LONG).show();
                     }
                 }
@@ -169,97 +181,102 @@ public class UpdateActivity extends AppCompatActivity {
                 builder.setMessage(R.string.delete_book);
 
                 builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,int id) {
+                    public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
 
-                        try
-                        {
+                        try {
                             BookDbTool bookDbTool = new BookDbTool();
-                            bookDbTool.deleteBook(contentResolver,mbookToUpdate.getId());
+                            bookDbTool.deleteBook(contentResolver, mbookToUpdate.getId());
                             Toast.makeText(getApplicationContext(), R.string.delete_ok, Toast.LENGTH_LONG).show();
 
                             //UPDATE WIDGET :
                             Intent intent = new Intent(getApplicationContext(), BookWidget.class);
                             intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
                             int ids[] = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), BookWidget.class));
-                            intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
+                            intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
                             sendBroadcast(intent);
 
                             UpdateActivity.this.finish();
-                        }
-                        catch(Exception e)
-                        {
+                        } catch (Exception e) {
                             Toast.makeText(getApplicationContext(), R.string.update_error, Toast.LENGTH_LONG).show();
                         }
                     }
                 });
 
                 builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,int id) { dialog.cancel(); }
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
                 });
 
                 builder.show();
             }
         });
 
-        Log.w(TAG, "END UpdateActivity");
+        adaptEdgeToEdge();
+    }
+
+    private void adaptEdgeToEdge() {
+        ScrollView root = findViewById(R.id.ScrollView02);
+        ViewExtension.addSystemWindowInsetToPadding(root, false, true, false, true);
     }
 
     public void onRadio_typeClicked_form(View view) {
         boolean checked = ((RadioButton) view).isChecked();
-        switch(view.getId()) {
+        switch (view.getId()) {
             case R.id.radio_type1_form:
                 if (checked)
-                    str_radio_type= BookContract.TYPE_LITERATURE;
+                    str_radio_type = BookContract.TYPE_LITERATURE;
                 break;
             case R.id.radio_type2_form:
                 if (checked)
-                    str_radio_type=BookContract.TYPE_MANGA;
+                    str_radio_type = BookContract.TYPE_MANGA;
                 break;
             case R.id.radio_type3_form:
                 if (checked)
-                    str_radio_type=BookContract.TYPE_COMIC;
+                    str_radio_type = BookContract.TYPE_COMIC;
                 break;
         }
     }
+
     public void onRadio_collectionClicked_form(View view) {
         boolean checked = ((RadioButton) view).isChecked();
-        switch(view.getId()) {
+        switch (view.getId()) {
             case R.id.radio_collection1_form:
                 if (checked)
-                    int_radio_collection=0;
+                    int_radio_collection = 0;
                 break;
             case R.id.radio_collection2_form:
                 if (checked)
-                    int_radio_collection=1;
+                    int_radio_collection = 1;
                 break;
         }
     }
 
     public void onRadio_boughtClicked_form(View view) {
         boolean checked = ((RadioButton) view).isChecked();
-        switch(view.getId()) {
+        switch (view.getId()) {
             case R.id.radio_bought1_form:
                 if (checked)
-                    int_radio_possession=1;
+                    int_radio_possession = 1;
                 break;
             case R.id.radio_bought2_form:
                 if (checked)
-                    int_radio_possession=0;
+                    int_radio_possession = 0;
                 break;
         }
     }
 
     public void onRadio_favoriteClicked_form(View view) {
         boolean checked = ((RadioButton) view).isChecked();
-        switch(view.getId()) {
+        switch (view.getId()) {
             case R.id.radio_favorite1_form:
                 if (checked)
-                    int_radio_favorite=1;
+                    int_radio_favorite = 1;
                 break;
             case R.id.radio_favorite2_form:
                 if (checked)
-                    int_radio_favorite=0;
+                    int_radio_favorite = 0;
                 break;
         }
     }

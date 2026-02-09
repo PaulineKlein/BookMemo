@@ -1,19 +1,23 @@
 package com.pklein.bookmemo;
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.pklein.bookmemo.data.BookContract;
@@ -25,7 +29,7 @@ import butterknife.ButterKnife;
 
 
 public class StatsManga extends Fragment {
-    private static final String TAG= StatsManga.class.getSimpleName();
+    private static final String TAG = StatsManga.class.getSimpleName();
     private int[] yData = new int[4];
     private String[] xData = new String[4];
 
@@ -43,7 +47,6 @@ public class StatsManga extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.i(TAG, "Start onCreateView");
         final View view = inflater.inflate(R.layout.stats, container, false);
         ButterKnife.bind(this, view);
 
@@ -72,14 +75,13 @@ public class StatsManga extends Fragment {
 
         BarChart mChart = new BarChart(view.getContext());
 
-        BarData data = new BarData(labels, dataset);
+        BarData data = new BarData(dataset);
         mChart.setData(data);
-        mChart.setDescription("");
+        mChart.setDescription(new Description());
         mChart.setDragEnabled(true);
         data.setValueTextColor(getContext().getResources().getColor(R.color.colorWhite));
 
         Legend l = mChart.getLegend();
-        l.setPosition(Legend.LegendPosition.BELOW_CHART_CENTER);
         l.setXEntrySpace(10);
         l.setYEntrySpace(5);
         l.setTextColor(getContext().getResources().getColor(R.color.colorWhite));
@@ -90,38 +92,35 @@ public class StatsManga extends Fragment {
 
         // set a chart value selected listener
         mChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
-
             @Override
-            public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
-                // display msg when value selected
-                if (e == null)
+            public void onValueSelected(Entry e, Highlight h) {
+                if (e == null || e.getX() < 0 || e.getX() >= xData.length)
                     return;
 
-                Toast.makeText(view.getContext(),xData[e.getXIndex()] + " : " + Math.round(e.getVal()), Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(), xData[(int) e.getX()] + " : " + Math.round(e.getY()), Toast.LENGTH_SHORT).show();
             }
             @Override
-            public void onNothingSelected() { }
+            public void onNothingSelected() {
+            }
         });
-
-        Log.i(TAG, "End onCreateView");
         return mChart;
     }
 
-    private void getData(){
+    private void getData() {
         BookDbTool bookDbTool = new BookDbTool();
         String subquery_manga_read = BookContract.BookDb.COLUMN_TYPE + "='" + BookContract.TYPE_MANGA + "'";
         String subquery_different_manga_read = BookContract.BookDb.COLUMN_TYPE + "='" + BookContract.TYPE_MANGA + "'";
-        String subquery_manga_bought = BookContract.BookDb.COLUMN_TYPE + "='" + BookContract.TYPE_MANGA + "' and "+BookContract.BookDb.COLUMN_BOUGHT + "=1" ;
-        String subquery_anime_seen = BookContract.BookDb.COLUMN_TYPE + "='" + BookContract.TYPE_MANGA + "' and "+BookContract.BookDb.COLUMN_EPISODE + ">0";
+        String subquery_manga_bought = BookContract.BookDb.COLUMN_TYPE + "='" + BookContract.TYPE_MANGA + "' and " + BookContract.BookDb.COLUMN_BOUGHT + "=1";
+        String subquery_anime_seen = BookContract.BookDb.COLUMN_TYPE + "='" + BookContract.TYPE_MANGA + "' and " + BookContract.BookDb.COLUMN_EPISODE + ">0";
 
         String[] projection = new String[]{"count(*) AS count"};
-        String[] projection2 = new String[]{"SUM("+BookContract.BookDb.COLUMN_TOME+") AS count"};
-        String[] projection3 = new String[]{"SUM("+BookContract.BookDb.COLUMN_EPISODE+") AS count"};
+        String[] projection2 = new String[]{"SUM(" + BookContract.BookDb.COLUMN_TOME + ") AS count"};
+        String[] projection3 = new String[]{"SUM(" + BookContract.BookDb.COLUMN_EPISODE + ") AS count"};
 
-        yData[0] = bookDbTool.getCount(subquery_different_manga_read, getActivity().getContentResolver(),projection);
-        yData[1] = bookDbTool.getCount(subquery_manga_read, getActivity().getContentResolver(),projection2);
-        yData[2] = bookDbTool.getCount(subquery_manga_bought, getActivity().getContentResolver(),projection2);
-        yData[3] = bookDbTool.getCount(subquery_anime_seen, getActivity().getContentResolver(),projection3);
+        yData[0] = bookDbTool.getCount(subquery_different_manga_read, getActivity().getContentResolver(), projection);
+        yData[1] = bookDbTool.getCount(subquery_manga_read, getActivity().getContentResolver(), projection2);
+        yData[2] = bookDbTool.getCount(subquery_manga_bought, getActivity().getContentResolver(), projection2);
+        yData[3] = bookDbTool.getCount(subquery_anime_seen, getActivity().getContentResolver(), projection3);
 
         xData[0] = getResources().getString(R.string.manga_read_diff);
         xData[1] = getResources().getString(R.string.manga_read);

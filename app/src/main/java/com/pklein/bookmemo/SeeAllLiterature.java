@@ -55,7 +55,6 @@ public class SeeAllLiterature extends Fragment implements
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.i(TAG, "Start onCreateView");
         View view = inflater.inflate(R.layout.see_all_literature, container, false);
         ButterKnife.bind(this, view);
 
@@ -66,13 +65,10 @@ public class SeeAllLiterature extends Fragment implements
                 mLiterature_Type = savedInstanceState.getString(LIFECYCLE_BOOK_FILTER_KEY);
             }
         }
-
-        Log.i(TAG, "End onCreateView");
         return view;
     }
     @Override
     public void onStart() {
-        Log.i(TAG, "Start onStart");
         super.onStart();
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setHasFixedSize(true);
@@ -81,7 +77,6 @@ public class SeeAllLiterature extends Fragment implements
         mRecyclerView.setAdapter(mSeeAllAdapter);
 
         getLoaderManager().initLoader(0, null, this);
-        Log.i(TAG, "End onStart");
     }
 
     //with the help of the Udacity project xyz-reader-starter-code-master :
